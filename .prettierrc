@@ -9,9 +9,6 @@
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
   ],
-  "tailwindFunctions": [
-    "clsx",
-    "cn",
-    "cva"
-  ],
+  "tailwindFunctions": ["clsx", "cn", "cva"],
   "tailwindStylesheet": "./src/styles/globals.css"
+}
