@@ -1,6 +1,17 @@
 {
+  "semi": true,
+  "tabWidth": 2,
+  "printWidth": 80,
+  "singleQuote": false,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
   "plugins": [
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
-  ]
-}
+  ],
+  "tailwindFunctions": [
+    "clsx",
+    "cn",
+    "cva"
+  ],
+  "tailwindStylesheet": "./src/styles/globals.css"
