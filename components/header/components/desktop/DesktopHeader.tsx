@@ -17,8 +17,6 @@ import React, { FC, memo, Suspense, useCallback } from "react";
 import LogoButton from "@/components/header/components/shared/LogoButton";
 import ThemeToggle from "@/components/header/components/shared/ThemeToggle";
 import NavigationAbout from "./navigations/about/NavigationAbout";
-import NavigationBlog from "./navigations/blog/NavigationBlog";
-import NavigationProjects from "./navigations/projects/NavigationProjects";
 
 interface Props {
   activePath: string;
@@ -38,8 +36,6 @@ const NavigationContentFallback = () => (
 
 const navigationComponents: Record<string, React.ComponentType> = {
   About: NavigationAbout,
-  Blog: NavigationBlog,
-  Projects: NavigationProjects,
 };
 
 const DesktopHeader: FC<Props> = memo(({ activePath }) => {

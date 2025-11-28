@@ -5,13 +5,9 @@ import {
   RssIcon as BlogIcon,
   UserPenIcon as ContactIcon,
   HomeIcon,
-  MailIcon,
   ArchiveIcon as ProjectsIcon,
-  FileTextIcon as ResumeIcon,
-  SpeechIcon as ShoutoutIcon,
+  FileTextIcon as ResumeIcon
 } from "lucide-react";
-import projectLinks from "./projectLinks";
-import categories from "./categories";
 
 const navigationLinks: NavigationLinkType[] = [
   {
@@ -27,13 +23,13 @@ const navigationLinks: NavigationLinkType[] = [
       {
         href: "/about",
         label: "About Me",
-        description: truncateDescription("Background and experience", 30),
+        description: truncateDescription("Background and skills", 30),
         icon: AboutMeIcon,
       },
       {
-        href: "/files/resume.pdf",
+        href: "/resume",
         label: "Resume",
-        description: truncateDescription("View my resume", 30),
+        description: truncateDescription("Experience and education", 30),
         icon: ResumeIcon,
       },
       {
@@ -48,29 +44,11 @@ const navigationLinks: NavigationLinkType[] = [
     icon: ProjectsIcon,
     href: "/projects",
     label: "Projects",
-    subNavigationLinks: projectLinks.map((project) => ({
-      icon: project.icon,
-      href: project.href,
-      label: project.title,
-      description: project.description,
-    })),
   },
   {
     icon: BlogIcon,
     href: "/blog",
     label: "Blog",
-    subNavigationLinks: categories.map((category) => ({
-      icon: category.icon,
-      href: `/blog/${category.slug}`,
-      label: category.name,
-      description: category.description,
-    })),
-  },
-
-  {
-    icon: MailIcon,
-    href: "/contact",
-    label: "Contact",
   },
 ];
 
