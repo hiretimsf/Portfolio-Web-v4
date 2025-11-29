@@ -4,7 +4,6 @@ import { useCommandState } from "cmdk";
 import {
   CornerDownLeftIcon,
   MoonStarIcon,
-  SearchIcon,
   SunMediumIcon,
   type LucideProps,
 } from "lucide-react";
@@ -14,6 +13,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
+import SearchIcon from "@/icons/SearchIcon";
 import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
