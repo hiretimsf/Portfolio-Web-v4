@@ -1,7 +1,7 @@
 import type { SocialLinkType } from "@/types";
 import Link from "next/link";
 import type { FC } from "react";
-import AnimatedArrow from "@/components/header/components/desktop/navigations/AnimatedArrow";
+import AnimatedArrow from "@/components/header/desktop/navigations/AnimatedArrow";
 
 const SocialLink: FC<SocialLinkType> = ({ href, icon: Icon, label }) => (
   <Link

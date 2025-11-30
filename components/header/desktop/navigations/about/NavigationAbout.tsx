@@ -1,6 +1,7 @@
 import NAVIGATION_LINKS from "@/config/navigationLinks";
 import SOCIAL_LINKS from "@/config/socialLinks";
 import { CircleUserIcon } from "lucide-react";
+import React from "react";
 import CardItem from "./CardItem";
 import SocialLink from "./SocialLink";
 

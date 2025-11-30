@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import ProgressBar from "@/components/header/components/shared/ProgressBar";
+import ProgressBar from "@/components/header/shared/ProgressBar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
@@ -10,14 +10,14 @@ import { usePathname } from "next/navigation";
 import { useState, type FC } from "react";
 
 const MobileHeader = dynamic(
-  () => import("@/components/header/components/mobile/MobileHeader"),
+  () => import("@/components/header/mobile/MobileHeader"),
   {
     ssr: false,
   },
 );
 
 const DesktopHeader = dynamic(
-  () => import("@/components/header/components/desktop/DesktopHeader"),
+  () => import("@/components/header/desktop/DesktopHeader"),
   {
     ssr: false,
   },

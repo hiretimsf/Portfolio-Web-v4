@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 import { SiteFooter } from "@/components/SiteFooter";
-import SiteHeader from "@/components/header/SiteHeader";
+import SiteHeader from "@/components/SiteHeader";
 
 const ScrollToTop = dynamic(() =>
   import("@/components/ScrollToTop").then((mod) => mod.ScrollToTop),

@@ -1,8 +1,8 @@
 "use client";
 
 import { SOURCE_CODE_GITHUB_REPO } from "@/config/seo/site";
-import GitHubStars from "@/components/header/components/shared/GithubStars";
-import { useEffect, useState } from "react";
+import GitHubStars from "@/components/header/shared/GithubStars";
+import React, { useEffect, useState } from "react";
 
 export default function GithubButton() {
   const [stargazersCount, setStargazersCount] = useState(0);

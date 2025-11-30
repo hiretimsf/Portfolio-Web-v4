@@ -7,7 +7,7 @@ import { useSound } from "@/hooks/use-sound";
 import { MoonIcon } from "@/icons/MoonIcon";
 import { SunIcon } from "@/icons/SunIcon";
 import { useTheme } from "next-themes";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 
 const ThemeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();

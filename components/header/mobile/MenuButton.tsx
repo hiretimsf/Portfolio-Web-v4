@@ -24,7 +24,7 @@ import type { FC } from "react";
 import React, { memo, useCallback, useState } from "react";
 
 const SubNavigationItem = dynamic(
-  () => import("@/components/header/components/mobile/SubNavigationItem"),
+  () => import("@/components/header/mobile/SubNavigationItem"),
   {
     ssr: false,
   },

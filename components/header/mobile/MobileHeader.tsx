@@ -1,21 +1,21 @@
 import dynamic from "next/dynamic";
 import { NavigationMenu } from "@/components/ui/navigation-menu";
-import type { FC } from "react";
-import LogoButton from "@/components/header/components/shared/LogoButton";
+import React, { type FC } from "react";
+import LogoButton from "@/components/header/shared/LogoButton";
 
 const MenuButton = dynamic(() => import("./MenuButton"), {
   ssr: false,
 });
 
 const ThemeToggle = dynamic(
-  () => import("@/components/header/components/shared/ThemeToggle"),
+  () => import("@/components/header/shared/ThemeToggle"),
   {
     ssr: false,
   },
 );
 
 const SearchButton = dynamic(
-  () => import("@/components/header/components/shared/SearchButton"),
+  () => import("@/components/header/shared/SearchButton"),
   {
     ssr: false,
   },

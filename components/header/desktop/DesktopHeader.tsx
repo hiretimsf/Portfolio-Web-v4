@@ -18,24 +18,24 @@ import Link from "next/link";
 import type { FC } from "react";
 import React, { memo, Suspense, useCallback } from "react";
 import NavigationAbout from "./navigations/about/NavigationAbout";
-import { SearchButton } from "@/components/header/components/shared/SearchButton";
+import { SearchButton } from "@/components/header/shared/SearchButton";
 
 const LogoButton = dynamic(
-  () => import("@/components/header/components/shared/LogoButton"),
+  () => import("@/components/header/shared/LogoButton"),
   {
     ssr: false,
   },
 );
 
 const ThemeToggle = dynamic(
-  () => import("@/components/header/components/shared/ThemeToggle"),
+  () => import("@/components/header/shared/ThemeToggle"),
   {
     ssr: false,
   },
 );
 
 const GithubButton = dynamic(
-  () => import("@/components/header/components/shared/GithubButton"),
+  () => import("@/components/header/shared/GithubButton"),
   {
     ssr: false,
   },

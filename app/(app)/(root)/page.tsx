@@ -5,13 +5,14 @@ export default function Home() {
     <>
       <SeparatorHorizontal borderTop={false} />
       <Content />
+      <SeparatorHorizontal borderBottom={false} />
     </>
   );
 }
 
 function Content() {
   return (
-    <div className="mt-10 w-full space-y-8 px-4">
+    <div className="my-10 w-full space-y-8 px-4">
       {Array.from({ length: 10 }).map((_, i) => (
         <section key={i} className="rounded-lg border p-6 max-w-2xl mx-auto">
           <h2 className="mb-4 text-xl font-semibold">Section {i + 1}</h2>
