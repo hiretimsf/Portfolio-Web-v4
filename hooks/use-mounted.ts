@@ -8,9 +8,9 @@ const emptySubscribe = () => () => {};
  * without triggering the set-state-in-effect ESLint rule.
  */
 export function useMounted(): boolean {
-	return useSyncExternalStore(
-		emptySubscribe,
-		() => true,
-		() => false,
-	);
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
 }

@@ -10,35 +10,35 @@ import { useTheme } from "next-themes";
 import { useCallback } from "react";
 
 const ThemeToggle = () => {
-	const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
-	const { setMetaColor } = useMetaColor();
+  const { setMetaColor } = useMetaColor();
 
-	const playClick = useSound("/audio/click.wav");
+  const playClick = useSound("/audio/click.wav");
 
-	const switchTheme = useCallback(() => {
-		playClick(0.5);
-		const newTheme = resolvedTheme === "dark" ? "light" : "dark";
-		setTheme(newTheme);
-		setMetaColor(
-			resolvedTheme === "dark"
-				? META_THEME_COLORS.light
-				: META_THEME_COLORS.dark,
-		);
-	}, [resolvedTheme, setTheme, setMetaColor, playClick]);
+  const switchTheme = useCallback(() => {
+    playClick(0.5);
+    const newTheme = resolvedTheme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    setMetaColor(
+      resolvedTheme === "dark"
+        ? META_THEME_COLORS.light
+        : META_THEME_COLORS.dark,
+    );
+  }, [resolvedTheme, setTheme, setMetaColor, playClick]);
 
-	return (
-		<Button
-			variant="ghost"
-			size="icon"
-			onClick={switchTheme}
-			className="corner-squircle rounded-xl text-foreground "
-		>
-			<MoonIcon className="hidden size-6 dark:block" />
-			<SunIcon className="size-6 dark:hidden" />
-			<span className="sr-only">Theme Toggle</span>
-		</Button>
-	);
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={switchTheme}
+      className="corner-squircle rounded-xl text-foreground "
+    >
+      <MoonIcon className="hidden size-6 dark:block" />
+      <SunIcon className="size-6 dark:hidden" />
+      <span className="sr-only">Theme Toggle</span>
+    </Button>
+  );
 };
 
 export default ThemeToggle;

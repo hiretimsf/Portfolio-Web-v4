@@ -3,29 +3,29 @@
 import { useEffect, useState } from "react";
 
 export function useReadingProgress() {
-	const [completion, setCompletion] = useState(0);
+  const [completion, setCompletion] = useState(0);
 
-	useEffect(() => {
-		function updateScrollCompletion() {
-			const currentProgress = window.scrollY;
-			const scrollHeight = document.body.scrollHeight - window.innerHeight;
+  useEffect(() => {
+    function updateScrollCompletion() {
+      const currentProgress = window.scrollY;
+      const scrollHeight = document.body.scrollHeight - window.innerHeight;
 
-			if (scrollHeight > 0) {
-				setCompletion(
-					Number((currentProgress / scrollHeight) * 100).toFixed(
-						0,
-					) as unknown as number,
-				);
-			}
-		}
+      if (scrollHeight > 0) {
+        setCompletion(
+          Number((currentProgress / scrollHeight) * 100).toFixed(
+            0,
+          ) as unknown as number,
+        );
+      }
+    }
 
-		window.addEventListener("scroll", updateScrollCompletion);
-		updateScrollCompletion();
+    window.addEventListener("scroll", updateScrollCompletion);
+    updateScrollCompletion();
 
-		return () => {
-			window.removeEventListener("scroll", updateScrollCompletion);
-		};
-	}, []);
+    return () => {
+      window.removeEventListener("scroll", updateScrollCompletion);
+    };
+  }, []);
 
-	return completion;
+  return completion;
 }
