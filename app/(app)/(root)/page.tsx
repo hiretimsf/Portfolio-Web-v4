@@ -1,9 +1,15 @@
 import SeparatorHorizontal from "@/components/SeparatorHorizontal";
+import Hero from "@/features/home/Hero";
 
 export default function Home() {
   return (
     <>
       <SeparatorHorizontal borderTop={false} />
+      <Hero
+        imageSrcDesktop="/images/vertical-profile.jpg"
+        imageSrcMobile="/images/horizontal-profile.jpg"
+        imageAlt="Professional headshot of Tim, a Design Engineer and Frontend Developer based in San Francisco Bay Area"
+      />
       <Content />
       <SeparatorHorizontal borderBottom={false} />
     </>

@@ -1,0 +1,20 @@
+export type ProjectItemType = {
+  id: number;
+  title: string;
+  date?: string;
+  description: string;
+  imageUrl: string;
+  imageAlt: string;
+  github?: string;
+  liveDemo?: string;
+  video?: string;
+  videoAlt?: string;
+  embed?: string;
+  embedAlt?: string;
+  skills?: string[];
+  category?: string;
+  current?: boolean;
+  upcoming?: boolean;
+  featured?: boolean;
+  weight?: number;
+};
