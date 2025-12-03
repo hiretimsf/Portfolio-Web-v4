@@ -9,7 +9,7 @@ export default function SiteFooter() {
     <footer className="w-full mx-auto overflow-x-hidden">
       <InspiredBy />
       <TechStacks />
-      <SeparatorHorizontal />
+      <SeparatorHorizontal short={true} />
       <BottomLinks />
       <Copyright />
     </footer>

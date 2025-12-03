@@ -49,9 +49,9 @@ export const FAQ_ITEMS: FaqItemType[] = [
   },
   {
     id: "faq-9",
-    question: "What is next for you in 2025 and beyond?",
+    question: "What is next for you in 2026 and beyond?",
     answer:
-      "I am exploring Compose Multiplatform for cross platform apps, AI integration, and modern architecture patterns. I want to keep pushing Android development forward.",
+      "I am exploring AI integration, modern architecture patterns, and building more web and mobile apps. I want to keep pushing my skills forward.",
   },
   {
     id: "faq-10",

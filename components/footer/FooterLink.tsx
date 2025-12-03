@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 type FooterLinkProps = {
@@ -9,6 +9,7 @@ type FooterLinkProps = {
   label: string;
   ariaLabel?: string;
   target?: React.HTMLAttributeAnchorTarget;
+  hideOnMobile?: boolean;
 };
 
 export const FOOTER_LINK_DEFAULT_STYLE =
@@ -20,20 +21,23 @@ export default function FooterLink({
   label,
   ariaLabel,
   target,
+  hideOnMobile = false,
 }: FooterLinkProps) {
   return (
-    <Button variant="link" asChild className="group">
-      <Link
-        href={href}
-        className="group flex items-center gap-1 text-sm font-medium"
-        aria-label={ariaLabel || label}
-        prefetch={true}
-        target={target}
-        rel={target === "_blank" ? "noopener noreferrer" : undefined}
-      >
-        {icon}
-        <span className={cn(FOOTER_LINK_DEFAULT_STYLE)}>{label}</span>
-      </Link>
-    </Button>
+    <Link
+      href={href}
+      className={cn(
+        buttonVariants({ variant: "link" }),
+        "group flex items-center gap-1 text-sm font-medium",
+        hideOnMobile && "hidden sm:flex items-center",
+      )}
+      aria-label={ariaLabel || label}
+      prefetch={true}
+      target={target}
+      rel={target === "_blank" ? "noopener noreferrer" : undefined}
+    >
+      {icon}
+      <span className={cn(FOOTER_LINK_DEFAULT_STYLE)}>{label}</span>
+    </Link>
   );
 }

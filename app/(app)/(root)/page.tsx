@@ -15,28 +15,28 @@ export default function Home() {
         imageSrcMobile="/images/horizontal-profile.jpg"
         imageAlt="Professional headshTot of Tim, a Design Engineer and Frontend Developer based in San Francisco Bay Area"
       />
-      <SeparatorHorizontal />
+      <SeparatorHorizontal short={true} />
       <HeadingTitle
         title="FEATURED APPS"
         textStyleClassName="text-2xl font-bold sm:text-3xl"
       />
-      <SeparatorHorizontal />
+      <SeparatorHorizontal short={true} />
       <FeaturedApps />
-      <SeparatorHorizontal />
+      <SeparatorHorizontal short={true} />
       <HeadingTitle
         title="WHAT PEOPLE ARE SAYING"
         textStyleClassName="text-2xl font-bold sm:text-3xl"
       />
-      <SeparatorHorizontal />
+      <SeparatorHorizontal short={true} />
       <Testimonials />
       <SeparatorHorizontal />
       <HeadingTitle
         title="FAQ"
         textStyleClassName="text-2xl font-bold sm:text-3xl"
       />
-      <SeparatorHorizontal />
+      <SeparatorHorizontal short={true} />
       <FaqSection />
-      <SeparatorHorizontal />
+      <SeparatorHorizontal short={true} />
       <ContactMe />
       <SeparatorHorizontal borderBottom={false} />
     </>
