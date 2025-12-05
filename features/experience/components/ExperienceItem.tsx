@@ -30,7 +30,10 @@ export default function ExperienceItem({
   return (
     <article
       id={experience.id}
-      className={cn("border-r border-b border-gray-200 sm:mr-6", className)}
+      className={cn(
+        "border-r border-b border-border-edge border-dashed sm:mr-6",
+        className,
+      )}
     >
       <CompanyMain
         companyLogo={companyLogo}

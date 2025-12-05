@@ -22,7 +22,7 @@ export default function CompanyLocation({
   return (
     <div
       className={cn(
-        "text-foreground/80 flex items-center gap-1.5 text-base",
+        "text-muted-foreground flex items-center gap-1.5 text-base",
         className,
       )}
     >

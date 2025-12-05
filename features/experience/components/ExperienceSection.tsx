@@ -195,7 +195,9 @@ export default function WorkExperienceSection({
                 <ExperienceItem
                   key={experience.id}
                   experience={experience}
-                  className={index % 2 === 0 ? undefined : "bg-panda-prune/40"}
+                  className={
+                    index % 2 === 0 ? undefined : "bg-muted/50 dark:bg-muted/20"
+                  }
                 />
               ))
             ) : (

@@ -15,7 +15,7 @@ export default function PositionDescription({
   }
 
   return (
-    <Prose className="border-r border-b border-l border-gray-200 px-4 py-4">
+    <Prose className="border-r border-b border-l border-border-edge border-dashed px-4 py-4">
       <ReactMarkdown
         components={{
           a: ({ node: _node, ...props }) => {

@@ -26,7 +26,7 @@ export default function CompanyLogo({
       height={64}
       priority
       className={cn(
-        "size-20 rounded-md border border-gray-200 bg-white object-contain p-1 md:size-16",
+        "size-20 rounded-lg bg-background corner-squircle border border-border-edge object-contain p-1 md:size-16",
         className,
       )}
       sizes="(max-width: 768px) 64px, (max-width: 1200px) 64px, 64px"

@@ -26,7 +26,7 @@ export default function CompanyWebsite({
   return (
     <dl
       className={cn(
-        "text-foreground/80 flex items-center justify-center gap-1.5 text-base",
+        "text-muted-foreground flex items-center justify-center gap-1.5 text-base",
         className,
       )}
     >
@@ -37,13 +37,10 @@ export default function CompanyWebsite({
           href={companyWebsite}
           target="_blank"
           rel="noopener noreferrer"
-          className="group text-foreground/80 inline-flex items-center gap-1 hover:underline hover:underline-offset-4"
+          className="group text-muted-foreground inline-flex items-center gap-1 hover:text-foreground hover:underline hover:underline-offset-4"
         >
           Website
-          <ArrowUpRight
-            className="text-foreground/70 group-hover:text-panda-orange size-4"
-            aria-hidden="true"
-          />
+          <ArrowUpRight className="text-muted-foreground group-hover:text-foreground size-4" />
         </a>
       </dd>
     </dl>
