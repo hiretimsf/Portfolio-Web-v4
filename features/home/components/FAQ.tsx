@@ -1,4 +1,5 @@
 import BackgroundDots from "@/components/BackgroundDots";
+import { Effect } from "@/components/animate-ui/primitives/effects/effect";
 import {
   Accordion,
   AccordionContent,
@@ -28,14 +29,24 @@ const FaqSection = ({ className = "" }: FaqSectionProps) => {
       >
         {FAQ_ITEMS.map((item: FaqItemType, index: number) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: faq items are static
-          <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-foreground px-4 text-lg/6 font-semibold hover:no-underline sm:px-6 sm:text-xl/8 lg:px-8 text-left">
-              {item.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-foreground px-4 pt-4 text-base/7 sm:px-6 sm:text-lg/8 lg:px-8 text-left border-t border-dashed border-border-edge">
-              {item.answer}
-            </AccordionContent>
-          </AccordionItem>
+          <Effect
+            key={index}
+            slide={{ direction: "up" }}
+            fade
+            inView
+            inViewOnce
+            inViewMargin="-20px"
+            asChild
+          >
+            <AccordionItem value={`item-${index}`}>
+              <AccordionTrigger className="text-foreground px-4 text-lg/6 font-semibold hover:no-underline sm:px-6 sm:text-xl/8 lg:px-8 text-left">
+                {item.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-foreground px-4 pt-4 text-base/7 sm:px-6 sm:text-lg/8 lg:px-8 text-left border-t border-dashed border-border-edge">
+                {item.answer}
+              </AccordionContent>
+            </AccordionItem>
+          </Effect>
         ))}
       </Accordion>
       <BackgroundDots
