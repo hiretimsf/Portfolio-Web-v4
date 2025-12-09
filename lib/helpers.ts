@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 /**
  * Gets base URL for the app
  */
@@ -54,4 +55,24 @@ export function slugify(text: string) {
     .replace(/\s+/g, `-`)
     .replace(/[^\w-]+/g, ``)
     .replace(/--+/g, `-`);
+}
+
+export function getMinutes(minutes: number) {
+  const roundedMinutes = Math.round(minutes);
+  return `${roundedMinutes} min`;
+}
+
+export function formatDate(date: string, formatStr: string = "MMM d, yyyy") {
+  return format(new Date(date), formatStr);
+}
+
+export function parseDate(dateStr?: string): number {
+  if (!dateStr) return 0;
+  const parts = dateStr.split(" - ");
+  const endDate = parts[parts.length - 1];
+  if (endDate.toLowerCase().includes("present")) {
+    return new Date().getTime();
+  }
+  const timestamp = new Date(endDate).getTime();
+  return isNaN(timestamp) ? 0 : timestamp;
 }

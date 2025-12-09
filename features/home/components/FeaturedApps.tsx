@@ -1,10 +1,11 @@
 import BackgroundDots from "@/components/BackgroundDots";
-import ProjectItem from "@/features/projects/components/ProjectItem";
-import { getFeaturedApps } from "@/lib/source";
+import CardItem from "@/components/CardItem";
+import { getFeaturedProjects } from "@/lib/source";
 import { Effect } from "@/components/animate-ui/primitives/effects/effect";
+import { slugify } from "@/lib/helpers";
 
 export default function FeaturedApps() {
-  const projects = getFeaturedApps();
+  const projects = getFeaturedProjects();
 
   return (
     <div className="relative mx-auto max-w-7xl px-6 py-8 md:py-10 lg:px-8">
@@ -12,14 +13,14 @@ export default function FeaturedApps() {
       <div className="xl mx-auto grid max-w-5xl grid-cols-1 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         {projects.map((project, index) => (
           <Effect
-            key={project.id}
+            key={slugify(project.title)}
             inView={true}
             inViewOnce={true}
             fade={true}
             slide={{ direction: "up", offset: 10 }}
             delay={index * 100}
           >
-            <ProjectItem project={project} index={index} />
+            <CardItem item={project} index={index} type="project" />
           </Effect>
         ))}
       </div>

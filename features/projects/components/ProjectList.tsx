@@ -1,11 +1,11 @@
 import { Effect } from "@/components/animate-ui/primitives/effects/effect";
 import BackgroundDots from "@/components/BackgroundDots";
-import ProjectItem from "@/features/projects/components/ProjectItem";
+import CardItem from "@/components/CardItem";
 import { getProjects } from "@/lib/source";
-import type { ProjectItemType } from "@/types";
+import type { ProjectType } from "@/features/projects/types/ProjectType";
 
 export default function ProjectList() {
-  const projects: ProjectItemType[] = getProjects();
+  const projects: ProjectType[] = getProjects();
 
   return (
     <div className="relative mx-auto max-w-7xl px-6 py-8 md:py-10 lg:px-8">
@@ -20,7 +20,7 @@ export default function ProjectList() {
             slide={{ direction: "up", offset: 10 }}
             delay={index * 100}
           >
-            <ProjectItem project={project} index={index} />
+            <CardItem item={project} index={index} type="project" />
           </Effect>
         ))}
       </div>

@@ -1,3 +1,9 @@
+import type { LucideIcon } from "lucide-react";
+import type * as React from "react";
+import type { IconType } from "react-icons";
+import type { flag } from "country-flag-icons/react/3x2";
+import type { ProjectType } from "@/features/projects/types/ProjectType";
+
 export interface HeadType {
   page: string;
   title: string;
@@ -79,28 +85,7 @@ export type ExperienceItemType = {
   country?: flag;
   positions: ExperiencePositionItemType[];
   isCurrentEmployer?: boolean;
-  projects?: ProjectItemType[];
-};
-
-export type ProjectItemType = {
-  id: number;
-  title: string;
-  date?: string;
-  description: string;
-  imageUrl: string;
-  imageAlt: string;
-  github?: string;
-  liveDemo?: string;
-  video?: string;
-  videoAlt?: string;
-  embed?: string;
-  embedAlt?: string;
-  skills?: string[];
-  category?: string;
-  current?: boolean;
-  upcoming?: boolean;
-  featured?: boolean;
-  weight?: number;
+  projects?: ProjectType[];
 };
 
 export type ExperiencePositionItemType = {

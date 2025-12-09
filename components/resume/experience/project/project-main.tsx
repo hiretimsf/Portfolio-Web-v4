@@ -1,5 +1,5 @@
+import type { ProjectType } from "@/features/projects/types/ProjectType";
 import { cn } from "@/lib/utils";
-import type { ProjectItemType } from "@/types";
 import { ProjectDate } from "./project-date";
 import { ProjectDescription } from "./project-description";
 import { ProjectImage } from "./project-image";
@@ -7,7 +7,7 @@ import ProjectSkills from "./project-skills";
 import { ProjectTitle } from "./project-title";
 
 type ProjectMainProps = {
-  project: ProjectItemType;
+  project: ProjectType;
   hasBorderTop?: boolean;
   isLast?: boolean;
 };
@@ -17,6 +17,10 @@ export function ProjectMain({
   hasBorderTop = false,
   isLast = false,
 }: ProjectMainProps) {
+  const date = project.fromDate
+    ? `${project.fromDate} - ${project.toDate}`
+    : "Unknown date";
+
   return (
     <div className="px-6 md:flex-row md:px-8">
       <div
@@ -26,22 +30,22 @@ export function ProjectMain({
           hasBorderTop && "border-t",
         )}
       >
-        <div className="flex-shrink-0 border-r border-gray-200 py-4 pr-4">
+        <div className="shrink-0 border-r border-gray-200 py-4 pr-4">
           <ProjectImage
             imageUrl={project.imageUrl}
-            imageAlt={project.imageAlt}
+            imageAlt={project.imageAlt ?? project.title}
           />
         </div>
         <div className="flex flex-col gap-1 border-gray-200 py-4">
           <ProjectTitle
             title={project.title}
-            demoLink={project.liveDemo ?? project.github ?? ""}
+            demoLink={project.websiteUrl ?? project.githubUrl ?? ""}
           />
-          <ProjectDate date={project.date ?? "Unknown date"} />
+          <ProjectDate date={date} />
           <ProjectDescription description={project.description} />
         </div>
       </div>
-      <ProjectSkills skills={project.skills ?? []} />
+      <ProjectSkills skills={project.techStacks ?? []} />
     </div>
   );
 }

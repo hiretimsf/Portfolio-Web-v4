@@ -13,17 +13,18 @@ var projects = defineDocs({
     schema: frontmatterSchema.extend({
       title: z.string(),
       description: z.string(),
-      date: z.string(),
       category: z.string(),
-      skills: z.array(z.string()),
-      liveDemo: z.string().optional(),
+      fromDate: z.string(),
+      toDate: z.string(),
       imageUrl: z.string().optional(),
       imageAlt: z.string().optional(),
-      embedUrl: z.string().optional(),
-      embedAlt: z.string().optional(),
-      github: z.string().optional(),
-      featured: z.boolean().optional(),
-      weight: z.number().optional()
+      featured: z.boolean(),
+      showOnPortfolio: z.boolean().default(true),
+      websiteUrl: z.string().optional(),
+      githubUrl: z.string().optional(),
+      videoEmbedUrl: z.string().optional(),
+      videoEmbedAlt: z.string().optional(),
+      techStacks: z.array(z.string()).optional()
     })
   })
 });
@@ -86,35 +87,34 @@ var education = defineDocs({
     })
   })
 });
-var featuredApps = defineDocs({
-  dir: "features/home/content/featured-apps",
-  docs: defineCollections({
-    type: "doc",
-    dir: "features/home/content/featured-apps",
-    schema: frontmatterSchema.extend({
-      title: z.string(),
-      description: z.string(),
-      date: z.string(),
-      category: z.string(),
-      skills: z.array(z.string()),
-      liveDemo: z.string().optional(),
-      imageUrl: z.string().optional(),
-      imageAlt: z.string().optional(),
-      embedUrl: z.string().optional(),
-      embedAlt: z.string().optional(),
-      github: z.string().optional(),
-      featured: z.boolean().optional(),
-      weight: z.number().optional()
-    })
-  })
-});
 var about = defineDocs({
   dir: "features/about/content"
 });
+var blog = defineDocs({
+  dir: "features/blog/content",
+  docs: defineCollections({
+    type: "doc",
+    dir: "features/blog/content",
+    schema: frontmatterSchema.extend({
+      title: z.string(),
+      description: z.string(),
+      created: z.string(),
+      lastUpdated: z.string().optional(),
+      image: z.string(),
+      imageAlt: z.string().optional(),
+      author: z.string().optional(),
+      authorAvatar: z.string().optional(),
+      authorAvatarAlt: z.string().optional(),
+      category: z.string().optional(),
+      tags: z.array(z.string()).optional(),
+      seo: z.array(z.string()).optional()
+    })
+  })
+});
 export {
   about,
+  blog,
   education,
   experience,
-  featuredApps,
   projects
 };
