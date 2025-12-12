@@ -21,6 +21,13 @@ const create = await dynamic<typeof Config, import("fumadocs-mdx/runtime/types")
        */
       lastModified?: Date;
     },
+    changelog: {
+      /**
+       * Last modified date of document file, obtained from version control.
+       *
+       */
+      lastModified?: Date;
+    },
     education: {
       /**
        * Last modified date of document file, obtained from version control.

@@ -171,12 +171,25 @@ var privacy = defineDocs({
     })
   })
 });
+var changelog = defineDocs({
+  dir: "features/changelog/content",
+  docs: defineCollections({
+    type: "doc",
+    dir: "features/changelog/content",
+    schema: frontmatterSchema.extend({
+      title: z.string(),
+      description: z.string(),
+      created: z.string()
+    })
+  })
+});
 var source_config_default = defineConfig({
   plugins: [lastModified()]
 });
 export {
   about,
   blog,
+  changelog,
   source_config_default as default,
   education,
   experience,

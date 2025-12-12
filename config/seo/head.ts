@@ -74,6 +74,16 @@ const HEAD: HeadType[] = [
     ),
     slug: "/privacy",
   },
+  {
+    page: "Changelog",
+    title: truncateTitle(
+      "Changelog | The history and evolution of my portfolio website.",
+    ),
+    description: truncateDescription(
+      "The history and evolution of my portfolio website.",
+    ),
+    slug: "/changelog",
+  },
 ];
 
 export default HEAD;

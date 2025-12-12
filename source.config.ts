@@ -179,6 +179,19 @@ export const privacy = defineDocs({
   }),
 });
 
+export const changelog = defineDocs({
+  dir: "features/changelog/content",
+  docs: defineCollections({
+    type: "doc",
+    dir: "features/changelog/content",
+    schema: frontmatterSchema.extend({
+      title: z.string(),
+      description: z.string(),
+      created: z.string(),
+    }),
+  }),
+});
+
 export default defineConfig({
   plugins: [lastModified()],
 });
