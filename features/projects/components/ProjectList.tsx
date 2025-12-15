@@ -1,4 +1,3 @@
-import { Effect } from "@/components/animate-ui/primitives/effects/effect";
 import BackgroundDots from "@/features/common/components/BackgroundDots";
 import CardItem from "@/features/common/components/CardItem";
 import { getProjects } from "@/features/projects/data/projectSource";
@@ -12,16 +11,7 @@ export default function ProjectList() {
       <BackgroundDots gridId="featured-apps" className="text-gray-200/80" />
       <div className="xl mx-auto grid max-w-5xl grid-cols-1 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         {projects.map((project, index) => (
-          <Effect
-            key={index}
-            inView={true}
-            inViewOnce={true}
-            fade={true}
-            slide={{ direction: "up", offset: 10 }}
-            delay={index * 100}
-          >
-            <CardItem item={project} index={index} type="project" />
-          </Effect>
+          <CardItem key={index} item={project} index={index} type="project" />
         ))}
       </div>
     </div>

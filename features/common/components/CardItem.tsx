@@ -128,7 +128,7 @@ const BlogContent = ({
   item: BlogPostType;
   index: number;
 }) => {
-  const href = `/blog/${item.slug}`;
+  const href = `/blog/post/${item.slug}`;
   return (
     <>
       <CardHeader className="gap-0">

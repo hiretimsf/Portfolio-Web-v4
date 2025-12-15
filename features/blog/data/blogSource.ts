@@ -25,19 +25,24 @@ export function getBlogPosts(): BlogPostType[] {
     };
 
     const pageWithFile = page as BlogPage & { file: { path: string } };
-    const slug = pageWithFile.file?.path
-      ? pageWithFile.file.path.replace(/\.mdx?$/, "")
-      : "";
+    const slug = page.slugs.join("/");
 
-    const filePath = pageWithFile.file?.path
-      ? path.join(
-          process.cwd(),
-          "features/blog/content",
-          pageWithFile.file.path,
-        )
-      : "";
+    let filePath = "";
+    if (pageWithFile.file?.path) {
+      filePath = path.join(
+        process.cwd(),
+        "features/blog/content",
+        pageWithFile.file.path,
+      );
+    } else if (slug) {
+      filePath = path.join(
+        process.cwd(),
+        "features/blog/content",
+        `${slug}.mdx`,
+      );
+    }
 
-    if (!filePath) {
+    if (!filePath || (filePath && !fs.existsSync(filePath))) {
       return {
         title: data.title,
         description: data.description,

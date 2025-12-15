@@ -1,10 +1,18 @@
 import type * as React from "react";
+
 export interface HeadType {
   page: string;
   title: string;
   description: string;
   slug: string;
 }
+
+export type Heading = {
+  text: string;
+  slug: string;
+  depth: number;
+};
+
 export type NavigationLinkType = {
   href: string;
   label: string;

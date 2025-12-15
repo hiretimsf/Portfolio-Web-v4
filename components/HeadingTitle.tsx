@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { Effect } from "@/components/animate-ui/primitives/effects/effect";
 
 interface HeadingTitleProps {
   title: string;
@@ -61,21 +60,14 @@ export default function HeadingTitle({
           mask={`url(#${gridId}-mask)`}
         ></rect>
       </svg>
-      <Effect
-        inView={true}
-        inViewOnce={true}
-        blur={{ initialBlur: 5, blur: 0 }}
-        delay={0}
+      <h2
+        className={cn(
+          "text-foreground relative mx-auto text-center tracking-tight",
+          textStyleClassName,
+        )}
       >
-        <h2
-          className={cn(
-            "text-foreground relative mx-auto text-center tracking-tight",
-            textStyleClassName,
-          )}
-        >
-          {title}
-        </h2>
-      </Effect>
+        {title}
+      </h2>
     </div>
   );
 }
