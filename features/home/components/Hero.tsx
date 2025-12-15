@@ -54,7 +54,7 @@ function HeroContent() {
       <div className="px-4 text-left py-4">
         <Button asChild>
           <Link href="/about" className="w-full sm:w-fit py-4 px-6">
-            Learn More
+            Learn more about Tim
           </Link>
         </Button>
       </div>
@@ -80,7 +80,7 @@ export default function Hero({
   } = getImageProps({
     ...common,
     width: 1000,
-    height: 1000,
+    height: 800,
     src: imageSrcDesktop,
   });
 
@@ -88,8 +88,8 @@ export default function Hero({
     props: { srcSet: mobileSrcSet },
   } = getImageProps({
     ...common,
-    width: 1000,
-    height: 500,
+    width: 600,
+    height: 400,
     src: imageSrcMobile,
   });
 

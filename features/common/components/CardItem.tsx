@@ -104,7 +104,7 @@ const CoverImage = ({
           height={500}
           className="h-full w-full rounded-none object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority={index !== undefined && index < 3}
+          priority={false}
         />
       </div>
     </BrowserWrapper>
