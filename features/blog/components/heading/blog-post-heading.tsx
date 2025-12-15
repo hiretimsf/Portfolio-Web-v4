@@ -1,4 +1,3 @@
-import { Effect } from "@/components/animate-ui/primitives/effects/effect";
 import { Separator } from "@radix-ui/react-separator";
 import Image from "next/image";
 import type { FC } from "react";
@@ -29,62 +28,51 @@ const BlogPostDetailHeading: FC<Props> = ({
 }) => {
   return (
     <div className="mx-auto w-full max-w-5xl px-6 py-10 sm:px-4 md:px-0">
-      <Effect
-        fade
-        blur={{ initialBlur: 10, blur: 0 }}
-        transition={{
-          duration: 0.5,
-          ease: "easeInOut",
-        }}
-        inView={true}
-        inViewOnce={true}
-      >
-        <div className="mx-auto flex w-full max-w-3xl items-center space-x-4">
-          <BackButton />
-        </div>
+      <div className="mx-auto flex w-full max-w-3xl items-center space-x-4">
+        <BackButton />
+      </div>
 
-        <h1 className="font-display text-accent-foreground mx-auto mt-4 mb-4 w-full max-w-3xl text-left text-4xl font-medium text-ellipsis sm:mb-0 sm:text-4xl sm:leading-[1.25]">
-          {title}
-        </h1>
+      <h1 className="font-display text-accent-foreground mx-auto mt-4 mb-4 w-full max-w-3xl text-left text-4xl font-medium text-ellipsis sm:mb-0 sm:text-4xl sm:leading-[1.25]">
+        {title}
+      </h1>
 
-        <Separator
-          orientation="horizontal"
-          className="bg-border mx-auto my-2 hidden h-px w-full max-w-3xl sm:block"
-        />
+      <Separator
+        orientation="horizontal"
+        className="bg-border mx-auto my-2 hidden h-px w-full max-w-3xl sm:block"
+      />
 
-        <InfoBarDetailDesktop
-          authorImage={authorImage}
-          authorName={authorName}
-          date={date}
-          category={category}
-          readTime={readTime}
-          className="hidden sm:flex"
-        />
+      <InfoBarDetailDesktop
+        authorImage={authorImage}
+        authorName={authorName}
+        date={date}
+        category={category}
+        readTime={readTime}
+        className="hidden sm:flex"
+      />
 
-        <InfoBarDetailMobile
-          authorImage={authorImage}
-          authorName={authorName}
-          date={date}
-          category={category}
-          readTime={readTime}
-          className="sm:hidden"
-        />
+      <InfoBarDetailMobile
+        authorImage={authorImage}
+        authorName={authorName}
+        date={date}
+        category={category}
+        readTime={readTime}
+        className="sm:hidden"
+      />
 
-        <p className="text-md text-foreground mx-auto line-clamp-3 w-full max-w-3xl py-6 sm:text-lg md:py-4">
-          {description}
-        </p>
+      <p className="text-md text-foreground mx-auto line-clamp-3 w-full max-w-3xl py-6 sm:text-lg md:py-4">
+        {description}
+      </p>
 
-        <Image
-          alt={title}
-          draggable={false}
-          width={768}
-          height={432}
-          decoding="async"
-          data-nimg="1"
-          className="blur-0 mx-auto aspect-768/432 overflow-hidden rounded-xl object-cover"
-          src={imageUrl}
-        />
-      </Effect>
+      <Image
+        alt={title}
+        draggable={false}
+        width={768}
+        height={432}
+        decoding="async"
+        data-nimg="1"
+        className="blur-0 mx-auto aspect-768/432 overflow-hidden rounded-xl object-cover"
+        src={imageUrl}
+      />
     </div>
   );
 };

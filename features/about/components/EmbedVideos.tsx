@@ -1,6 +1,7 @@
 import type { EmbedVideoType } from "../types/EmbedVideo";
 import { Card } from "@/components/ui/card";
 import BrowserWrapper from "@/features/common/components/BrowserWrapper";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 type EmbedVideosProps = {
   videos: EmbedVideoType[];
@@ -29,16 +30,7 @@ function EmbedVideoItem({ embedUrl, embedAlt }: EmbedVideoItemProps) {
     >
       <BrowserWrapper>
         <div className="relative aspect-video w-full overflow-hidden">
-          <iframe
-            suppressHydrationWarning
-            src={embedUrl}
-            title={embedAlt}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-            className="absolute inset-0 h-full w-full"
-            loading="lazy"
-          />
+          <YouTubeEmbed embedUrl={embedUrl} alt={embedAlt} className="absolute inset-0 h-full w-full" />
         </div>
       </BrowserWrapper>
     </Card>

@@ -16,7 +16,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import NAVIGATION_LINKS from "@/config/navigationLinks";
-import { useSound } from "@/hooks/use-sound";
 import { cn } from "@/lib/utils";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Menu, X } from "lucide-react";
@@ -37,12 +36,10 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
   const activePath = extractActivePath(currentPath);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const playClick = useSound("/audio/click.wav");
 
   const toggleSheet = useCallback(() => {
-    playClick();
     setIsOpen((prev) => !prev);
-  }, [playClick]);
+  }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === "Escape") {
@@ -51,12 +48,11 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
   }, []);
 
   const handleNavigation = useCallback(() => {
-    playClick();
     setIsLoading(true);
     toggleSheet();
     // Reset loading state after a short delay to ensure smooth transition
     setTimeout(() => setIsLoading(false), 300);
-  }, [toggleSheet, playClick]);
+  }, [toggleSheet]);
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -100,7 +96,6 @@ const MenuButton: FC<Props> = memo(({ currentPath, className }) => {
                   menuItem.subNavigationLinks ? (
                   <AccordionItem key={menuItem.href} value={menuItem.href}>
                     <AccordionTrigger
-                      onClick={() => playClick()}
                       className={cn(
                         "group inline-flex w-full gap-2 px-6 py-4",
                         {

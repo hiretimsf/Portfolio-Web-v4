@@ -3,15 +3,11 @@ import Link from "next/link";
 import type { FC } from "react";
 import AnimatedArrow from "@/components/header/desktop/navigations/AnimatedArrow";
 import { NavigationMenuLink } from "@/components/ui/navigation-menu";
-import { useSound } from "@/hooks/use-sound";
 
 const SocialLink: FC<SocialLinkType> = ({ href, icon: Icon, label }) => {
-  const playClick = useSound("/audio/click.wav");
-
   return (
     <NavigationMenuLink asChild>
       <Link
-        onClick={() => playClick()}
         className="group hover:bg-accent -mx-2 rounded-[8px] p-2 transition-colors"
         target="_blank"
         rel="noopener noreferrer"

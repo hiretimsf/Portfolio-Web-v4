@@ -13,8 +13,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
-import { AnimateIcon } from "@/components/animate-ui/icons/icon";
-import { SearchIcon as AnimateSearchIcon } from "@/components/animate-ui/icons/search";
+import ContrastIcon from "@/components/header/shared/contrast-icon";
 import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
@@ -29,9 +28,8 @@ import { Kbd } from "@/components/ui/kbd";
 import { Separator } from "@/components/ui/separator";
 import NAVIGATION_LINKS from "@/config/navigationLinks";
 import SOCIAL_LINKS from "@/config/socialLinks";
-import { useSound } from "@/hooks/use-sound";
-import ContrastIcon from "@/components/header/shared/contrast-icon";
 import { trackEvent } from "@/lib/events";
+import { SearchIcon } from "lucide-react";
 
 // --- Types ---
 
@@ -104,7 +102,6 @@ export function SearchButton() {
   const router = useRouter();
   const { setTheme } = useTheme();
   const [open, setOpen] = useState(false);
-  const playClick = useSound("/audio/click.wav");
 
   // Toggle command menu with keyboard shortcuts
   useHotkeys("mod+k, slash", (e) => {
@@ -149,14 +146,13 @@ export function SearchButton() {
   const createThemeHandler = useCallback(
     (theme: "light" | "dark" | "system") => () => {
       setOpen(false);
-      playClick(0.5);
       trackEvent({
         name: "command_menu_action",
         properties: { action: "change_theme", theme },
       });
       setTheme(theme);
     },
-    [playClick, setTheme],
+    [setTheme],
   );
 
   return (
@@ -168,7 +164,6 @@ export function SearchButton() {
         size="icon"
         aria-label="Search"
         onClick={() => {
-          playClick(0.5);
           setOpen(true);
           trackEvent({
             name: "open_command_menu",
@@ -177,9 +172,7 @@ export function SearchButton() {
         }}
         className="corner-squircle rounded-xl text-foreground "
       >
-        <AnimateIcon animateOnHover className="size-5 shrink-0 text-foreground">
-          <AnimateSearchIcon className="size-5" />
-        </AnimateIcon>
+        <SearchIcon className="size-5 shrink-0 text-foreground" />
       </Button>
 
       {/* Command Menu Dialog */}

@@ -8,7 +8,6 @@ import { getMDXComponents } from "@/mdx-components";
 import type { MDXComponents } from "mdx/types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Effect } from "@/components/animate-ui/primitives/effects/effect";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -78,48 +77,27 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
 
   return (
     <>
-      <Effect
-        fade
-        blur={{ initialBlur: 10, blur: 0 }}
-        transition={{
-          duration: 0.5,
-          ease: "easeInOut",
-        }}
-        inView={true}
-        inViewOnce={true}
-      >
-        <BlogPostHeading
-          title={post.title}
-          description={post.description}
-          date={post.created}
-          authorImage={post.authorAvatar || ""}
-          authorName={post.author || ""}
-          category={post.category || ""}
-          readTime={post.readingTimeMinutes}
-          imageUrl={post.image}
-        />
-      </Effect>
+      <BlogPostHeading
+        title={post.title}
+        description={post.description}
+        date={post.created}
+        authorImage={post.authorAvatar || ""}
+        authorName={post.author || ""}
+        category={post.category || ""}
+        readTime={post.readingTimeMinutes}
+        imageUrl={post.image}
+      />
 
       <div className="border-border bg-background relative border-t">
         <div className="mx-auto w-full max-w-5xl">
-          <Effect
-            fade
-            blur={{ initialBlur: 10, blur: 0 }}
-            transition={{
-              duration: 0.5,
-              ease: "easeInOut",
-            }}
-            inView
-          >
-            <DocsLayout tree={blogSource.pageTree}>
-              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              <DocsPage toc={(page.data as any).toc ?? []}>
-                <DocsBody>
-                  <MDXContent components={getMDXComponents()} />
-                </DocsBody>
-              </DocsPage>
-            </DocsLayout>
-          </Effect>
+          <DocsLayout tree={blogSource.pageTree}>
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            <DocsPage toc={(page.data as any).toc ?? []}>
+              <DocsBody>
+                <MDXContent components={getMDXComponents()} />
+              </DocsBody>
+            </DocsPage>
+          </DocsLayout>
         </div>
       </div>
     </>

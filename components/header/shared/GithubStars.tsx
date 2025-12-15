@@ -4,7 +4,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useSound } from "@/hooks/use-sound";
 
 type GitHubStarsProps = {
   repo: string;
@@ -15,8 +14,6 @@ export default function GitHubStars({
   repo,
   stargazersCount,
 }: GitHubStarsProps) {
-  const playClick = useSound("/audio/click.wav");
-
   return (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -30,7 +27,6 @@ export default function GitHubStars({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Repository"
-            onClick={() => playClick()}
           >
             <svg
               aria-hidden="true"

@@ -3,6 +3,7 @@
 import { memo, useState } from "react";
 import { Tweet } from "react-tweet";
 import type { TestimonialType } from "@/features/home/types/TestimonialType";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 // Type guard for Shoutout
 function isTweetShoutout(
@@ -34,18 +35,15 @@ export default memo(function TestimonialItem({
     <div key={`${item.type}-${index}`} className="rounded-xl">
       {isTweetShoutout(item) ? (
         <Tweet id={item.id} onError={() => setHasError(true)} />
-      ) : (
-        <iframe
-          suppressHydrationWarning
-          loading="lazy"
-          key={`${item.url}-${index}`}
-          src={item.url}
-          className="aspect-video w-full rounded-xl"
-          allowFullScreen
-          title="YouTube video"
-          onError={() => setHasError(true)}
-        />
-      )}
+      ) : item.url ? (
+        <div className="aspect-video w-full rounded-xl overflow-hidden">
+          <YouTubeEmbed
+            embedUrl={item.url}
+            alt="YouTube video testimonial"
+            className="h-full w-full"
+          />
+        </div>
+      ) : null}
     </div>
   );
 });

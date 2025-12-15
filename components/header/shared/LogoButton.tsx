@@ -1,19 +1,14 @@
 "use client";
 
-import { CircleUserIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
-import { useSound } from "@/hooks/use-sound";
-import { cn } from "@/lib/utils";
 
 // Logo component with avatar and brand name
 const LogoButton = memo(({ className }: { className?: string }) => {
-  const playClick = useSound("/audio/click.wav");
-
   return (
     <Link
-      onClick={() => playClick()}
       className={cn("group flex items-center gap-2", className)}
       href="/"
       aria-label="Go to homepage"

@@ -1,5 +1,4 @@
 import { NavigationMenuLink } from "@/components/ui/navigation-menu";
-import { useSound } from "@/hooks/use-sound";
 import Link from "next/link";
 import type { FC } from "react";
 
@@ -21,12 +20,9 @@ const CardItem: FC<Props> = ({
   icon: Icon,
   external,
 }) => {
-  const playClick = useSound("/audio/click.wav");
-
   return (
     <NavigationMenuLink asChild>
       <Link
-        onClick={() => playClick()}
         className="group border-border-edge bg-accent/50 hover:bg-accent relative flex flex-col justify-center overflow-hidden border transition-all duration-200"
         href={href}
         aria-label={`${title} - ${description}`}
