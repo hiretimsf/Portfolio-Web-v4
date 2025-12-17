@@ -14,7 +14,7 @@ import { copyText } from "@/features/blog/utils/copy";
 import { LinkedInIcon } from "@/features/blog/icons/LinkedInIcon";
 import { XIcon } from "@/features/blog/icons/XIcon";
 
-export function PostShareMenu({ url }: { url: string }) {
+export function ShareButton({ url }: { url: string }) {
   const absoluteUrl = url.startsWith("http")
     ? url
     : typeof window !== "undefined"
@@ -27,7 +27,7 @@ export function PostShareMenu({ url }: { url: string }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className="active:scale-none"
+          className="active:scale-none border border-border-edge rounded-md"
           variant="secondary"
           size="icon-sm"
         >
