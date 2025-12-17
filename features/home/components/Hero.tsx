@@ -74,7 +74,7 @@ export default function Hero({
   imageAlt,
 }: HeroProps) {
   const common = { alt: imageAlt, priority: true };
-  
+
   const {
     props: { srcSet: desktopSrcSet, ...restDesktop },
   } = getImageProps({
@@ -106,6 +106,7 @@ export default function Hero({
               fetchPriority="high"
               decoding="async"
               className="h-auto w-full object-cover lg:h-full"
+              alt={imageAlt}
             />
           </picture>
         </div>

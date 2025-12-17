@@ -75,7 +75,7 @@ export default async function AboutMePage() {
             src={imageUrl}
             width={1000}
             height={500}
-            className="h-auto max-h-96 w-full object-cover"
+            className="w-full object-cover aspect-4/3 md:aspect-auto md:h-auto md:max-h-96"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1000px"
           />
         </div>
