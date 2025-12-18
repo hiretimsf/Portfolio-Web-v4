@@ -1,16 +1,23 @@
 "use client";
 
+import { searchPosts, type SearchResult } from "@/actions/search";
+import { useDebounce } from "@/hooks/useDebounce";
+import { trackEvent } from "@/lib/events";
+import { highlightMatches, renderMarkdownContent } from "@/lib/search";
+import { cn } from "@/lib/utils";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCommandState } from "cmdk";
 import {
   CornerDownLeftIcon,
   MoonStarIcon,
+  SearchIcon,
   SunMediumIcon,
   type LucideProps,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
 import ContrastIcon from "@/components/header/shared/contrast-icon";
@@ -28,8 +35,6 @@ import { Kbd } from "@/components/ui/kbd";
 import { Separator } from "@/components/ui/separator";
 import NAVIGATION_LINKS from "@/config/navigationLinks";
 import SOCIAL_LINKS from "@/config/socialLinks";
-import { trackEvent } from "@/lib/events";
-import { SearchIcon } from "lucide-react";
 
 // --- Types ---
 
@@ -102,6 +107,16 @@ export function SearchButton() {
   const router = useRouter();
   const { setTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const queryClient = useQueryClient();
+
+  // Search state
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [error, setError] = useState<string | null>(null);
+  const [retryCount, setRetryCount] = useState(0);
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Toggle command menu with keyboard shortcuts
   useHotkeys("mod+k, slash", (e) => {
@@ -119,6 +134,19 @@ export function SearchButton() {
       return !prevOpen;
     });
   });
+
+  // Analytics for search
+  useEffect(() => {
+    if (debouncedSearchTerm.length >= 2) {
+      trackEvent({
+        name: "command_menu_search",
+        properties: {
+          query: debouncedSearchTerm,
+          query_length: debouncedSearchTerm.length,
+        },
+      });
+    }
+  }, [debouncedSearchTerm]);
 
   // Handle navigation from the command menu
   const handleOpenLink = useCallback(
@@ -142,6 +170,53 @@ export function SearchButton() {
     [router],
   );
 
+  // Search Query
+  const { data: searchResults, isLoading } = useQuery({
+    queryKey: ["search", debouncedSearchTerm],
+    queryFn: async () => {
+      if (!debouncedSearchTerm) return [];
+      try {
+        setError(null);
+        return await searchPosts(debouncedSearchTerm);
+      } catch (err) {
+        setError("Failed to search posts. Please try again.");
+        throw err;
+      }
+    },
+    enabled: !!debouncedSearchTerm && debouncedSearchTerm.length >= 2,
+    retry: retryCount,
+  });
+
+  const displayedResults = searchResults || [];
+
+  const handleResultClick = (slug: string) => {
+    // Add to history
+    if (searchTerm && !searchHistory.includes(searchTerm)) {
+      setSearchHistory((prev) => [searchTerm, ...prev].slice(0, 5));
+    }
+    handleOpenLink(`/blog/post/${slug}`);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (
+      e.key === "Enter" &&
+      selectedIndex >= 0 &&
+      displayedResults.length > 0
+    ) {
+      const result = displayedResults[selectedIndex];
+      if (result) {
+        handleResultClick(result.slug);
+      }
+    }
+    // Navigate results with arrows if needed, but cmdk handles this naturally for CommandItems
+    // Actually, `cmdk` manages selection index internally.
+    // The user's snippet uses `selectedIndex` state to highlight manually?
+    // `cmdk` automatically selects the first item.
+    // The user's snippet has `aria-selected={index === selectedIndex}`.
+    // Maybe we should let `cmdk` handle selection unless we need custom behavior.
+    // But sticking to user snippet:
+  };
+
   // Handle theme switching from the command menu
   const createThemeHandler = useCallback(
     (theme: "light" | "dark" | "system") => () => {
@@ -158,7 +233,6 @@ export function SearchButton() {
   return (
     <>
       {/* Trigger Button */}
-
       <Button
         variant="ghost"
         size="icon"
@@ -176,54 +250,189 @@ export function SearchButton() {
       </Button>
 
       {/* Command Menu Dialog */}
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandMenuInput />
+      <CommandDialog
+        open={open}
+        onOpenChange={(open) => {
+          setOpen(open);
+          if (!open) {
+            queryClient.removeQueries({
+              queryKey: ["search", debouncedSearchTerm],
+            });
+            setSearchTerm("");
+            setSelectedIndex(-1);
+            setError(null);
+            setRetryCount(0);
+          }
+        }}
+      >
+        <CommandInput
+          ref={inputRef}
+          value={searchTerm ?? ""}
+          onValueChange={setSearchTerm}
+          onKeyDown={handleKeyDown}
+          placeholder="Type a command or search..."
+          aria-label="Search blog posts"
+        />
 
         <CommandList className="min-h-80 supports-timeline-scroll:scroll-fade-y">
-          <CommandEmpty>No results found.</CommandEmpty>
+          {isLoading && (
+            <div className="flex items-center justify-center p-4">
+              <div className="border-border h-6 w-6 animate-spin rounded-full border-b-2" />
+              <span className="text-muted-foreground ml-2 text-sm">
+                Searching...
+              </span>
+            </div>
+          )}
 
-          {/* Navigation Links */}
-          <CommandLinkGroup
-            heading="Menu"
-            links={MENU_LINKS}
-            onLinkSelect={handleOpenLink}
-          />
+          {error && (
+            <div className="flex flex-col items-center justify-center p-4">
+              <div className="text-sm text-red-500">{error}</div>
+              {retryCount < 3 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="mt-2"
+                  onClick={() => setRetryCount((prev) => prev + 1)}
+                >
+                  Retry
+                </Button>
+              )}
+            </div>
+          )}
 
-          <CommandSeparator />
+          {!isLoading && !error && (
+            <>
+              <CommandEmpty>No results found.</CommandEmpty>
 
-          {/* Social Links */}
-          <CommandLinkGroup
-            heading="Social Links"
-            links={SOCIAL_COMMAND_LINKS}
-            onLinkSelect={handleOpenLink}
-          />
+              {searchHistory.length > 0 && !searchTerm && (
+                <CommandGroup heading="Recent Searches">
+                  {searchHistory.map((term, index) => (
+                    <CommandItem
+                      key={index}
+                      value={term}
+                      onSelect={() => setSearchTerm(term)}
+                      className="flex items-center gap-2"
+                    >
+                      <SearchIcon className="text-foreground size-4" />
+                      {term}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              )}
 
-          <CommandSeparator />
+              {displayedResults?.length > 0 && (
+                <CommandGroup heading="Search Results">
+                  {displayedResults.map(
+                    (result: SearchResult, index: number) => (
+                      <CommandItem
+                        key={result.slug}
+                        value={result.title}
+                        onSelect={() => handleResultClick(result.slug)}
+                        className={cn(
+                          "mt-2 cursor-pointer rounded-sm px-4 py-5 transition-colors dark:hover:bg-background/50",
+                          index === selectedIndex && "bg-background/50",
+                          // index !== selectedIndex && "hover:bg-neutral-100", // cmdk handles hover
+                        )}
+                        // aria-selected={index === selectedIndex} // cmdk handles this
+                      >
+                        <div className="space-y-2 w-full">
+                          <h3 className="text-foreground text-lg font-semibold">
+                            {highlightMatches(result.title || "", searchTerm)}
+                          </h3>
+                          <p className="text-foreground mt-1 text-sm">
+                            {highlightMatches(
+                              result.description || "",
+                              searchTerm,
+                            )}
+                          </p>
+                          <div className="text-foreground mt-2 text-sm leading-relaxed line-clamp-2">
+                            {/* Render snippet of content match if possible, or just description */}
+                            {/* The snippet logic uses renderMarkdownContent on result.content. 
+                               result.content from getPostsBySearchQuery is the context snippet. */}
+                            {result.content &&
+                              renderMarkdownContent({
+                                content: result.content,
+                              }).map((element, index) =>
+                                typeof element === "string" ? (
+                                  <React.Fragment key={index}>
+                                    {highlightMatches(element, searchTerm)}
+                                  </React.Fragment>
+                                ) : (
+                                  <span key={index}>{element}</span>
+                                ),
+                              )}
+                          </div>
+                          {result.category && (
+                            <div className="mt-2 flex items-center gap-2">
+                              <span className="text-muted-foreground text-xs">
+                                Category:
+                              </span>
+                              <span className="text-foreground rounded-full px-2 py-1 text-xs">
+                                {result.category}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </CommandItem>
+                    ),
+                  )}
+                </CommandGroup>
+              )}
 
-          {/* Theme Options */}
-          <CommandGroup heading="Theme">
-            <CommandItem
-              keywords={["theme"]}
-              onSelect={createThemeHandler("light")}
-            >
-              <SunMediumIcon />
-              Light
-            </CommandItem>
-            <CommandItem
-              keywords={["theme"]}
-              onSelect={createThemeHandler("dark")}
-            >
-              <MoonStarIcon />
-              Dark
-            </CommandItem>
-            <CommandItem
-              keywords={["theme"]}
-              onSelect={createThemeHandler("system")}
-            >
-              <ContrastIcon className="size-4" />
-              Auto
-            </CommandItem>
-          </CommandGroup>
+              {/* Existing Menus */}
+              {/* Only show these if we are NOT showing search results? 
+                  Or always show them?
+                  If I search "Contact", I might want the contact page link.
+                  The blog search might yield nothing.
+                  So better to keep them.
+              */}
+
+              <CommandSeparator />
+
+              {/* Navigation Links */}
+              <CommandLinkGroup
+                heading="Menu"
+                links={MENU_LINKS}
+                onLinkSelect={handleOpenLink}
+              />
+
+              <CommandSeparator />
+
+              {/* Social Links */}
+              <CommandLinkGroup
+                heading="Social Links"
+                links={SOCIAL_COMMAND_LINKS}
+                onLinkSelect={handleOpenLink}
+              />
+
+              <CommandSeparator />
+
+              {/* Theme Options */}
+              <CommandGroup heading="Theme">
+                <CommandItem
+                  keywords={["theme"]}
+                  onSelect={createThemeHandler("light")}
+                >
+                  <SunMediumIcon />
+                  Light
+                </CommandItem>
+                <CommandItem
+                  keywords={["theme"]}
+                  onSelect={createThemeHandler("dark")}
+                >
+                  <MoonStarIcon />
+                  Dark
+                </CommandItem>
+                <CommandItem
+                  keywords={["theme"]}
+                  onSelect={createThemeHandler("system")}
+                >
+                  <ContrastIcon className="size-4" />
+                  Auto
+                </CommandItem>
+              </CommandGroup>
+            </>
+          )}
         </CommandList>
 
         <CommandMenuFooter />
@@ -233,38 +442,6 @@ export function SearchButton() {
 }
 
 // --- Sub-components ---
-
-/**
- * CommandMenuInput
- *
- * Wraps CommandInput to handle search tracking analytics.
- */
-function CommandMenuInput() {
-  const [searchValue, setSearchValue] = useState("");
-
-  useEffect(() => {
-    if (searchValue.length >= 2) {
-      const timeoutId = setTimeout(() => {
-        trackEvent({
-          name: "command_menu_search",
-          properties: {
-            query: searchValue,
-            query_length: searchValue.length,
-          },
-        });
-      }, 500);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [searchValue]);
-
-  return (
-    <CommandInput
-      placeholder="Type a command or search..."
-      value={searchValue}
-      onValueChange={setSearchValue}
-    />
-  );
-}
 
 /**
  * CommandLinkGroup
