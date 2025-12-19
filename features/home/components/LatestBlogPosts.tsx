@@ -23,6 +23,7 @@ export default function LatestBlogPosts() {
             item={post}
             index={index}
             type="blog"
+            sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 33vw, 400px"
           />
         ))}
       </div>

@@ -16,6 +16,7 @@ export default function FeaturedApps() {
             item={featuredApp}
             index={index}
             type="project"
+            sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 33vw, 400px"
           />
         ))}
       </div>

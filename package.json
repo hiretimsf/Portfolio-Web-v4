@@ -135,11 +135,11 @@
     "typescript": "^5"
   },
   "browserslist": [
-    "chrome >= 90",
-    "firefox >= 90",
-    "edge >= 90",
-    "safari >= 15",
-    "ios >= 15",
+    "chrome >= 100",
+    "firefox >= 100",
+    "edge >= 100",
+    "safari >= 16",
+    "ios >= 16",
     "not IE 11"
   ]
 }
