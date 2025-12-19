@@ -1,9 +1,9 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import TESTIMONIALS from "../data/testimonials";
 import BackgroundDots from "@/features/common/components/BackgroundDots";
-
 
 export function Testimonial({
   className,
@@ -13,7 +13,10 @@ export function Testimonial({
   return (
     <figure
       data-slot="testimonial"
-      className={cn("flex h-full flex-col bg-card rounded-xl border p-2", className)}
+      className={cn(
+        "flex h-full flex-col bg-card rounded-xl border p-2",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -31,7 +34,7 @@ export function TestimonialQuote({
       data-slot="quote"
       className={cn(
         "grow px-4 py-3 text-base text-left text-balance text-foreground italic",
-        className
+        className,
       )}
       {...props}
     >
@@ -50,7 +53,7 @@ export function TestimonialAuthor({
       data-slot="author"
       className={cn(
         "grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-3.5 px-4 pt-1 pb-3",
-        className
+        className,
       )}
       {...props}
     >
@@ -80,13 +83,18 @@ export function TestimonialAvatarImg({
   src,
   alt,
   ...props
-}: React.ComponentProps<"img">) {
+}: Omit<React.ComponentProps<typeof Image>, "src" | "alt"> & {
+  src: string;
+  alt: string;
+}) {
   return (
-    <img
+    <Image
       data-slot="avatar-img"
-      className={cn("size-8 rounded-full select-none", className)}
+      className={cn("size-8 rounded-full select-none object-cover", className)}
       src={src}
       alt={alt}
+      width={32}
+      height={32}
       {...props}
     />
   );
@@ -101,7 +109,7 @@ export function TestimonialAvatarRing({
       data-slot="avatar-ring"
       className={cn(
         "pointer-events-none absolute inset-0 rounded-full ring-1 ring-black/10 ring-inset dark:ring-white/15",
-        className
+        className,
       )}
       {...props}
     />
@@ -118,7 +126,7 @@ export function TestimonialAuthorName({
       data-slot="author-name"
       className={cn(
         "text-sm leading-4 font-semibold text-foreground text-left",
-        className
+        className,
       )}
       {...props}
     >
@@ -137,7 +145,7 @@ export function TestimonialAuthorBio({
       data-slot="author-bio"
       className={cn(
         "text-xs leading-4 text-left text-muted-foreground",
-        className
+        className,
       )}
       {...props}
     >
@@ -155,7 +163,7 @@ export function TestimonialVerifiedBadge({
       data-slot="verified-badge"
       className={cn(
         "ml-1.5 inline-block size-3 -translate-y-px text-info",
-        className
+        className,
       )}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -176,7 +184,7 @@ export function WhatPeopleSay() {
   return (
     <div className="w-full relative p-4">
       <BackgroundDots gridId="what-people-say" className="text-gray-200/80" />
-      
+
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {TESTIMONIALS.map((item) => (
           <a
@@ -193,7 +201,10 @@ export function WhatPeopleSay() {
 
               <TestimonialAuthor>
                 <TestimonialAvatar>
-                  <TestimonialAvatarImg src={item.authorAvatar} />
+                  <TestimonialAvatarImg
+                    src={item.authorAvatar}
+                    alt={item.authorName}
+                  />
                   <TestimonialAvatarRing />
                 </TestimonialAvatar>
 

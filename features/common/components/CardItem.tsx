@@ -14,14 +14,9 @@ import DateIcon from "@/features/common/icons/date-icon";
 import ReadingTimeIcon from "@/features/common/icons/reading-time-icon";
 import { formatDate } from "@/lib/helpers";
 import { cn } from "@/lib/utils";
-import { ArrowRightIcon, UserIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "../../../components/ui/avatar";
 import { Button } from "../../../components/ui/button";
 import { Separator } from "../../../components/ui/separator";
 
@@ -99,8 +94,8 @@ const CoverImage = ({
         <Image
           alt={imageAlt || "Card image"}
           src={imageUrl || "/images/app-placeholder.jpg"}
-          width={1000}
-          height={500}
+          width={600}
+          height={338}
           className="h-full w-full rounded-none object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={false}
@@ -158,14 +153,14 @@ const BlogContent = ({
           )}
         </div>
         <div className="flex w-full pb-2 flex-row items-center border-b border-dashed border-border-edge">
-        <Link href={href} className="group/title">
-          <CardTitle
-            id={`card-title-${index}`}
-            className="line-clamp-2 px-2 text-left text-lg font-bold leading-tight text-foreground group-hover/title:text-primary"
-          >
-            {item.title}
-          </CardTitle>
-        </Link>
+          <Link href={href} className="group/title">
+            <CardTitle
+              id={`card-title-${index}`}
+              className="line-clamp-2 px-2 text-left text-lg font-bold leading-tight text-foreground group-hover/title:text-primary"
+            >
+              {item.title}
+            </CardTitle>
+          </Link>
         </div>
       </CardHeader>
       <CardContent className="p-0">
@@ -176,12 +171,15 @@ const BlogContent = ({
           <div className="flex items-center space-x-2">
             {item.author && (
               <>
-                <Avatar className="size-6">
-                  <AvatarImage src={item.authorAvatar} alt={item.author} />
-                  <AvatarFallback>
-                    <UserIcon className="size-3 text-muted-foreground" />
-                  </AvatarFallback>
-                </Avatar>
+                <div className="relative size-6 shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    src={item.authorAvatar || ""}
+                    alt={item.author}
+                    fill
+                    className="object-cover"
+                    sizes="24px"
+                  />
+                </div>
                 <span className="text-sm font-medium text-muted-foreground">
                   {item.author}
                 </span>
@@ -196,6 +194,7 @@ const BlogContent = ({
           >
             <Link href={href} className="group/btn flex items-center gap-1">
               Read more
+              <span className="sr-only"> about {item.title}</span>
               <ArrowRightIcon className="size-3 transition-transform duration-300 group-hover/btn:translate-x-1" />
             </Link>
           </Button>
@@ -243,14 +242,20 @@ const ProjectContent = ({
         {item.websiteUrl && item.websiteUrl !== "#" && (
           <div className="flex w-full border-b border-dashed border-border-edge px-2 py-2">
             <Button asChild className="w-full" variant="outline">
-              <Link href={item.websiteUrl}>Live Demo</Link>
+              <Link href={item.websiteUrl}>
+                Live Demo
+                <span className="sr-only"> of {item.title}</span>
+              </Link>
             </Button>
           </div>
         )}
         {item.githubUrl && (
           <div className="flex w-full px-2 py-2">
             <Button asChild className="w-full">
-              <Link href={item.githubUrl}>GitHub</Link>
+              <Link href={item.githubUrl}>
+                GitHub
+                <span className="sr-only"> repository for {item.title}</span>
+              </Link>
             </Button>
           </div>
         )}

@@ -82,15 +82,15 @@ const TESTIMONIALS = [
     url: "https://x.com/danielcranney/status/1937084213175456041",
     quote: "It's Monday so it's the perfect day to hire Tim",
   },
-    {
-    authorAvatar: "https://img.youtube.com/vi/OHo64fiWx2k/maxresdefault.jpg",
+  {
+    authorAvatar: "https://img.youtube.com/vi/OHo64fiWx2k/mqdefault.jpg",
     authorName: "CodingWithMitch",
     authorBio: "YouTube",
     url: "https://www.youtube.com/watch?v=OHo64fiWx2k",
     quote: "Codingwithmitch App Reviews #1",
   },
   {
-    authorAvatar: "https://img.youtube.com/vi/wfL5arWfeOw/maxresdefault.jpg",
+    authorAvatar: "https://img.youtube.com/vi/wfL5arWfeOw/mqdefault.jpg",
     authorName: "DThompsonDev",
     authorBio: "YouTube",
     url: "https://www.youtube.com/watch?v=wfL5arWfeOw",

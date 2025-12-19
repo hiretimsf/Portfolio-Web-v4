@@ -79,8 +79,8 @@ export default function Hero({
     props: { srcSet: desktopSrcSet, ...restDesktop },
   } = getImageProps({
     ...common,
-    width: 1000,
-    height: 800,
+    width: 600,
+    height: 712,
     src: imageSrcDesktop,
   });
 
