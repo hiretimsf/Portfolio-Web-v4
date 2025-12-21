@@ -10,7 +10,7 @@ export default function GithubButton() {
   useEffect(() => {
     async function fetchStars() {
       // Don't fetch if repo is not properly configured
-      if (!SOURCE_CODE_GITHUB_REPO || !SOURCE_CODE_GITHUB_REPO.includes('/')) {
+      if (!SOURCE_CODE_GITHUB_REPO || !SOURCE_CODE_GITHUB_REPO.includes("/")) {
         return;
       }
 

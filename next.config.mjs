@@ -50,7 +50,8 @@ const config = {
           },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+            value:
+              "camera=(), microphone=(), geolocation=(), interest-cohort=()",
           },
           {
             key: "Referrer-Policy",
@@ -64,7 +65,7 @@ const config = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
-              "connect-src 'self' https://*.posthog.com https://vercel.live https://*.google-analytics.com https://react-tweet.vercel.app https://cdn.syndication.twimg.com https://api.github.com",
+              "connect-src 'self' https://*.posthog.com https://vercel.live https://*.google-analytics.com https://cdn.syndication.twimg.com https://api.github.com",
               "frame-src 'self' https://www.youtube.com https://platform.twitter.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",

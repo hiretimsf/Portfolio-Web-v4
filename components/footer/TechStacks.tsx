@@ -22,71 +22,71 @@ export default function TechStacks() {
     <div className="screen-line-before max-w-5xl w-full mx-auto border-x border-edge py-4">
       <p className="text-muted-foreground hidden text-center text-sm leading-5 sm:block max-w-xl mx-auto">
         Loosely designed in{" "}
-			<Link
-				href={techLinks[0]?.href ?? "#"}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={defaultClass}
-			>
-				{techLinks[0]?.label}
-			</Link>{" "}
+        <Link
+          href={techLinks[0]?.href ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={defaultClass}
+        >
+          {techLinks[0]?.label}
+        </Link>{" "}
         and coded in{" "}
-			<Link
-				href={techLinks[1]?.href ?? "#"}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={defaultClass}
-			>
-				{techLinks[1]?.label}
-			</Link>{" "}
+        <Link
+          href={techLinks[1]?.href ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={defaultClass}
+        >
+          {techLinks[1]?.label}
+        </Link>{" "}
         . Built with{" "}
-			<Link
-				href={techLinks[2]?.href ?? "#"}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={defaultClass}
-			>
-				{techLinks[2]?.label}
-			</Link>{" "}
+        <Link
+          href={techLinks[2]?.href ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={defaultClass}
+        >
+          {techLinks[2]?.label}
+        </Link>{" "}
         and{" "}
-			<Link
-				href={techLinks[3]?.href ?? "#"}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={defaultClass}
-			>
-				{techLinks[3]?.label}
-			</Link>{" "}
+        <Link
+          href={techLinks[3]?.href ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={defaultClass}
+        >
+          {techLinks[3]?.label}
+        </Link>{" "}
         , deployed on{" "}
-			<Link
-				href={techLinks[4]?.href ?? "#"}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={defaultClass}
-			>
-				{techLinks[4]?.label}
-			</Link>
+        <Link
+          href={techLinks[4]?.href ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={defaultClass}
+        >
+          {techLinks[4]?.label}
+        </Link>
         . All text is set in the{" "}
-			<Link
-				href={techLinks[5]?.href ?? "#"}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={defaultClass}
-			>
-				{techLinks[5]?.label}
-			</Link>{" "}
+        <Link
+          href={techLinks[5]?.href ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={defaultClass}
+        >
+          {techLinks[5]?.label}
+        </Link>{" "}
         typeface.
       </p>
       <p className="text-muted-foreground text-center text-sm leading-5">
         Code is available on{" "}
-			<Link
-				href={techLinks[6]?.href ?? "#"}
-				target="_blank"
-				rel="noopener noreferrer"
-				className={defaultClass}
-			>
-				{techLinks[6]?.label}
-			</Link>
+        <Link
+          href={techLinks[6]?.href ?? "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={defaultClass}
+        >
+          {techLinks[6]?.label}
+        </Link>
         .
       </p>
     </div>

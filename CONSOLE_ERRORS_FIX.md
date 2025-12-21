@@ -7,6 +7,7 @@ This document summarizes the browser console errors that were identified and fix
 ### 1. ✅ Content Security Policy (CSP) Violations
 
 **Error:**
+
 ```
 Refused to load the script 'data:text/javascript;base64,...' because it violates the following Content Security Policy directive
 ```
@@ -18,10 +19,11 @@ The `data:` URI scheme was not allowed in the `script-src` CSP directive, blocki
 Added `data:` to the `script-src` directive in `next.config.mjs`:
 
 ```javascript
-"script-src 'self' 'unsafe-eval' 'unsafe-inline' data: https://vercel.live https://*.posthog.com ..."
+"script-src 'self' 'unsafe-eval' 'unsafe-inline' data: https://vercel.live https://*.posthog.com ...";
 ```
 
 **Files Modified:**
+
 - `next.config.mjs` (line 63)
 
 ---
@@ -29,6 +31,7 @@ Added `data:` to the `script-src` directive in `next.config.mjs`:
 ### 2. ✅ PostHog Analytics Errors (401 & 404)
 
 **Errors:**
+
 ```
 Failed to load resource: the server responded with a status of 401 (Unauthorized) - posthog.com/flags
 Failed to load resource: the server responded with a status of 404 (Not Found) - config.js
@@ -40,6 +43,7 @@ PostHog was trying to initialize without proper credentials or with invalid conf
 
 **Fix:**
 Enhanced PostHog initialization in `instrumentation-client.ts` with:
+
 1. Added validation to ensure `NEXT_PUBLIC_POSTHOG_HOST` is set before initialization
 2. Added try-catch error handling to prevent crashes
 3. Disabled features that require external script loading:
@@ -48,10 +52,12 @@ Enhanced PostHog initialization in `instrumentation-client.ts` with:
    - `advanced_disable_decide: true` - prevents loading external config scripts
 
 **Files Modified:**
+
 - `instrumentation-client.ts`
 
 **Configuration Required:**
 To fully enable PostHog analytics, set these environment variables:
+
 ```env
 NEXT_PUBLIC_POSTHOG_KEY=your_project_api_key
 NEXT_PUBLIC_POSTHOG_HOST=https://app.posthog.com
@@ -63,6 +69,7 @@ NEXT_PUBLIC_POSTHOG_UI_HOST=https://app.posthog.com
 ### 3. ✅ GitHub API 404 Error
 
 **Error:**
+
 ```
 Failed to load resource: the server responded with a status of 404 (Not Found)
 https://api.github.com/repos/hiretimsf/hiretimsf.com
@@ -70,12 +77,15 @@ https://api.github.com/repos/hiretimsf/hiretimsf.com
 
 **Root Cause:**
 Multiple issues:
+
 1. `SOURCE_CODE_GITHUB_REPO` was defined as a full URL (`https://github.com/...`) instead of `owner/repo` format
 2. The repository `hiretimsf/hiretimsf.com` may not exist on GitHub yet
 3. No error handling for 404 responses
 
 **Fix:**
+
 1. **Refactored GitHub config** in `config/seo/site.ts`:
+
    ```typescript
    export const GITHUB_REPO_OWNER = "hiretimsf";
    export const GITHUB_REPO_NAME = "hiretimsf.com";
@@ -93,6 +103,7 @@ Multiple issues:
    - `GithubButton.tsx` uses `SOURCE_CODE_GITHUB_REPO` for API calls
 
 **Files Modified:**
+
 - `config/seo/site.ts`
 - `components/header/shared/GithubButton.tsx`
 - `components/footer/TechStacks.tsx`
@@ -114,10 +125,10 @@ To verify all fixes are working:
 ## Summary
 
 All console errors have been addressed:
+
 - ✅ CSP violations fixed by allowing `data:` URIs in script-src
 - ✅ PostHog errors suppressed with proper initialization guards and feature flags
 - ✅ GitHub API errors handled gracefully with validation and 404 error handling
 - ✅ All components continue to function correctly with fallback behavior
 
 The site should now load without any console errors, while maintaining all functionality.
-
