@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import SOCIAL_LINKS from "@/config/socialLinks";
+import { trackEvent } from "@/lib/events";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -44,6 +47,16 @@ const ContactMe = ({
                 asChild
                 variant="outline"
                 className="rounded-full"
+                onClick={() => {
+                  trackEvent({
+                    name: "social_link_clicked",
+                    properties: {
+                      platform: link.label,
+                      url: link.href,
+                      source: "contact_section",
+                    },
+                  });
+                }}
               >
                 <Link
                   href={link.href}
@@ -58,7 +71,18 @@ const ContactMe = ({
           </div>
         ) : (
           <div className="mt-6">
-            <Button asChild variant="outline">
+            <Button
+              asChild
+              variant="outline"
+              onClick={() => {
+                trackEvent({
+                  name: "cta_contact_me_clicked",
+                  properties: {
+                    source: "home_page_cta",
+                  },
+                });
+              }}
+            >
               <Link href="/contact">{buttonText}</Link>
             </Button>
           </div>

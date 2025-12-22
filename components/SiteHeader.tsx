@@ -37,35 +37,39 @@ const SiteHeader: FC<Props> = () => {
 
   return (
     <>
-    <header
-      className={cn(
-        "z-50 w-full border-y border-edge bg-background transition-transform",
-        mobileMenuOpen || isFixed ? "fixed top-0 inset-x-0 z-[100]" : "sticky top-0",
-      )}
-      style={{
-        WebkitBackfaceVisibility: "hidden",
-        backfaceVisibility: "hidden",
-        willChange: "transform",
-      }}
-    >
-      <div
-        data-affix={affix}
+      <header
         className={cn(
-          "mx-auto max-w-5xl px-4 border-x border-edge",
-          "data-[affix=true]:shadow-md dark:data-[affix=true]:shadow-md",
-          "transition-shadow duration-300",
+          "z-50 w-full border-y border-edge bg-background transition-transform",
+          mobileMenuOpen || isFixed
+            ? "fixed top-0 inset-x-0 z-[100]"
+            : "sticky top-0",
         )}
+        style={{
+          WebkitBackfaceVisibility: "hidden",
+          backfaceVisibility: "hidden",
+          willChange: "transform",
+        }}
       >
-        <DesktopHeader activePath={path} />
-        <MobileHeader
-          currentPath={path}
-          isOpen={mobileMenuOpen}
-          onOpenChange={handleMobileMenuChange}
-        />
-      </div>
-      {showProgressBar && <ProgressBar />}
-    </header>
-    {(mobileMenuOpen || isFixed) && <div className="h-18" aria-hidden="true" />}
+        <div
+          data-affix={affix}
+          className={cn(
+            "mx-auto max-w-5xl px-4 border-x border-edge",
+            "data-[affix=true]:shadow-md dark:data-[affix=true]:shadow-md",
+            "transition-shadow duration-300",
+          )}
+        >
+          <DesktopHeader activePath={path} />
+          <MobileHeader
+            currentPath={path}
+            isOpen={mobileMenuOpen}
+            onOpenChange={handleMobileMenuChange}
+          />
+        </div>
+        {showProgressBar && <ProgressBar />}
+      </header>
+      {(mobileMenuOpen || isFixed) && (
+        <div className="h-18" aria-hidden="true" />
+      )}
     </>
   );
 };

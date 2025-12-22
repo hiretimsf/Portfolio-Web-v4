@@ -40,11 +40,9 @@ function getPersonJsonLd(): WithContext<Person> {
     url: SITE_INFO.url,
     image: OPEN_GRAPH.image,
     jobTitle: "Frontend Developer",
-    description: "Frontend Developer specializing in React, Next.js, and modern web technologies",
-    sameAs: [
-      AUTHOR.twitterUrl,
-      AUTHOR.githubUrl,
-    ].filter(Boolean),
+    description:
+      "Frontend Developer specializing in React, Next.js, and modern web technologies",
+    sameAs: [AUTHOR.twitterUrl, AUTHOR.githubUrl].filter(Boolean),
     knowsAbout: [
       "React",
       "Next.js",
@@ -77,7 +75,7 @@ const CURRENT_PAGE = "Home"; // Define the current page for SEO configuration
 
 // SEO configuration
 const currentPageSEO = HEAD.find(
-	(page: HeadType) => page.page === CURRENT_PAGE,
+  (page: HeadType) => page.page === CURRENT_PAGE,
 ) as HeadType; // Get SEO configuration for the current page from the HEAD array
 
 // Viewport configuration

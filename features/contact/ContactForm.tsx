@@ -19,6 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { trackEvent, captureException } from "@/lib/events";
 
 export function ContactForm() {
   // State to track form submission status
@@ -68,9 +69,33 @@ export function ContactForm() {
 
       // Show success message and reset form
       toast.success("Message sent successfully!");
+
+      // Track successful contact form submission
+      trackEvent({
+        name: "contact_form_submitted",
+        properties: {
+          success: true,
+        },
+      });
+
       form.reset();
     } catch (error) {
       console.error("Form submission error:", error);
+
+      // Track failed contact form submission
+      trackEvent({
+        name: "contact_form_failed",
+        properties: {
+          error_message:
+            error instanceof Error ? error.message : "Unknown error",
+        },
+      });
+
+      // Capture exception for error tracking
+      if (error instanceof Error) {
+        captureException(error, { context: "contact_form" });
+      }
+
       // Provide a more user-friendly error message
       toast.error(
         "Failed to send message. Please try again later or contact us directly.",

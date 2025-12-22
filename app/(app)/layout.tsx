@@ -6,7 +6,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="mx-auto min-h-screen w-full">
       <SiteHeader />
-      <main id="main-content" className="mx-auto max-w-5xl w-full text-center border-x border-edge">
+      <main
+        id="main-content"
+        className="mx-auto max-w-5xl w-full text-center border-x border-edge"
+      >
         {children}
       </main>
       <SiteFooter />

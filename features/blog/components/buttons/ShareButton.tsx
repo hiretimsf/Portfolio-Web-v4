@@ -13,6 +13,7 @@ import {
 import { copyText } from "@/features/blog/utils/copy";
 import { LinkedInIcon } from "@/features/blog/icons/LinkedInIcon";
 import { XIcon } from "@/features/blog/icons/XIcon";
+import { trackEvent } from "@/lib/events";
 
 export function ShareButton({ url }: { url: string }) {
   const absoluteUrl = url.startsWith("http")
@@ -43,13 +44,29 @@ export function ShareButton({ url }: { url: string }) {
           onClick={() => {
             copyText(absoluteUrl);
             toast.success("Copied link");
+            trackEvent({
+              name: "blog_copy_link",
+              properties: {
+                url: absoluteUrl,
+              },
+            });
           }}
         >
           <LinkIcon />
           Copy link
         </DropdownMenuItem>
 
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem
+          asChild
+          onClick={() => {
+            trackEvent({
+              name: "blog_share_x",
+              properties: {
+                url: absoluteUrl,
+              },
+            });
+          }}
+        >
           <a
             href={`https://x.com/intent/tweet?url=${urlEncoded}`}
             target="_blank"
@@ -60,7 +77,17 @@ export function ShareButton({ url }: { url: string }) {
           </a>
         </DropdownMenuItem>
 
-        <DropdownMenuItem asChild>
+        <DropdownMenuItem
+          asChild
+          onClick={() => {
+            trackEvent({
+              name: "blog_share_linkedin",
+              properties: {
+                url: absoluteUrl,
+              },
+            });
+          }}
+        >
           <a
             href={`https://www.linkedin.com/sharing/share-offsite?url=${urlEncoded}`}
             target="_blank"

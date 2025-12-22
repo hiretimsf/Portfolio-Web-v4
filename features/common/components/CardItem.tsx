@@ -1,3 +1,5 @@
+"use client";
+
 import BrowserWrapper from "@/features/common/components/BrowserWrapper";
 import {
   Card,
@@ -14,6 +16,7 @@ import DateIcon from "@/features/common/icons/date-icon";
 import ReadingTimeIcon from "@/features/common/icons/reading-time-icon";
 import { formatDate } from "@/lib/helpers";
 import { cn } from "@/lib/utils";
+import { trackEvent } from "@/lib/events";
 import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,7 +33,7 @@ type CardItemProps =
   | {
       index: number;
       type: "blog";
-      item: BlogPostType;
+      item: Omit<BlogPostType, "body">;
       sizes?: string;
     };
 
@@ -124,7 +127,7 @@ const BlogContent = ({
   item,
   index,
 }: {
-  item: BlogPostType;
+  item: Omit<BlogPostType, "body">;
   index: number;
 }) => {
   const href = `/blog/post/${item.slug}`;
@@ -196,6 +199,15 @@ const BlogContent = ({
             size="sm"
             asChild
             className="h-8 px-2 text-sm hover:bg-transparent hover:text-primary"
+            onClick={() => {
+              trackEvent({
+                name: "blog_post_read_more_clicked",
+                properties: {
+                  post_title: item.title,
+                  post_slug: item.slug,
+                },
+              });
+            }}
           >
             <Link href={href} className="group/btn flex items-center gap-1">
               Read more
@@ -246,7 +258,20 @@ const ProjectContent = ({
       <CardFooter className="flex w-full flex-col items-stretch p-0">
         {item.websiteUrl && item.websiteUrl !== "#" && (
           <div className="flex w-full border-b border-dashed border-border-edge px-2 py-2">
-            <Button asChild className="w-full" variant="outline">
+            <Button
+              asChild
+              className="w-full"
+              variant="outline"
+              onClick={() => {
+                trackEvent({
+                  name: "project_live_demo_clicked",
+                  properties: {
+                    project_title: item.title,
+                    project_url: item.websiteUrl ?? "",
+                  },
+                });
+              }}
+            >
               <Link
                 target="_blank"
                 rel="noopener noreferrer"
@@ -260,7 +285,19 @@ const ProjectContent = ({
         )}
         {item.githubUrl && (
           <div className="flex w-full px-2 py-2">
-            <Button asChild className="w-full">
+            <Button
+              asChild
+              className="w-full"
+              onClick={() => {
+                trackEvent({
+                  name: "project_github_clicked",
+                  properties: {
+                    project_title: item.title,
+                    github_url: item.githubUrl ?? "",
+                  },
+                });
+              }}
+            >
               <Link
                 target="_blank"
                 rel="noopener noreferrer"

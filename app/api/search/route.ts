@@ -16,10 +16,13 @@ export async function GET(request: NextRequest) {
     try {
       await limiter.check(20, identifier); // 20 requests per minute
     } catch {
-      logger.warn("Rate limit exceeded", { context: "search-api", meta: { ip: identifier } });
+      logger.warn("Rate limit exceeded", {
+        context: "search-api",
+        meta: { ip: identifier },
+      });
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
-        { status: 429 }
+        { status: 429 },
       );
     }
 

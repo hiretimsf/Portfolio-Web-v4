@@ -20,10 +20,13 @@ export async function POST(request: Request) {
     try {
       await limiter.check(5, identifier); // 5 requests per minute
     } catch {
-      logger.warn("Rate limit exceeded", { context: "contact-api", meta: { ip: identifier } });
+      logger.warn("Rate limit exceeded", {
+        context: "contact-api",
+        meta: { ip: identifier },
+      });
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -36,13 +39,18 @@ export async function POST(request: Request) {
       const errorMessage = result.error.issues
         .map((issue) => issue.message)
         .join(", ");
-      logger.error("Validation error in contact form", result.error, { context: "contact-api" });
+      logger.error("Validation error in contact form", result.error, {
+        context: "contact-api",
+      });
       return NextResponse.json({ error: errorMessage }, { status: 400 });
     }
 
     const { email, message, name } = result.data;
 
-    logger.info("Processing contact form submission", { context: "contact-api", meta: { name, email } });
+    logger.info("Processing contact form submission", {
+      context: "contact-api",
+      meta: { name, email },
+    });
 
     // Sanitize user input to prevent XSS
     const sanitizedName = escape(name);
@@ -81,7 +89,9 @@ export async function POST(request: Request) {
       data,
     });
   } catch (error) {
-    logger.error("Unexpected error in contact form", error, { context: "contact-api" });
+    logger.error("Unexpected error in contact form", error, {
+      context: "contact-api",
+    });
     return NextResponse.json(
       {
         error: "An unexpected error occurred. Please try again later.",

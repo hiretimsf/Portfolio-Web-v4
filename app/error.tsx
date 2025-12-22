@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { logger } from "@/lib/logger";
+import { trackEvent, captureException } from "@/lib/events";
 import { useEffect } from "react";
 
 interface ErrorProps {
@@ -20,6 +21,18 @@ export default function Error({ error, reset }: ErrorProps) {
       context: "error-boundary",
       meta: { digest: error.digest },
     });
+
+    // Track error with PostHog
+    trackEvent({
+      name: "application_error",
+      properties: {
+        error_message: error.message,
+        error_digest: error.digest || null,
+      },
+    });
+
+    // Capture exception for PostHog error tracking
+    captureException(error, { context: "error-boundary" });
   }, [error]);
 
   return (
@@ -41,7 +54,18 @@ export default function Error({ error, reset }: ErrorProps) {
           </details>
         )}
         <div className="flex gap-4 justify-center">
-          <Button onClick={() => reset()} variant="default">
+          <Button
+            onClick={() => {
+              trackEvent({
+                name: "error_retry_clicked",
+                properties: {
+                  error_message: error.message,
+                },
+              });
+              reset();
+            }}
+            variant="default"
+          >
             Try again
           </Button>
           <Button
@@ -55,4 +79,3 @@ export default function Error({ error, reset }: ErrorProps) {
     </div>
   );
 }
-
