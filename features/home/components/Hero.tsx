@@ -102,7 +102,7 @@ export default function Hero({
             <img
               {...restDesktop}
               fetchPriority="high"
-              className="h-auto w-full object-cover lg:h-full"
+              className="h-auto w-full object-cover aspect-4/3 md:aspect-auto lg:h-full"
               alt={imageAlt}
             />
           </picture>
