@@ -7,7 +7,7 @@ Check out the live site: [hiretimsf.com](https://hiretimsf.com)
 ## Project Preview
 
 <div align="center">
-  <img src="docs/images/desktop-preview.png" alt="Desktop Preview" width="100%" />
+  <img src="docs/images/main-image.jpg" alt="Desktop Preview" width="100%" />
 </div>
 
 <div align="center">
@@ -103,16 +103,16 @@ The site will be available at [http://localhost:3000](http://localhost:3000).
 
 ### Scripts
 
-| Command                 | Description                     |
-| ----------------------- | ------------------------------- |
-| `npm run dev`           | Start development server        |
-| `npm run build`         | Build for production            |
-| `npm run start`         | Start production server         |
-| `npm run preview`       | Build and preview production    |
-| `npm run lint`          | Run ESLint                      |
-| `npm run lint:fix`      | Fix ESLint errors               |
-| `npm run format:write`  | Format code with Prettier       |
-| `npm run validate-seo`  | Validate SEO configuration      |
+| Command                | Description                  |
+| ---------------------- | ---------------------------- |
+| `npm run dev`          | Start development server     |
+| `npm run build`        | Build for production         |
+| `npm run start`        | Start production server      |
+| `npm run preview`      | Build and preview production |
+| `npm run lint`         | Run ESLint                   |
+| `npm run lint:fix`     | Fix ESLint errors            |
+| `npm run format:write` | Format code with Prettier    |
+| `npm run validate-seo` | Validate SEO configuration   |
 
 ## License
 
