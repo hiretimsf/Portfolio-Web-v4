@@ -7,10 +7,13 @@ Check out the live site: [hiretimsf.com](https://hiretimsf.com)
 ## Project Preview
 
 <div align="center">
-  <img src="docs/images/desktop-mockup.jpg" alt="Desktop Preview" width="100%" />
+  <img src="docs/images/github-heading.jpg" alt="Desktop Preview" width="100%" />
 </div>
 <div align="center">
-  <img src="docs/images/mobile-mockup.jpg" alt="Desktop Preview" width="100%" />
+  <img src="docs/images/github-desktop-mockup.jpg" alt="Desktop Preview" width="100%" />
+</div>
+<div align="center">
+  <img src="docs/images/github-mobile-mockup.jpg" alt="Mobile Preview" width="100%" />
 </div>
 
 ## Overview
