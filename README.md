@@ -25,7 +25,13 @@ Check out the live site: [hiretimsf.com](https://hiretimsf.com)
 ## 🧩 Components Preview
 
 <div align="center">
-  <img src="docs/images/github-components-mockup.jpg" alt="Mobile Preview" width="100%" />
+  <img src="docs/images/github-components-mockup.jpg" alt="Components Preview" width="100%" />
+</div>
+
+## 💼 Experience & Education Preview
+
+<div align="center">
+  <img src="docs/images/github-experience-section.png" alt="Experience & Education Preview" width="100%" />
 </div>
 
 ## ℹ️ Overview
