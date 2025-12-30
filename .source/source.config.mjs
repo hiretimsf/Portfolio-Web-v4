@@ -25,7 +25,8 @@ var baseProjectSchema = frontmatterSchema.extend({
   githubUrl: z.string().optional(),
   videoEmbedUrl: z.string().optional(),
   videoEmbedAlt: z.string().optional(),
-  techStacks: z.array(z.string()).optional()
+  techStacks: z.array(z.string()).optional(),
+  weight: z.number().optional()
 });
 var blogPostSchema = frontmatterSchema.extend({
   title: z.string(),

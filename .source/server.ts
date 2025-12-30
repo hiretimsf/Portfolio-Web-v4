@@ -1,14 +1,12 @@
 // @ts-nocheck
-import * as __fd_glob_33 from "../features/about/content/web-apps/portfolio-website-v3.mdx?collection=about"
-import * as __fd_glob_32 from "../features/about/content/web-apps/portfolio-website-v2.mdx?collection=about"
-import * as __fd_glob_31 from "../features/about/content/web-apps/portfolio-website-v1.mdx?collection=about"
-import * as __fd_glob_30 from "../features/about/content/web-apps/portfolio-website-v0.mdx?collection=about"
-import * as __fd_glob_29 from "../features/about/content/web-apps/full-stack-blog-app.mdx?collection=about"
-import * as __fd_glob_28 from "../features/about/content/about.mdx?collection=about"
-import * as __fd_glob_27 from "../features/about/content/web-apps/portfolio-website-v3.mdx?collection=webApps"
-import * as __fd_glob_26 from "../features/about/content/web-apps/portfolio-website-v2.mdx?collection=webApps"
-import * as __fd_glob_25 from "../features/about/content/web-apps/portfolio-website-v1.mdx?collection=webApps"
-import * as __fd_glob_24 from "../features/about/content/web-apps/portfolio-website-v0.mdx?collection=webApps"
+import * as __fd_glob_31 from "../features/about/content/web-apps/portfolio-website-v3.mdx?collection=about"
+import * as __fd_glob_30 from "../features/about/content/web-apps/portfolio-website-v2.mdx?collection=about"
+import * as __fd_glob_29 from "../features/about/content/web-apps/portfolio-website-v1.mdx?collection=about"
+import * as __fd_glob_28 from "../features/about/content/web-apps/full-stack-blog-app.mdx?collection=about"
+import * as __fd_glob_27 from "../features/about/content/about.mdx?collection=about"
+import * as __fd_glob_26 from "../features/about/content/web-apps/portfolio-website-v3.mdx?collection=webApps"
+import * as __fd_glob_25 from "../features/about/content/web-apps/portfolio-website-v2.mdx?collection=webApps"
+import * as __fd_glob_24 from "../features/about/content/web-apps/portfolio-website-v1.mdx?collection=webApps"
 import * as __fd_glob_23 from "../features/about/content/web-apps/full-stack-blog-app.mdx?collection=webApps"
 import * as __fd_glob_22 from "../features/projects/content/tshirt-design-app.mdx?collection=projects"
 import * as __fd_glob_21 from "../features/projects/content/renewable-energy-project.mdx?collection=projects"
@@ -107,7 +105,7 @@ const create = server<typeof Config, import("fumadocs-mdx/runtime/types").Intern
   }
 }>({"doc":{"passthroughs":["extractedReferences","lastModified"]}});
 
-export const about = await create.docs("about", "features/about/content", {}, {"about.mdx": __fd_glob_28, "web-apps/full-stack-blog-app.mdx": __fd_glob_29, "web-apps/portfolio-website-v0.mdx": __fd_glob_30, "web-apps/portfolio-website-v1.mdx": __fd_glob_31, "web-apps/portfolio-website-v2.mdx": __fd_glob_32, "web-apps/portfolio-website-v3.mdx": __fd_glob_33, });
+export const about = await create.docs("about", "features/about/content", {}, {"about.mdx": __fd_glob_27, "web-apps/full-stack-blog-app.mdx": __fd_glob_28, "web-apps/portfolio-website-v1.mdx": __fd_glob_29, "web-apps/portfolio-website-v2.mdx": __fd_glob_30, "web-apps/portfolio-website-v3.mdx": __fd_glob_31, });
 
 export const blog = await create.docs("blog", "features/blog/content", {}, {"how-to-implement-next-mdx-remote-with-nextjs.mdx": __fd_glob_0, "how-to-transfer-your-domain-to-vercel.mdx": __fd_glob_1, "update-tailwindcss-v4.mdx": __fd_glob_2, });
 
@@ -123,4 +121,4 @@ export const privacy = await create.docs("privacy", "features/privacy/content", 
 
 export const projects = await create.docs("projects", "features/projects/content", {}, {"full-stack-blog-app.mdx": __fd_glob_10, "lazy-panda.mdx": __fd_glob_11, "local-market-place-app.mdx": __fd_glob_12, "portfolio-app-java.mdx": __fd_glob_13, "portfolio-app-kotlin.mdx": __fd_glob_14, "portfolio-website-v0.mdx": __fd_glob_15, "portfolio-website-v1.mdx": __fd_glob_16, "portfolio-website-v2.mdx": __fd_glob_17, "portfolio-website-v3.mdx": __fd_glob_18, "product-landing-page.mdx": __fd_glob_19, "project-marketing-materials.mdx": __fd_glob_20, "renewable-energy-project.mdx": __fd_glob_21, "tshirt-design-app.mdx": __fd_glob_22, });
 
-export const webApps = await create.docs("webApps", "features/about/content/web-apps", {}, {"full-stack-blog-app.mdx": __fd_glob_23, "portfolio-website-v0.mdx": __fd_glob_24, "portfolio-website-v1.mdx": __fd_glob_25, "portfolio-website-v2.mdx": __fd_glob_26, "portfolio-website-v3.mdx": __fd_glob_27, });
+export const webApps = await create.docs("webApps", "features/about/content/web-apps", {}, {"full-stack-blog-app.mdx": __fd_glob_23, "portfolio-website-v1.mdx": __fd_glob_24, "portfolio-website-v2.mdx": __fd_glob_25, "portfolio-website-v3.mdx": __fd_glob_26, });

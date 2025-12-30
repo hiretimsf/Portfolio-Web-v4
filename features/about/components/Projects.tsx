@@ -19,6 +19,10 @@ import { motion } from "motion/react";
 import * as React from "react";
 
 export default function Projects({ data }: { data: ProjectType[] }) {
+  const sortedData = React.useMemo(() => {
+    return [...data].sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0));
+  }, [data]);
+
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
@@ -47,7 +51,7 @@ export default function Projects({ data }: { data: ProjectType[] }) {
         }}
       >
         <CarouselContent>
-          {data.map((item, index) => (
+          {sortedData.map((item, index) => (
             <CarouselItem key={index} className="basis-full md:basis-1/2">
               <div className="h-full p-1">
                 <CardItem

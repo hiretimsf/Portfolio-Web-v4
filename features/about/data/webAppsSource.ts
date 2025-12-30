@@ -30,6 +30,7 @@ export function getWebApps(): ProjectType[] {
       techStacks: data.techStacks,
       fromDate: data.fromDate ? formatDate(data.fromDate, "MMM yyyy") : "",
       toDate: data.toDate ? formatDate(data.toDate, "MMM yyyy") : "",
+      weight: data.weight,
     };
   });
 }
