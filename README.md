@@ -7,7 +7,7 @@ A minimal portfolio and blog to showcase my work as a Frontend Developer.
 ## 📸 Project Overview
 
 <div align="center">
-  <img src="docs/images/github-heading.jpg" alt="Desktop Preview" width="100%" />
+  <img src="docs/images/github-heading.jpg" alt="Project Overview" width="100%" />
 </div>
 
 ## 🖥️ Desktop Preview
@@ -22,11 +22,22 @@ A minimal portfolio and blog to showcase my work as a Frontend Developer.
   <img src="docs/images/github-mobile-mockup.jpg" alt="Mobile Preview" width="100%" />
 </div>
 
-## 📱 Mobile-First Responsive Design
+## 📱 Responsive Design
 
 <div align="center">
-  <img src="docs/images/github-experience-section.png" alt="Experience & Education Preview" width="100%" />
+  <img src="docs/images/github-experience-section.png" alt="Responsive Design" width="100%" />
 </div>
+
+## 🕰️ Previous Versions
+
+<div align="center">
+  <img src="docs/images/github-previous-versions.jpg" alt="Previous Versions" width="100%" />
+</div>
+
+- 0️⃣ [Version 0](https://personal-website-76368.web.app/index.html) (HTML, CSS, and jQuery)
+- 1️⃣ [Version 1](https://tim-portfolio-web-v1.vercel.app/) (Next.js 13, TailwindCSS)
+- 2️⃣ [Version 2](https://tim-portfolio-web-v2.vercel.app/) (Next.js 15, TailwindCSS, Shadcn UI, Radix UI, Framer Motion, MDX)
+- 3️⃣ [Version 3](https://hiretimsf.vercel.app/) (Next.js 16, TailwindCSS, Shadcn UI, Radix UI, Motion, MDX)
 
 ## ℹ️ Overview
 
