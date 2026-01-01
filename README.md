@@ -36,10 +36,10 @@ A minimal portfolio and blog to showcase my work as a Frontend Developer.
 
 ## 🔗 Links
 
-- 0️⃣ **Version 0**:[Live Demo](https://personal-website-76368.web.app/index.html) (HTML, CSS, and jQuery)
-- 1️⃣ **Version 1**: [Live Demo](https://tim-portfolio-web-v1.vercel.app/) (Next.js 13, TailwindCSS)
-- 2️⃣ **Version 2**: [Live Demo](https://tim-portfolio-web-v2.vercel.app/) (Next.js 15, TailwindCSS, Shadcn UI, Radix UI, Framer Motion, MDX)
-- 3️⃣ **Version 3**: [Live Demo](https://hiretimsf.vercel.app/) (Next.js 16, TailwindCSS, Shadcn UI, Radix UI, Motion, MDX)
+- 0️⃣ **Version 0** -> [Live Demo](https://personal-website-76368.web.app/index.html) (HTML, CSS, and jQuery)
+- 1️⃣ **Version 1** -> [Live Demo](https://tim-portfolio-web-v1.vercel.app/) (Next.js 13, TailwindCSS)
+- 2️⃣ **Version 2** -> [Live Demo](https://tim-portfolio-web-v2.vercel.app/) (Next.js 15, TailwindCSS, Shadcn UI, Radix UI, Framer Motion, MDX)
+- 3️⃣ **Version 3** -> [Live Demo](https://hiretimsf.vercel.app/) (Next.js 16, TailwindCSS, Shadcn UI, Radix UI, Motion, MDX)
 
 ## ℹ️ Overview
 
