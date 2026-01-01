@@ -1,10 +1,10 @@
-# [HireTimSF.com](https://hiretimsf.com)
+# Portfolio Version 4
 
 A minimal portfolio and blog to showcase my work as a Frontend Developer.
 
-Check out the live site: [hiretimsf.com](https://hiretimsf.com)
+Check out: [Live Demo](https://hiretimsf.com)
 
-## 📸 Project Preview
+## 📸 Project Overview
 
 <div align="center">
   <img src="docs/images/github-heading.jpg" alt="Desktop Preview" width="100%" />
