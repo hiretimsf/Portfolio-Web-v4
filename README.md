@@ -2,7 +2,7 @@
 
 A minimal portfolio and blog to showcase my work as a Frontend Developer.
 
-## Check out: [Live Demo](https://hiretimsf.com)
+## Check out: 🌍 [Live Demo](https://hiretimsf.com)
 
 ## 📸 Project Overview
 
