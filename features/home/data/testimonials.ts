@@ -80,6 +80,20 @@ const TESTIMONIALS = [
     quote: "It's Monday so it's the perfect day to hire Tim",
   },
   {
+    authorAvatar: "https://unavatar.io/twitter/dominikkoch",
+    authorName: "Dominik Koch",
+    authorBio: "@dominikkoch",
+    url: "https://x.com/dominikkoch/status/2007081136862978416",
+    quote: "ayyy thanks tim, someone should hire you now!",
+  },
+  {
+    authorAvatar: "https://unavatar.io/twitter/the_best_codes",
+    authorName: "The Best Codes",
+    authorBio: "@the_best_codes",
+    url: "https://x.com/the_best_codes/status/2006158234952868134",
+    quote: "Someone hire Tim",
+  },
+  {
     authorAvatar: "https://unavatar.io/youtube/CodingWithMitch",
     authorName: "CodingWithMitch",
     authorBio: "YouTube",
