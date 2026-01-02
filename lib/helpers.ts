@@ -29,6 +29,7 @@ export function slugify(text: string) {
     .replace(/--+/g, `-`);
 }
 export function formatDate(date: string, formatStr: string = "MMM d, yyyy") {
+  if (date === "Present" || date === "present") return "Present";
   return format(new Date(date), formatStr);
 }
 

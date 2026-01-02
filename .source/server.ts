@@ -23,8 +23,8 @@ import * as __fd_glob_12 from "../features/projects/content/lazy-panda.mdx?colle
 import * as __fd_glob_11 from "../features/projects/content/just-fucking-run.mdx?collection=projects"
 import * as __fd_glob_10 from "../features/projects/content/full-stack-blog-app.mdx?collection=projects"
 import * as __fd_glob_9 from "../features/privacy/content/privacy.mdx?collection=privacy"
-import * as __fd_glob_8 from "../features/home/content/featured-apps/portfolio-website-v3.mdx?collection=featuredApps"
-import * as __fd_glob_7 from "../features/home/content/featured-apps/portfolio-website-v2.mdx?collection=featuredApps"
+import * as __fd_glob_8 from "../features/home/content/featured-apps/lazy-panda.mdx?collection=featuredApps"
+import * as __fd_glob_7 from "../features/home/content/featured-apps/just-fucking-run.mdx?collection=featuredApps"
 import * as __fd_glob_6 from "../features/home/content/featured-apps/full-stack-blog-app.mdx?collection=featuredApps"
 import * as __fd_glob_5 from "../features/experience/content/experience.mdx?collection=experience"
 import * as __fd_glob_4 from "../features/education/content/education.mdx?collection=education"
@@ -116,7 +116,7 @@ export const education = await create.docs("education", "features/education/cont
 
 export const experience = await create.docs("experience", "features/experience/content", {}, {"experience.mdx": __fd_glob_5, });
 
-export const featuredApps = await create.docs("featuredApps", "features/home/content/featured-apps", {}, {"full-stack-blog-app.mdx": __fd_glob_6, "portfolio-website-v2.mdx": __fd_glob_7, "portfolio-website-v3.mdx": __fd_glob_8, });
+export const featuredApps = await create.docs("featuredApps", "features/home/content/featured-apps", {}, {"full-stack-blog-app.mdx": __fd_glob_6, "just-fucking-run.mdx": __fd_glob_7, "lazy-panda.mdx": __fd_glob_8, });
 
 export const privacy = await create.docs("privacy", "features/privacy/content", {}, {"privacy.mdx": __fd_glob_9, });
 
