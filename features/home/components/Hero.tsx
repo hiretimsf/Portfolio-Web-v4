@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { IoCheckmarkCircle as CheckmarkIcon } from "react-icons/io5";
+import { Compare } from "./hero/compare";
 
 function HeroContent() {
   return (
@@ -37,7 +38,7 @@ function HeroContent() {
             <CheckmarkIcon
               aria-hidden="true"
               className={cn(
-                "absolute left-4 size-5 text-muted-foreground/80",
+                "absolute left-4 size-5 text-green-500",
                 "top-1/2 -translate-y-1/2",
               )}
             />
@@ -81,9 +82,7 @@ const DEFAULT_IMAGES = {
 };
 
 export default function Hero({
-  imageSrcDesktop = DEFAULT_IMAGES.desktop,
   imageSrcMobile = DEFAULT_IMAGES.mobile,
-  imageSrcDesktopDark = DEFAULT_IMAGES.desktopDark,
   imageSrcMobileDark = DEFAULT_IMAGES.mobileDark,
   imageAlt = DEFAULT_IMAGES.alt,
 }: HeroProps) {
@@ -104,13 +103,21 @@ export default function Hero({
         <div className="w-full lg:col-span-1">
           {/* Desktop Image */}
           <div className="hidden lg:block relative h-full w-full">
-            <Image
-              src={isDark ? imageSrcDesktopDark : imageSrcDesktop}
-              alt={imageAlt}
-              width={600}
-              height={712}
-              priority
-              className="h-full w-full object-cover"
+            <Compare
+              firstImage={
+                isDark
+                  ? "/images/profile-vertical-dark-after.jpg"
+                  : "/images/profile-vertical-light-after.jpg"
+              }
+              secondImage={
+                isDark
+                  ? "/images/profile-vertical-dark-before.jpg"
+                  : "/images/profile-vertical-light-before.jpg"
+              }
+              firstImageClassName="object-cover object-left-top"
+              secondImageClassname="object-cover object-left-top"
+              className="h-full w-full"
+              slideMode="drag"
             />
           </div>
 
