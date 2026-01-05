@@ -34,8 +34,6 @@ export const Compare = ({
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const [isMouseOver, setIsMouseOver] = useState(false);
-
   const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   const startAutoplay = useCallback(() => {
@@ -68,12 +66,10 @@ export const Compare = ({
   }, [startAutoplay, stopAutoplay]);
 
   function mouseEnterHandler() {
-    setIsMouseOver(true);
     stopAutoplay();
   }
 
   function mouseLeaveHandler() {
-    setIsMouseOver(false);
     if (slideMode === "hover") {
       setSliderXPercent(initialSliderPercentage);
     }
@@ -83,14 +79,11 @@ export const Compare = ({
     startAutoplay();
   }
 
-  const handleStart = useCallback(
-    (clientX: number) => {
-      if (slideMode === "drag") {
-        setIsDragging(true);
-      }
-    },
-    [slideMode],
-  );
+  const handleStart = useCallback(() => {
+    if (slideMode === "drag") {
+      setIsDragging(true);
+    }
+  }, [slideMode]);
 
   const handleEnd = useCallback(() => {
     if (slideMode === "drag") {
@@ -113,24 +106,18 @@ export const Compare = ({
     [slideMode, isDragging],
   );
 
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent) => handleStart(e.clientX),
-    [handleStart],
-  );
+  const handleMouseDown = useCallback(() => handleStart(), [handleStart]);
   const handleMouseUp = useCallback(() => handleEnd(), [handleEnd]);
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => handleMove(e.clientX),
     [handleMove],
   );
 
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent) => {
-      if (!autoplay) {
-        handleStart(e.touches[0].clientX);
-      }
-    },
-    [handleStart, autoplay],
-  );
+  const handleTouchStart = useCallback(() => {
+    if (!autoplay) {
+      handleStart();
+    }
+  }, [handleStart, autoplay]);
 
   const handleTouchEnd = useCallback(() => {
     if (!autoplay) {
@@ -140,7 +127,7 @@ export const Compare = ({
 
   const handleTouchMove = useCallback(
     (e: React.TouchEvent) => {
-      if (!autoplay) {
+      if (!autoplay && e.touches[0]) {
         handleMove(e.touches[0].clientX);
       }
     },
