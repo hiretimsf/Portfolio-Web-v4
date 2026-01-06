@@ -118,6 +118,7 @@ export default function Hero({
               secondImageClassname="object-cover object-left-top"
               className="h-full w-full"
               slideMode="drag"
+              autoplay={false}
             />
           </div>
 
