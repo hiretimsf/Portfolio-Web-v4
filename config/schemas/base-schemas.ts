@@ -21,6 +21,7 @@ export const baseProjectSchema = frontmatterSchema.extend({
   videoEmbedAlt: z.string().optional(),
   techStacks: z.array(z.string()).optional(),
   weight: z.number().optional(),
+  comingSoon: z.boolean().optional(),
 });
 
 /**

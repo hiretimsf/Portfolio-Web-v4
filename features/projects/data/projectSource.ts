@@ -36,6 +36,7 @@ function getProject(page: Page, index: number): ProjectType {
     techStacks: data.techStacks,
     featured: data.featured,
     showOnPortfolio: data.showOnPortfolio,
+    comingSoon: data.comingSoon,
   };
 }
 

@@ -83,8 +83,8 @@ const TESTIMONIALS = [
     authorAvatar: "https://unavatar.io/twitter/dominikkoch",
     authorName: "Dominik Koch",
     authorBio: "@dominikkoch",
-    url: "https://x.com/dominikkoch/status/2007081136862978416",
-    quote: "ayyy thanks tim, someone should hire you now!",
+    url: "https://x.com/dominikkoch/status/2008328618653475296",
+    quote: "this is so sick",
   },
   {
     authorAvatar: "https://unavatar.io/twitter/the_best_codes",

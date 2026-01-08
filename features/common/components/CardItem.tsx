@@ -238,7 +238,14 @@ const ProjectContent = ({
           {item.title}
         </CardTitle>
         <CardDescription className="border-b border-dashed border-border-edge px-2 py-2 text-left text-sm/6 text-muted-foreground">
-          {item.fromDate ? (
+          {item.comingSoon ? (
+            <div className="flex items-center">
+              <CalendarIcon className="mr-2 size-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground font-mono">
+                Coming Soon
+              </span>
+            </div>
+          ) : item.fromDate ? (
             <div className="flex items-center">
               <CalendarIcon className="mr-2 size-4 text-muted-foreground" />
               <span className="text-sm text-muted-foreground font-mono">
@@ -259,10 +266,12 @@ const ProjectContent = ({
         {item.websiteUrl && item.websiteUrl !== "#" && (
           <div className="flex w-full border-b border-dashed border-border-edge px-2 py-2">
             <Button
-              asChild
+              asChild={!item.comingSoon}
+              disabled={item.comingSoon}
               className="w-full"
               variant="outline"
               onClick={() => {
+                if (item.comingSoon) return;
                 trackEvent({
                   name: "project_live_demo_clicked",
                   properties: {
@@ -272,23 +281,29 @@ const ProjectContent = ({
                 });
               }}
             >
-              <Link
-                target="_blank"
-                rel="noopener noreferrer"
-                href={item.websiteUrl}
-              >
-                Live Demo
-                <span className="sr-only"> of {item.title}</span>
-              </Link>
+              {item.comingSoon ? (
+                <span>Live Demo</span>
+              ) : (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={item.websiteUrl}
+                >
+                  Live Demo
+                  <span className="sr-only"> of {item.title}</span>
+                </Link>
+              )}
             </Button>
           </div>
         )}
         {item.githubUrl && (
           <div className="flex w-full px-2 py-2">
             <Button
-              asChild
+              asChild={!item.comingSoon}
+              disabled={item.comingSoon}
               className="w-full"
               onClick={() => {
+                if (item.comingSoon) return;
                 trackEvent({
                   name: "project_github_clicked",
                   properties: {
@@ -298,14 +313,18 @@ const ProjectContent = ({
                 });
               }}
             >
-              <Link
-                target="_blank"
-                rel="noopener noreferrer"
-                href={item.githubUrl}
-              >
-                GitHub
-                <span className="sr-only"> repository for {item.title}</span>
-              </Link>
+              {item.comingSoon ? (
+                <span>GitHub</span>
+              ) : (
+                <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={item.githubUrl}
+                >
+                  GitHub
+                  <span className="sr-only"> repository for {item.title}</span>
+                </Link>
+              )}
             </Button>
           </div>
         )}

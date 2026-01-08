@@ -15,6 +15,7 @@ type ProjectType = {
   videoEmbedAlt?: string;
   techStacks?: string[];
   weight?: number; // 1-10
+  comingSoon?: boolean;
 };
 
 export type { ProjectType };

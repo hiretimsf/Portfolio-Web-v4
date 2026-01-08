@@ -13,6 +13,8 @@ type ProjectFrontmatter = {
   videoEmbedUrl?: string;
   videoEmbedAlt?: string;
   techStacks?: string[];
+  weight?: number;
+  comingSoon?: boolean;
 };
 
 export type { ProjectFrontmatter };

@@ -35,6 +35,7 @@ export function getFeaturedApps(): ProjectType[] {
         fromDate: data.fromDate ? formatDate(data.fromDate, "MMM yyyy") : "",
         toDate: data.toDate ? formatDate(data.toDate, "MMM yyyy") : "",
         weight: data.weight,
+        comingSoon: data.comingSoon,
       };
     })
     .sort((a, b) => (b.weight ?? 0) - (a.weight ?? 0));
