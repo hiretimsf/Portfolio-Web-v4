@@ -21,6 +21,13 @@ const TESTIMONIALS = [
     quote: "so good! 🔥😂",
   },
   {
+    authorAvatar: "https://unavatar.io/twitter/shadcn",
+    authorName: "shadcn",
+    authorBio: "@shadcn",
+    url: "https://x.com/shadcn/status/2009307622059491448",
+    quote: "Bookmarked 😃",
+  },
+  {
     authorAvatar: "https://unavatar.io/twitter/marclou",
     authorName: "Marc Lou",
     authorBio: "@marclou",
