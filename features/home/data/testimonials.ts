@@ -87,6 +87,13 @@ const TESTIMONIALS = [
     quote: "It's Monday so it's the perfect day to hire Tim",
   },
   {
+    authorAvatar: "https://unavatar.io/twitter/iamncdai",
+    authorName: "Nc Dai",
+    authorBio: "@iamncdai",
+    url: "https://x.com/iamncdai/status/2009538019947389302",
+    quote: "Wow, I’m really happy to see this!",
+  },
+  {
     authorAvatar: "https://unavatar.io/twitter/dominikkoch",
     authorName: "Dominik Koch",
     authorBio: "@dominikkoch",
