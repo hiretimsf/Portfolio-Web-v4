@@ -29,7 +29,7 @@ import * as __fd_glob_5 from "../features/experience/content/experience.mdx?coll
 import * as __fd_glob_4 from "../features/education/content/education.mdx?collection=education"
 import * as __fd_glob_3 from "../features/changelog/content/changelog.mdx?collection=changelog"
 import * as __fd_glob_2 from "../features/blog/content/running-sf-marathon-and-promoting-myself.mdx?collection=blog"
-import * as __fd_glob_1 from "../features/blog/content/how-to-transfer-your-domain-to-vercel.mdx?collection=blog"
+import * as __fd_glob_1 from "../features/blog/content/my-open-source-contribution.mdx?collection=blog"
 import * as __fd_glob_0 from "../features/blog/content/how-to-implement-next-mdx-remote-with-nextjs.mdx?collection=blog"
 import { server } from 'fumadocs-mdx/runtime/server';
 import type * as Config from '../source.config';
@@ -107,7 +107,7 @@ const create = server<typeof Config, import("fumadocs-mdx/runtime/types").Intern
 
 export const about = await create.docs("about", "features/about/content", {}, {"about.mdx": __fd_glob_27, "web-apps/full-stack-blog-app.mdx": __fd_glob_28, "web-apps/portfolio-website-v1.mdx": __fd_glob_29, "web-apps/portfolio-website-v2.mdx": __fd_glob_30, "web-apps/portfolio-website-v3.mdx": __fd_glob_31, });
 
-export const blog = await create.docs("blog", "features/blog/content", {}, {"how-to-implement-next-mdx-remote-with-nextjs.mdx": __fd_glob_0, "how-to-transfer-your-domain-to-vercel.mdx": __fd_glob_1, "running-sf-marathon-and-promoting-myself.mdx": __fd_glob_2, });
+export const blog = await create.docs("blog", "features/blog/content", {}, {"how-to-implement-next-mdx-remote-with-nextjs.mdx": __fd_glob_0, "my-open-source-contribution.mdx": __fd_glob_1, "running-sf-marathon-and-promoting-myself.mdx": __fd_glob_2, });
 
 export const changelog = await create.docs("changelog", "features/changelog/content", {}, {"changelog.mdx": __fd_glob_3, });
 

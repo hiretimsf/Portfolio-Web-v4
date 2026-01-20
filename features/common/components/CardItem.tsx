@@ -39,7 +39,7 @@ type CardItemProps =
 
 export default function CardItem({ index, item, type, sizes }: CardItemProps) {
   const isBlog = type === "blog";
-  const href = isBlog ? `/blog/${item.slug}` : undefined;
+  const href = isBlog ? `/blog/post/${item.slug}` : undefined;
 
   return (
     <Card

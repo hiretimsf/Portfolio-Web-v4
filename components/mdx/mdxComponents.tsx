@@ -13,6 +13,7 @@ import {
   CalloutDescription,
   CalloutTitle,
 } from "./callout";
+import { Tweet } from "react-tweet";
 import { Heading } from "./heading";
 import { cn } from "@/lib/utils";
 import {
@@ -171,6 +172,11 @@ const defaultMdxComponents = {
   CalloutContainer,
   CalloutTitle,
   CalloutDescription,
+  Tweet: ({ id }: { id: string }) => (
+    <div className="my-6 flex justify-center">
+      <Tweet id={id} />
+    </div>
+  ),
 };
 
 import type { createRelativeLink as CreateRelativeLinkType } from "@/components/mdx/mdx.server";
