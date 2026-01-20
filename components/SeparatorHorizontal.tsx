@@ -16,13 +16,14 @@ export default function SeparatorHorizontal({
   return (
     <div
       className={cn(
-        "relative flex w-full",
+        "relative flex w-full overflow-hidden",
         short ? "h-4" : "h-8",
-        "before:absolute before:left-1/2 before:-translate-x-1/2 before:-z-1 before:w-screen",
-        short ? "before:h-4" : "before:h-8",
-        "before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] before:bg-size-[10px_10px] before:[--pattern-foreground:color-mix(in_oklab,var(--color-edge)_56%,transparent)]",
-        borderBottom && "before:border-b before:border-edge",
-        borderTop && "before:border-t before:border-edge",
+        "before:absolute before:inset-0 before:w-screen before:left-1/2 before:-translate-x-1/2 before:-z-1",
+        "before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)]",
+        "before:bg-size-[10px_10px]",
+        "before:[--pattern-foreground:color-mix(in_oklab,var(--color-edge)_40%,transparent)]",
+        borderBottom && "border-b border-edge",
+        borderTop && "border-t border-edge",
         className,
       )}
     />

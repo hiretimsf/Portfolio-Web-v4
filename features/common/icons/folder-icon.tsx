@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FC } from "react";
 
 interface Props {
   size: number;

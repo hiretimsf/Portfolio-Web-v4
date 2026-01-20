@@ -13,6 +13,7 @@ interface ContactMeProps {
   buttonText?: string;
   imageAlt?: string;
   showSocialLinks?: boolean;
+  backgroundImage?: string;
 }
 
 const ContactMe = ({
@@ -22,6 +23,7 @@ const ContactMe = ({
   buttonText = "Contact Me",
   imageAlt = "Professional frontend developer ready to collaborate on projects",
   showSocialLinks = false,
+  backgroundImage = "/images/background.jpg",
 }: ContactMeProps) => {
   return (
     <section
@@ -99,7 +101,7 @@ const ContactMe = ({
         />
       </div>
       <Image
-        src="/images/background.jpg"
+        src={backgroundImage}
         alt=""
         fill
         className="absolute inset-0 -z-10 object-cover"

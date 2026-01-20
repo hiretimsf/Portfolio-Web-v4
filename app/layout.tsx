@@ -11,6 +11,7 @@ import { SkipToMain } from "@/components/SkipToMain";
 import { AUTHOR, FAVICONS, HEAD, KEYWORDS, OPEN_GRAPH } from "@/config/seo";
 import { SITE_INFO } from "@/config/seo/site";
 import { META_THEME_COLORS } from "@/config/theme";
+import { ThemeScript } from "@/components/ThemeScript";
 import { fontMono, fontSans } from "@/lib/fonts";
 import { getBaseUrl } from "@/lib/helpers";
 import type { HeadType } from "@/types";
@@ -55,20 +56,6 @@ function getPersonJsonLd(): WithContext<Person> {
   };
 }
 
-// Script to handle initial theme state and macOS detection to prevent flashing of the wrong theme.
-const darkModeScript = `
-  try {
-    if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
-    }
-  } catch (_) {}
-
-  try {
-    if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
-      document.documentElement.classList.add('os-macos')
-    }
-  } catch (_) {}
-`;
 
 // Constants
 const CURRENT_PAGE = "Home"; // Define the current page for SEO configuration
@@ -181,16 +168,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       suppressHydrationWarning
     >
       <head>
-        <script
-          type="text/javascript"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Injecting script for theme handling
-          dangerouslySetInnerHTML={{ __html: darkModeScript }}
-        />
-        {/*
-          Thanks @tailwindcss. We inject the script via the `<Script/>` tag again,
-          since we found the regular `<script>` tag to not execute when rendering a not-found page.
-         */}
-        <Script src={`data:text/javascript;base64,${btoa(darkModeScript)}`} />
+        <ThemeScript />
         <script
           type="application/ld+json"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Injecting JSON-LD for SEO
