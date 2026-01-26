@@ -1,5 +1,5 @@
 import { getBlogPosts } from "@/features/blog/lib/blog.server";
-import BackgroundDots from "@/components/common/BackgroundDots";
+import Section from "@/components/layout/main/Section";
 import CardItem from "@/components/common/CardItem";
 import { slugify } from "@/lib/utils";
 
@@ -14,9 +14,8 @@ export default function LatestBlogPostsSection() {
     .slice(0, 3);
 
   return (
-    <div className="relative mx-auto max-w-7xl px-6 py-8 md:py-10 lg:px-8">
-      <BackgroundDots gridId="latest-blog-posts" className="text-gray-200/80" />
-      <div className="xl mx-auto grid max-w-5xl grid-cols-1 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+    <Section gridId="latest-blog-posts">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
         {latestPosts.map((post, index) => {
           const { body, ...postWithoutBody } = post;
           return (
@@ -30,6 +29,6 @@ export default function LatestBlogPostsSection() {
           );
         })}
       </div>
-    </div>
+    </Section>
   );
 }

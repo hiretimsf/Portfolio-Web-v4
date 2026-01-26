@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { GET_TESTIMONIALS } from "@/features/home/data/source";
-import BackgroundDots from "@/components/common/BackgroundDots";
+import Section from "@/components/layout/main/Section";
 
 export function Testimonial({
   className,
@@ -182,8 +182,7 @@ export function TestimonialVerifiedBadge({
 
 export function TestimonialsSection() {
   return (
-    <div className="w-full relative p-4">
-      <BackgroundDots gridId="what-people-say" className="text-gray-200/80" />
+    <Section gridId="what-people-say">
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {GET_TESTIMONIALS().map((item) => (
@@ -219,6 +218,6 @@ export function TestimonialsSection() {
           </a>
         ))}
       </div>
-    </div>
+    </Section>
   );
 }

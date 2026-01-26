@@ -42,10 +42,10 @@ export default function CardItem({ index, item, type, sizes }: CardItemProps) {
   const href = isBlog ? `/blog/post/${item.slug}` : undefined;
 
   return (
+    <BrowserWrapper>
     <Card
       className={cn(
-        "h-full gap-0 rounded-md border-x border-b border-border-edge py-0 transition-all duration-300",
-        isBlog ? "shadow-md hover:border-muted-foreground/40" : "shadow-lg",
+        "h-full gap-0 py-0 transition-all duration-300 rounded-none border-none",
       )}
       role="article"
       aria-labelledby={`card-title-${index}`}
@@ -70,6 +70,7 @@ export default function CardItem({ index, item, type, sizes }: CardItemProps) {
         <SideBorder position="right" />
       </div>
     </Card>
+    </BrowserWrapper>
   );
 }
 
@@ -97,7 +98,6 @@ const CoverImage = ({
   sizes?: string;
 }) => {
   const content = (
-    <BrowserWrapper>
       <div className="relative aspect-video w-full overflow-hidden">
         <Image
           alt={imageAlt || "Card image"}
@@ -109,7 +109,6 @@ const CoverImage = ({
           priority={false}
         />
       </div>
-    </BrowserWrapper>
   );
 
   if (href) {

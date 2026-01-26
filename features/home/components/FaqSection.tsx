@@ -1,4 +1,4 @@
-import BackgroundDots from "@/components/common/BackgroundDots";
+import Section from "@/components/layout/main/Section";
 import {
   Accordion,
   AccordionContent,
@@ -6,21 +6,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { GET_FAQ } from "@/features/home/data/source";
-import { cn } from "@/lib/utils";
 import type { FaqType } from "@/features/home/types/FaqType";
 
-type FaqSectionProps = {
-  className?: string;
-};
-
-const FaqSection = ({ className = "" }: FaqSectionProps) => {
+const FaqSection = () => {
   return (
-    <section
-      className={cn(
-        "relative mx-auto w-full justify-center px-4 sm:px-6 lg:px-8",
-        className,
-      )}
-    >
+    <Section gridId="faq">
       <Accordion
         type="single"
         collapsible
@@ -38,11 +28,7 @@ const FaqSection = ({ className = "" }: FaqSectionProps) => {
           </AccordionItem>
         ))}
       </Accordion>
-      <BackgroundDots
-        gridId="faq"
-        className="absolute z-[-1] text-gray-200/80"
-      />
-    </section>
+    </Section>
   );
 };
 
