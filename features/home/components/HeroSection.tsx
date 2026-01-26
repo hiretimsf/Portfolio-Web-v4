@@ -61,7 +61,7 @@ function HeroContent() {
 
       <div className="px-4 py-4 text-left">
         <Button asChild>
-          <Link href="/about" className="w-full px-6 py-4 sm:w-auto">
+          <Link href="/about" className="w-full px-6 py-5 sm:w-auto">
             Learn more about Tim
           </Link>
         </Button>

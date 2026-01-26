@@ -14,7 +14,7 @@ const FaqSection = () => {
       <Accordion
         type="single"
         collapsible
-        className="bg-background mx-auto max-w-xl divide-y divide-dashed divide-border-edge border-x border-dashed border-border-edge"
+        className="bg-background mx-auto max-w-xl divide-y divide-dashed divide-border-edge border border-border-edge shadow-md"
       >
         {GET_FAQ().map((item: FaqType, index: number) => (
           // biome-ignore lint/suspicious/noArrayIndexKey: faq items are static

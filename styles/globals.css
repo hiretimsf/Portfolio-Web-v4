@@ -193,6 +193,16 @@
   --selection-foreground: oklch(0.985 0 0);
 
   --shadow-popover: 0 6px 24px rgba(0, 0, 0, 0.25);
+
+  /* Custom colors */
+  /* blue #0072e4 */
+  --highlight-blue: oklch(0.55 0.19 250);
+  /* yellow/gold #c78f00 */
+  --highlight-yellow: oklch(0.65 0.15 75);
+  /* gray #6b6b6b */
+  --highlight-gray: oklch(0.48 0 0);
+  /* red #c70000 */
+  --highlight-red: oklch(0.52 0.23 25);
 }
 
 .dark {

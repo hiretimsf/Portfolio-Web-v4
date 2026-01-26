@@ -1,8 +1,8 @@
 "use client";
 
-import Github from "@/components/layout/header/Github";
-import Logo from "@/components/layout/header/Logo";
-import { Search } from "@/components/layout/header/Search";
+import GithubButton from "@/components/layout/header/Github";
+import LogoButton from "@/components/layout/header/Logo";
+import SearchButton from "@/components/layout/header/Search";
 import ThemeToggle from "@/components/layout/header/ThemeToggle";
 import {
   NavigationMenu,
@@ -25,7 +25,7 @@ interface Props {
 // Reusable styles
 const navItemStyles = {
   base: "text-md font-semibold transition-colors duration-200",
-  active: "bg-accent text-md font-semibold",
+  active: "bg-accent text-md font-semibold border border-dashed border-black/10 dark:border-white/10",
 };
 
 const navigationComponents: Record<string, React.ComponentType> = {
@@ -100,7 +100,7 @@ const Desktop: FC<Props> = memo(({ activePath }) => {
     <NavigationMenu className="mx-auto hidden w-full max-w-5xl md:block">
       <div className="flex h-18 w-full items-center justify-between">
         <div className="flex flex-1 justify-start">
-          <Logo />
+          <LogoButton />
         </div>
         <NavigationMenuList
           className="flex items-center gap-5"
@@ -110,9 +110,9 @@ const Desktop: FC<Props> = memo(({ activePath }) => {
         </NavigationMenuList>
 
         <div className="flex flex-1 items-center justify-end gap-1.5">
-          <Github />
+          <GithubButton />
           <span className="mx-2 flex h-4 w-px bg-border" />
-          <Search />
+          <SearchButton />
           <span className="mx-2 flex h-4 w-px bg-border" />
           <ThemeToggle />
         </div>

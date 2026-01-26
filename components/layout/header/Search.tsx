@@ -243,9 +243,9 @@ export function Search() {
             properties: { method: "click" },
           });
         }}
-        className="corner-squircle rounded-xl text-foreground "
+        className="corner-squircle rounded-xl"
       >
-        <SearchIcon className="size-5 shrink-0 text-foreground" />
+        <SearchIcon className="size-5 shrink-0" />
       </Button>
 
       {/* Command Menu Dialog */}
