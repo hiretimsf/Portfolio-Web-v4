@@ -1,8 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { logger } from "@/lib/logger";
-import { trackEvent, captureException } from "@/lib/events";
+import { trackEvent, captureException } from "@/lib/utils";
 import { useEffect } from "react";
 
 interface ErrorProps {
@@ -16,12 +15,6 @@ interface ErrorProps {
  */
 export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
-    // Log error to console in development, or send to error tracking service
-    logger.error("Application error caught by error boundary", error, {
-      context: "error-boundary",
-      meta: { digest: error.digest },
-    });
-
     // Track error with PostHog
     trackEvent({
       name: "application_error",

@@ -1,13 +1,11 @@
 import dayjs from "dayjs";
 
-import { SITE_INFO } from "@/config/seo/site";
-import { getBlogPosts } from "@/features/blog/data/blogSource";
+import { SITE_INFO, SOCIAL_LINKS, TECH_STACK, USER } from "@/lib/config";
+import { getBlogPosts } from "@/features/blog/lib/blog.server";
 import { getLLMText } from "@/features/blog/lib/get-llm-text";
 import { getExperienceItems } from "@/features/experience/data/get-experience-items";
 import { getProjects } from "@/features/projects/data/projectSource";
-import SOCIAL_LINKS from "@/config/socialLinks";
-import { TECH_STACK } from "@/config/techStack";
-import { USER } from "@/config/user";
+
 
 const allPosts = getBlogPosts();
 const EXPERIENCES = getExperienceItems();

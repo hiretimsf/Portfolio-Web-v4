@@ -11,11 +11,12 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Image from "next/image";
 import { useState } from "react";
-import { FAMILY_PHOTOS } from "../data/family-photos";
+import { GET_FAMILY_PHOTOS } from "../data/static";
 
 export default function FamilyPhotos() {
   const [isOpen, setIsOpen] = useState(false);
   const [initialSlide, setInitialSlide] = useState(0);
+  const photos = GET_FAMILY_PHOTOS();
 
   const handleImageClick = (index: number) => {
     setInitialSlide(index);
@@ -33,19 +34,20 @@ export default function FamilyPhotos() {
           className="w-full"
         >
           <CarouselContent>
-            {FAMILY_PHOTOS.map((photo, index) => (
+            {photos.map((photo, index) => (
               <CarouselItem key={index}>
                 <div
                   className="relative w-full overflow-hidden rounded-xl cursor-pointer"
                   onClick={() => handleImageClick(index)}
                 >
-                  <Image
-                    src={photo.src}
-                    alt={photo.alt}
-                    placeholder="blur"
-                    className="h-auto w-full rounded-xl object-cover dark:grayscale"
-                    sizes="100vw"
-                  />
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      width={photo.width}
+                      height={photo.height}
+                      className="h-auto w-full rounded-xl object-cover dark:grayscale"
+                      sizes="100vw"
+                    />
                 </div>
               </CarouselItem>
             ))}
@@ -57,7 +59,7 @@ export default function FamilyPhotos() {
 
       {/* Desktop Grid View */}
       <div className="hidden md:grid grid-cols-3 gap-4">
-        {FAMILY_PHOTOS.map((photo, index) => (
+        {photos.map((photo, index) => (
           <div
             key={index}
             className="relative w-full overflow-hidden rounded-xl cursor-pointer"
@@ -66,7 +68,8 @@ export default function FamilyPhotos() {
             <Image
               src={photo.src}
               alt={photo.alt}
-              placeholder="blur"
+              width={photo.width}
+              height={photo.height}
               className="h-auto w-full transition-transform hover:scale-105 rounded-xl object-cover dark:grayscale"
               sizes="33vw"
             />
@@ -91,14 +94,13 @@ export default function FamilyPhotos() {
               className="w-full"
             >
               <CarouselContent>
-                {FAMILY_PHOTOS.map((photo, index) => (
+                {photos.map((photo, index) => (
                   <CarouselItem key={index}>
                     <div className="relative w-full h-[80vh] flex items-center justify-center">
                       <Image
                         src={photo.src}
                         alt={photo.alt}
                         fill
-                        placeholder="blur"
                         className="object-contain dark:grayscale"
                         sizes="100vw"
                         priority={index === initialSlide}

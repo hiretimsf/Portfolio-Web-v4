@@ -1,7 +1,7 @@
-import type { EmbedVideoType } from "../types/EmbedVideo";
+import type { EmbedVideoType } from "../types/EmbedVideoType";
 import { Card } from "@/components/ui/card";
-import BrowserWrapper from "@/features/common/components/BrowserWrapper";
-import YouTubeEmbed from "@/features/common/components/YouTubeEmbed";
+import BrowserWrapper from "@/components/common/BrowserWrapper";
+import YouTubeEmbed from "@/components/common/YouTubeEmbed";
 
 type EmbedVideosProps = {
   videos: EmbedVideoType[];

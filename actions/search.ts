@@ -1,6 +1,6 @@
 "use server";
 
-import { getPostsBySearchQuery } from "@/lib/search-server";
+import { getPostsBySearchQuery } from "@/features/blog/lib/blog.server";
 import type { SearchResult } from "@/types/search";
 
 export async function searchPosts(query: string): Promise<SearchResult[]> {

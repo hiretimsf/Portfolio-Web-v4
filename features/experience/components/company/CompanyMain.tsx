@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import DotsBackground from "@/features/common/components/BackgroundDots";
+import DotsBackground from "@/components/common/BackgroundDots";
 import CompanyLocation from "./CompanyLocation";
 import CompanyLogo from "./CompanyLogo";
 import CompanyName from "./CompanyName";

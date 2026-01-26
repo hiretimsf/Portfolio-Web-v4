@@ -1,7 +1,9 @@
 import { getMinutes } from "@/features/blog/lib/get-minutes";
-import DateIcon from "@/features/common/icons/date-icon";
-import ReadingTimeIcon from "@/features/common/icons/reading-time-icon";
-import FolderIcon from "@/features/common/icons/folder-icon";
+import {
+  DateIcon,
+  FolderIcon,
+  ReadingTimeIcon,
+} from "@/components/common/Icons";
 import { cn } from "@/lib/utils";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";

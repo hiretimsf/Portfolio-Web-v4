@@ -1,5 +1,5 @@
-import { getBlogPosts } from "@/features/blog/data/blogSource";
-import { getBaseUrl } from "@/lib/helpers";
+import { getBlogPosts } from "@/features/blog/lib/blog.server";
+import { getBaseUrl } from "@/lib/utils";
 import { Feed } from "feed";
 
 export async function GET() {

@@ -20,25 +20,25 @@ seo:
   ]
 ---
 
-I built a full stack Next.js app [Next.js-Blog-App](https://github.com/hiretimsf/Next.js-Blog-App) that has earned more than **460 GitHub stars**. 
+import { ImageSlider } from "@/components/common/MdxComponents";
+import { Tweet } from "react-tweet";
 
-The project received official recognition for my open source contribution in the form of Vercel Swag from former CTO **Lee Robinson**. 
+## Project
 
-This was a significant milestone for me, as it validated the effort I put into creating high-quality, open-source resources for the Next.js community.
+<ImageSlider
+  images={[
+    { src: "/images/blog/my-open-source-contribution/project-frontend.jpg", alt: "Project Frontend" },
+    { src: "/images/blog/my-open-source-contribution/project-backend.jpg", alt: "Project Backend" }
+  ]}
+  caption="Screenshots"
+/>
+
+I built and open sourced a full stack Next.js and Supabase [blog-app](https://github.com/hiretimsf/Next.js-Blog-App) with over 460 GitHub stars. It is a multi user platform with auth, database, storage, and CMS, built with TypeScript and modern Next.js features.
 
 ## Official Recognition
 
-Check out the tweet below to see the recognition from [Lee Robinson](https://x.com/leerob).
+![Lee Robinson's post about my open source contribution](/images/blog/my-open-source-contribution/leerob-post.jpg)
+
+When [Lee Robinson](https://x.com/hiretimsf/status/1785051295721947348) tweeted this, I shared my project. A few weeks later, I received Vercel swag in the mail. It was my first real recognition for open source work, and it motivated me to keep building. I am very grateful.
 
 <Tweet id="1799500139662651526" />
-
-## Project Impact
-
-The Next.js Blog App was designed to be a robust starting point for developers looking to build modern, SEO-friendly blogs. It features:
-
-- **Server-Side Rendering (SSR)** for optimal performance.
-- **Dynamic Routing** for blog posts and categories.
-- **SEO Optimization** built-in.
-- **Responsive Design** across all devices.
-
-The community feedback has been incredible, and I'm proud to see so many developers using it as a foundation for their own projects.

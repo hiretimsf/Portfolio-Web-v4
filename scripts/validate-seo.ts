@@ -5,7 +5,7 @@
  * Run this during CI/CD or before deployment
  */
 
-import { AUTHOR, FAVICONS, HEAD, KEYWORDS, OPEN_GRAPH } from "@/config/seo";
+import { AUTHOR, FAVICONS, HEAD, KEYWORDS, OPEN_GRAPH } from "@/lib/config";
 
 interface ValidationResult {
   valid: boolean;

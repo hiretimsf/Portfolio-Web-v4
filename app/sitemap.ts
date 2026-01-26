@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
-import { getBlogPosts } from "@/features/blog/data/blogSource";
-import { getBaseUrl } from "@/lib/helpers";
+import { getBlogPosts } from "@/features/blog/lib/blog.server";
+import { getBaseUrl } from "@/lib/utils";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Define static pages with their configurations

@@ -185,7 +185,7 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-10 rounded-full shadow-sm",
         orientation === "horizontal"
           ? "top-1/2 -left-12 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -215,7 +215,7 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-10 rounded-full shadow-sm",
         orientation === "horizontal"
           ? "top-1/2 -right-12 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -290,6 +290,50 @@ function CarouselIndicator({
   );
 }
 
+function CarouselCounter({
+  totalSlides,
+  className,
+  ...props
+}: React.ComponentProps<"div"> & { totalSlides?: number }) {
+  const { api } = useCarousel();
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [slidesCount, setSlidesCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) return;
+
+    setSelectedIndex(api.selectedScrollSnap());
+    setSlidesCount(api.scrollSnapList().length);
+
+    const onSelect = () => {
+      setSelectedIndex(api.selectedScrollSnap());
+    };
+
+    api.on("select", onSelect);
+
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  const slides = totalSlides ?? slidesCount;
+
+  if (slides === 0) return null;
+
+  return (
+    <div
+      data-slot="carousel-counter"
+      className={cn(
+        "bg-black/40 text-white px-2 py-1 rounded text-xs font-medium tabular-nums shadow-sm border border-white/10",
+        className,
+      )}
+      {...props}
+    >
+      {selectedIndex + 1} / {slides}
+    </div>
+  );
+}
+
 export {
   type CarouselApi,
   Carousel,
@@ -298,4 +342,5 @@ export {
   CarouselPrevious,
   CarouselNext,
   CarouselIndicator,
+  CarouselCounter,
 };

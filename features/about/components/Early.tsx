@@ -1,6 +1,6 @@
 import EmbedVideos from "./EmbedVideos";
-import { EARLY_VIDEOS } from "../data/early-videos";
+import { GET_EARLY_VIDEOS } from "../data/static";
 
 export default function Early() {
-  return <EmbedVideos videos={EARLY_VIDEOS} />;
+  return <EmbedVideos videos={GET_EARLY_VIDEOS()} />;
 }

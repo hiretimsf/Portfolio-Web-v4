@@ -42,13 +42,6 @@ const create = await dynamic<typeof Config, import("fumadocs-mdx/runtime/types")
        */
       lastModified?: Date;
     },
-    featuredApps: {
-      /**
-       * Last modified date of document file, obtained from version control.
-       *
-       */
-      lastModified?: Date;
-    },
     privacy: {
       /**
        * Last modified date of document file, obtained from version control.

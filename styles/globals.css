@@ -394,6 +394,28 @@
   .tag {
     @apply bg-muted/50 text-foreground/80 inline-flex items-center rounded-lg border border-border-edge px-1.5 py-0.5 font-mono text-xs;
   }
+
+  /* Custom Prose Overrides */
+  .prose {
+    --tw-prose-body: var(--foreground);
+    --tw-prose-headings: var(--foreground);
+  }
+
+  .prose p {
+    @apply my-2!;
+  }
+
+  .prose h2 {
+    @apply my-2! font-bold tracking-tight;
+  }
+
+  .prose img {
+    @apply m-0!;
+  }
+
+  .prose h3 {
+    @apply my-2! font-semibold;
+  }
 }
 
 @property --top-mask-height {

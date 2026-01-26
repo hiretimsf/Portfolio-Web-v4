@@ -1,6 +1,6 @@
 import EmbedVideos from "./EmbedVideos";
-import { ANDROID_VIDEOS } from "../data/android-videos";
+import { GET_ANDROID_VIDEOS } from "../data/static";
 
 export default function Android() {
-  return <EmbedVideos videos={ANDROID_VIDEOS} />;
+  return <EmbedVideos videos={GET_ANDROID_VIDEOS()} />;
 }

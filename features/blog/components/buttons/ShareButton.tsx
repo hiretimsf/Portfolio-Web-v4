@@ -13,7 +13,7 @@ import {
 import { copyText } from "@/features/blog/utils/copy";
 import { LinkedInIcon } from "@/features/blog/icons/LinkedInIcon";
 import { XIcon } from "@/features/blog/icons/XIcon";
-import { trackEvent } from "@/lib/events";
+import { trackEvent } from "@/lib/utils";
 
 export function ShareButton({ url }: { url: string }) {
   const absoluteUrl = url.startsWith("http")

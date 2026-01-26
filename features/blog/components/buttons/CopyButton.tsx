@@ -4,8 +4,8 @@ import { CheckIcon, CircleXIcon, CopyIcon } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useOptimistic, useTransition } from "react";
 
-import type { Event } from "@/lib/events";
-import { trackEvent } from "@/lib/events";
+import type { Event } from "@/lib/utils";
+import { trackEvent } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";

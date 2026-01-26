@@ -11,19 +11,9 @@ import {
   blogPostSchema,
   privacySchema,
   changelogSchema,
-} from "@/config/schemas/base-schemas";
+} from "@/lib/config";
 
-export const featuredApps = defineDocs({
-  dir: "features/home/content/featured-apps",
-  docs: defineCollections({
-    type: "doc",
-    dir: "features/home/content/featured-apps",
-    schema: baseProjectSchema.extend({
-      imageUrl: baseProjectSchema.shape.imageUrl.unwrap(),
-      imageAlt: baseProjectSchema.shape.imageAlt.unwrap(),
-    }),
-  }),
-});
+
 
 export const about = defineDocs({
   dir: "features/about/content",

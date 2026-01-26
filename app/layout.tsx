@@ -5,16 +5,32 @@ import Script from "next/script";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { Person, WebSite, WithContext } from "schema-dts";
 
-import ConsentManager from "@/components/ConsentManager";
+import ConsentManager from "@/features/privacy/components/ConsentManager";
 import { Providers } from "@/components/Providers";
-import { SkipToMain } from "@/components/SkipToMain";
-import { AUTHOR, FAVICONS, HEAD, KEYWORDS, OPEN_GRAPH } from "@/config/seo";
-import { SITE_INFO } from "@/config/seo/site";
-import { META_THEME_COLORS } from "@/config/theme";
-import { ThemeScript } from "@/components/ThemeScript";
-import { fontMono, fontSans } from "@/lib/fonts";
-import { getBaseUrl } from "@/lib/helpers";
+import Header from "@/components/Header";
+import { SkipLink } from "@/components/layout/main/SkipLink";
+import {
+  AUTHOR,
+  FAVICONS,
+  HEAD,
+  KEYWORDS,
+  META_THEME_COLORS,
+  OPEN_GRAPH,
+  SITE_INFO,
+} from "@/lib/config";
+
+import { getBaseUrl } from "@/lib/utils";
 import type { HeadType } from "@/types";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import Footer from "@/components/Footer"
+
+import { ScrollToTop } from "@/components/layout/main/ScrollToTop";
+
+
+// Fonts
+export const fontSans = GeistSans;
+export const fontMono = GeistMono;
 
 // Type definitions
 interface RootLayoutProps {
@@ -159,6 +175,20 @@ export const metadata: Metadata = {
   },
 };
 
+const darkModeScript = `
+  try {
+    if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
+    }
+  } catch (_) {}
+
+  try {
+    if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+      document.documentElement.classList.add('os-macos')
+    }
+  } catch (_) {}
+`;
+
 // Root layout component
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
@@ -168,7 +198,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
       suppressHydrationWarning
     >
       <head>
-        <ThemeScript />
+        <script
+          type="text/javascript"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Injecting script for theme handling
+          dangerouslySetInnerHTML={{ __html: darkModeScript }}
+        />
+        <Script
+          id="theme-detection"
+          src={`data:text/javascript;base64,${btoa(darkModeScript)}`}
+        />
         <script
           type="application/ld+json"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Injecting JSON-LD for SEO
@@ -198,10 +236,22 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </Script>
       </head>
       <body suppressHydrationWarning>
-        <SkipToMain />
+        <SkipLink />
         <Providers>
           <NuqsAdapter>
-            <ConsentManager>{children}</ConsentManager>
+            <ConsentManager>
+              <div className="mx-auto min-h-screen w-full">
+                <Header />
+                <main
+                  id="main-content"
+                  className="mx-auto max-w-5xl w-full text-center border-x border-edge"
+                >
+                  {children}
+                </main>
+                <Footer />
+                <ScrollToTop />
+              </div>
+            </ConsentManager>
           </NuqsAdapter>
         </Providers>
       </body>

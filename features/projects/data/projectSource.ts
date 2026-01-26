@@ -3,7 +3,7 @@ import type { Source, SourceConfig } from "fumadocs-core/source";
 import { loader } from "fumadocs-core/source";
 import type { ProjectType } from "../types/ProjectType";
 import type { ProjectFrontmatter } from "../types/ProjectFrontmatter";
-import { formatDate, parseDate } from "@/lib/helpers";
+import { formatDate, parseDate } from "@/lib/utils";
 
 const projectsDocs = projects as unknown as { toFumadocsSource: () => unknown };
 

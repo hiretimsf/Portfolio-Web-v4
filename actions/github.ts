@@ -7,7 +7,7 @@ interface GitHubRepoResponse {
 }
 
 // One day in seconds: 24 hours * 60 minutes * 60 seconds
-const TWO_HOURS = 2 * 60 * 60;
+const ONE_HOUR = 60 * 60;
 
 const fetchGitHubStars = cache(
   async (owner: string, repo: string): Promise<number> => {
@@ -17,13 +17,13 @@ const fetchGitHubStars = cache(
       Accept: "application/vnd.github.v3+json",
     };
 
-    if (process.env.GITHUB_TOKEN) {
-      headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+    if (process.env.GITHUB_API_TOKEN) {
+      headers.Authorization = `Bearer ${process.env.GITHUB_API_TOKEN}`;
     }
 
     const response = await fetch(url, {
       headers,
-      next: { revalidate: TWO_HOURS },
+      next: { revalidate: ONE_HOUR },
     });
 
     if (!response.ok) {

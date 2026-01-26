@@ -1,6 +1,6 @@
 "use client";
 
-import CardItem from "@/features/common/components/CardItem";
+import CardItem from "@/components/common/CardItem";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,

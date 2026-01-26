@@ -55,7 +55,7 @@ Built with the latest web technologies for optimal performance and developer exp
 | **Animation**  | [Motion](https://motion.dev/)                                | Declarative animations (formerly Framer Motion) |
 | **Content**    | [Fumadocs](https://fumadocs.dev/)                            | MDX-based content management                    |
 | **State**      | [Nuqs](https://nuqs.47ng.com/) & [Jotai](https://jotai.org/) | URL state & atomic state management             |
-| **Analytics**  | [PostHog](https://posthog.com/)                              | Product analytics & insights                    |
+| **Analytics**  | [Google Analytics](https://analytics.google.com/)        | Product analytics & insights                    |
 | **Deployment** | [Vercel](https://vercel.com/)                                | Edge network deployment                         |
 
 ---
@@ -100,13 +100,13 @@ Follow these steps to run the project locally.
 
 3. **Configure Environment**
 
-   Copy the template to create your local environment file:
+   Copy the example to create your local environment file:
 
    ```bash
-   cp env.template .env.local
+   cp .env.example .env.local
    ```
 
-   Open `.env.local` and add your API keys (e.g., Resend, PostHog).
+   Open `.env.local` and add your API keys (e.g., Resend).
 
 4. **Start the Development Server**
    ```bash

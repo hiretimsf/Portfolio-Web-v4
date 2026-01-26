@@ -1,6 +1,6 @@
-import { getBlogPosts } from "@/features/blog/data/blogSource";
-import BackgroundDots from "@/features/common/components/BackgroundDots";
-import CardItem from "@/features/common/components/CardItem";
+import { getBlogPosts } from "@/features/blog/lib/blog.server";
+import BackgroundDots from "@/components/common/BackgroundDots";
+import CardItem from "@/components/common/CardItem";
 
 export default function BlogPostList() {
   const posts = getBlogPosts().sort(

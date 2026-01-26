@@ -1,5 +1,5 @@
-import { SITE_INFO } from "@/config/seo/site";
-import { getBlogPosts } from "@/features/blog/data/blogSource";
+import { SITE_INFO } from "@/lib/config";
+import { getBlogPosts } from "@/features/blog/lib/blog.server";
 
 const allPosts = getBlogPosts();
 

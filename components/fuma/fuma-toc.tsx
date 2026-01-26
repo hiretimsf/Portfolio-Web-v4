@@ -15,7 +15,7 @@ import {
   useRef,
   useState,
 } from "react";
-import Banner from "@/features/common/components/Banner";
+import Banner from "@/components/common/Banner";
 
 export interface TOCProps {
   /**

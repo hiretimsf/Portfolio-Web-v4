@@ -1,4 +1,4 @@
-import { formatDate } from "@/lib/helpers";
+import { formatDate } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { ProjectDate } from "./ProjectDate";
 import { ProjectDescription } from "./ProjectDescription";

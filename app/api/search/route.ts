@@ -1,6 +1,5 @@
 import { searchPosts } from "@/actions/search";
-import { getIdentifier, rateLimit } from "@/lib/rate-limit";
-import { logger } from "@/lib/logger";
+import { getIdentifier, rateLimit } from "@/lib/utils";
 import { type NextRequest, NextResponse } from "next/server";
 
 // Rate limiter: 20 requests per minute per IP
@@ -16,10 +15,6 @@ export async function GET(request: NextRequest) {
     try {
       await limiter.check(20, identifier); // 20 requests per minute
     } catch {
-      logger.warn("Rate limit exceeded", {
-        context: "search-api",
-        meta: { ip: identifier },
-      });
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
         { status: 429 },
@@ -39,7 +34,6 @@ export async function GET(request: NextRequest) {
     const results = await searchPosts(query);
     return NextResponse.json(results);
   } catch (error) {
-    logger.error("Search error", error, { context: "search-api" });
     return NextResponse.json(
       { error: "An error occurred while searching" },
       { status: 500 },

@@ -1,6 +1,5 @@
 import { contactFormSchema } from "@/features/contact/helpers/validations";
-import { getIdentifier, rateLimit } from "@/lib/rate-limit";
-import { logger } from "@/lib/logger";
+import { getIdentifier, rateLimit } from "@/lib/utils";
 import { escape } from "html-escaper";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
@@ -20,10 +19,6 @@ export async function POST(request: Request) {
     try {
       await limiter.check(5, identifier); // 5 requests per minute
     } catch {
-      logger.warn("Rate limit exceeded", {
-        context: "contact-api",
-        meta: { ip: identifier },
-      });
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
         { status: 429 },
@@ -39,18 +34,10 @@ export async function POST(request: Request) {
       const errorMessage = result.error.issues
         .map((issue) => issue.message)
         .join(", ");
-      logger.error("Validation error in contact form", result.error, {
-        context: "contact-api",
-      });
       return NextResponse.json({ error: errorMessage }, { status: 400 });
     }
 
     const { email, message, name } = result.data;
-
-    logger.info("Processing contact form submission", {
-      context: "contact-api",
-      meta: { name, email },
-    });
 
     // Sanitize user input to prevent XSS
     const sanitizedName = escape(name);
@@ -72,7 +59,6 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      logger.error("Resend API error", error, { context: "contact-api" });
       return NextResponse.json(
         {
           error: "Failed to send email. Please try again later.",
@@ -82,16 +68,12 @@ export async function POST(request: Request) {
       );
     }
 
-    logger.info("Email sent successfully", { context: "contact-api" });
     return NextResponse.json({
       success: true,
       message: "Email sent successfully",
       data,
     });
   } catch (error) {
-    logger.error("Unexpected error in contact form", error, {
-      context: "contact-api",
-    });
     return NextResponse.json(
       {
         error: "An unexpected error occurred. Please try again later.",

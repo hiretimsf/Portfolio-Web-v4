@@ -1,6 +1,4 @@
-import SOCIAL_LINKS from "@/config/socialLinks";
-import { TECH_STACK } from "@/config/techStack";
-import { USER } from "@/config/user";
+import { SOCIAL_LINKS, TECH_STACK, USER } from "@/lib/config";
 
 const content = `# About
 

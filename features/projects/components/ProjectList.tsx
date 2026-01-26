@@ -1,5 +1,5 @@
-import BackgroundDots from "@/features/common/components/BackgroundDots";
-import CardItem from "@/features/common/components/CardItem";
+import BackgroundDots from "@/components/common/BackgroundDots";
+import CardItem from "@/components/common/CardItem";
 import { getProjects } from "@/features/projects/data/projectSource";
 import type { ProjectType } from "@/features/projects/types/ProjectType";
 
