@@ -1,6 +1,6 @@
 import Contact from "@/components/layout/main/Contact";
-import { DocsLayout } from "@/components/fuma/fuma-layout";
-import { DocsBody, DocsPage } from "@/components/fuma/fuma-page";
+import { DocsLayout } from "@/components/fuma/DocsLayout";
+import { DocsBody, DocsPage } from "@/components/fuma/DocsPage";
 import Title from "@/components/layout/main/Title";
 import Divider from "@/components/Divider";
 import { HEAD } from "@/lib/config";

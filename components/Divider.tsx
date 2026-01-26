@@ -5,6 +5,7 @@ interface DividerProps {
   borderBottom?: boolean;
   borderTop?: boolean;
   short?: boolean;
+  plain?: boolean;
 }
 
 export default function Divider({
@@ -12,16 +13,17 @@ export default function Divider({
   borderBottom = true,
   borderTop = true,
   short = false,
+  plain = false,
 }: DividerProps) {
   return (
     <div
       className={cn(
         "relative flex w-full",
-        short ? "h-4" : "h-8",
+        plain ? "h-px" : (short ? "h-4" : "h-8"),
         "before:absolute before:left-1/2 before:-translate-x-1/2 before:-z-1 before:w-screen",
-        short ? "before:h-4" : "before:h-8",
-        "before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] before:bg-size-[10px_10px] before:[--pattern-foreground:color-mix(in_oklab,var(--color-edge)_56%,transparent)]",
-        borderBottom && "before:border-b before:border-edge",
+        !plain && (short ? "before:h-4" : "before:h-8"),
+        !plain && "before:bg-[repeating-linear-gradient(315deg,var(--pattern-foreground)_0,var(--pattern-foreground)_1px,transparent_0,transparent_50%)] before:bg-size-[10px_10px] before:[--pattern-foreground:color-mix(in_oklab,var(--color-edge)_56%,transparent)]",
+        !plain && borderBottom && "before:border-b before:border-edge",
         borderTop && "before:border-t before:border-edge",
         className,
       )}

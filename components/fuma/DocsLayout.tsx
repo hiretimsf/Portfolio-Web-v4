@@ -1,5 +1,5 @@
 import type * as PageTree from "fumadocs-core/page-tree";
-import { type PageStyles, StylesProvider } from "./layout-context";
+import { type PageStyles, StylesProvider } from "./DocsLayoutContext";
 import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import { cn } from "@/lib/utils";

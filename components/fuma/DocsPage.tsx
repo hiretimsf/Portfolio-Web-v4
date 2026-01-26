@@ -11,13 +11,13 @@ import {
   Footer,
   type FooterProps,
   LastUpdate,
-  PageArticle,
-  PageBody,
-  TocPopover,
-  TocPopoverContent,
-  TocPopoverTrigger,
-} from "./fuma-page-client";
-import { TOCItems, type TOCProps, TOCScrollArea, Toc } from "./fuma-toc";
+  DocsPageArticle,
+  DocsPageBody,
+  DocsTOCPopover,
+  DocsTOCPopoverContent,
+  DocsTOCPopoverTrigger,
+} from "./DocsPageClient";
+import { TOCItems, type TOCProps, TOCScrollArea, DocsTOC } from "./DocsTOC";
 
 const ClerkTOCItems = lazy(() =>
   import("fumadocs-ui/components/toc/clerk").then((mod) => ({
@@ -156,7 +156,7 @@ export function DocsPage({
 
   return (
     <AnchorProvider toc={toc} single={tocOptions.single}>
-      <PageBody
+      <DocsPageBody
         {...props.container}
         className={cn(props.container?.className)}
         style={
@@ -168,12 +168,12 @@ export function DocsPage({
       >
         {slot(
           { enabled: tocPopoverEnabled, component: tocPopoverReplace },
-          <TocPopover className="h-10">
-            <TocPopoverTrigger
+          <DocsTOCPopover className="h-10">
+            <DocsTOCPopoverTrigger
               className="mx-auto w-full max-w-7xl"
               items={toc}
             />
-            <TocPopoverContent>
+            <DocsTOCPopoverContent>
               {tocPopoverOptions.header}
               <TOCScrollArea className="px-4 md:px-6">
                 {tocPopoverOptions.style === "clerk" ? (
@@ -183,14 +183,14 @@ export function DocsPage({
                 )}
               </TOCScrollArea>
               {tocPopoverOptions.footer}
-            </TocPopoverContent>
-          </TocPopover>,
+            </DocsTOCPopoverContent>
+          </DocsTOCPopover>,
           {
             items: toc,
             ...tocPopoverOptions,
           },
         )}
-        <PageArticle
+        <DocsPageArticle
           {...props.article}
           prose={prose}
           className={cn(
@@ -212,11 +212,11 @@ export function DocsPage({
             )}
           </div>
           {slot(props.footer, <Footer items={props.footer?.items} />)}
-        </PageArticle>
-      </PageBody>
+        </DocsPageArticle>
+      </DocsPageBody>
       {slot(
         { enabled: tocEnabled, component: tocReplace },
-        <Toc>
+        <DocsTOC>
           {tocOptions.header}
           <h3 className="text-foreground inline-flex items-center gap-1.5 text-sm">
             <Text className="size-4" />
@@ -230,7 +230,7 @@ export function DocsPage({
             )}
           </TOCScrollArea>
           {tocOptions.footer}
-        </Toc>,
+        </DocsTOC>,
         {
           items: toc,
           ...tocOptions,

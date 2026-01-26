@@ -16,7 +16,7 @@ import {
   CollapsibleTrigger,
 } from "fumadocs-ui/components/ui/collapsible";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
-import { useNav, usePageStyles } from "./layout-context";
+import { useNav, usePageStyles } from "./DocsLayoutContext";
 import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
 import { cn } from "@/lib/utils";
 import { isActive } from "@/lib/utils";
@@ -39,13 +39,13 @@ const TocPopoverContext = createContext<{
   setOpen: (open: boolean) => void;
 } | null>(null);
 
-export function TocPopoverTrigger({
+export function DocsTOCPopoverTrigger({
   items,
   ...props
 }: ComponentProps<"button"> & { items: TOCItemType[] }) {
   const { text } = useI18n();
   const ctx = use(TocPopoverContext);
-  if (!ctx) throw new Error("TocPopoverContext must be used within TocPopover");
+  if (!ctx) throw new Error("DocsTOCPopoverContext must be used within DocsTOCPopover");
   const { open } = ctx;
   const active = Primitive.useActiveAnchor();
   const selected = useMemo(
@@ -154,7 +154,7 @@ function ProgressCircle({
   );
 }
 
-export function TocPopoverContent(props: ComponentProps<"div">) {
+export function DocsTOCPopoverContent(props: ComponentProps<"div">) {
   return (
     <CollapsibleContent
       data-toc-popover=""
@@ -166,7 +166,7 @@ export function TocPopoverContent(props: ComponentProps<"div">) {
   );
 }
 
-export function TocPopover(props: HTMLAttributes<HTMLDivElement>) {
+export function DocsTOCPopover(props: HTMLAttributes<HTMLDivElement>) {
   const ref = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
   const { tocNav } = usePageStyles();
@@ -224,7 +224,7 @@ export function TocPopover(props: HTMLAttributes<HTMLDivElement>) {
   );
 }
 
-export function PageBody(props: HTMLAttributes<HTMLDivElement>) {
+export function DocsPageBody(props: HTMLAttributes<HTMLDivElement>) {
   const { page } = usePageStyles();
 
   return (
@@ -238,7 +238,7 @@ export function PageBody(props: HTMLAttributes<HTMLDivElement>) {
   );
 }
 
-export function PageArticle({
+export function DocsPageArticle({
   prose = true,
   ...props
 }: HTMLAttributes<HTMLElement> & { prose?: boolean }) {

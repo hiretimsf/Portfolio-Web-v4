@@ -10,27 +10,27 @@ import LatestBlogPostsSection from "@/features/home/components/LatestBlogPostsSe
 export default function Home() {
   return (
     <>
-      <Divider borderTop={false} />
-      <HeroSection />
-      <Divider short={true} />
-      <Title title="Featured Apps" />
-      <Divider short={true} />
-      <FeaturedAppsSection />
-      <Divider short={true} />
-      <Title title="Latest Blog Posts" />
-      <Divider short={true} />
-      <LatestBlogPostsSection />
-      <Divider short={true} />
-      <Title title="What People Are Saying" />
-      <Divider short={true} />
-      <TestimonialsSection />
       <Divider />
+      <HeroSection />
+      <Divider plain={true} />
+      <Title title="Featured Apps" />
+      <Divider plain={true} />
+      <FeaturedAppsSection />
+      <Divider plain={true}/>
+      <Title title="Latest Blog Posts" />
+      <Divider plain={true}/>
+      <LatestBlogPostsSection />
+      <Divider plain={true}/>
+      <Title title="What People Are Saying" />
+      <Divider plain={true}/>
+      <TestimonialsSection />
+      <Divider plain={true}/>
       <Title title="FAQ" />
-      <Divider short={true} />
+      <Divider plain={true}/>
       <FaqSection />
-      <Divider short={true} />
+      <Divider plain={true}/>
       <Contact />
-      <Divider borderBottom={false} />
+      <Divider borderBottom={false}/>
     </>
   );
 }

@@ -5,7 +5,7 @@ import type { TOCItemType } from "fumadocs-core/toc";
 import * as Primitive from "fumadocs-core/toc";
 import { TocThumb } from "fumadocs-ui/components/toc/index";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
-import { usePageStyles } from "./layout-context";
+import { usePageStyles } from "./DocsLayoutContext";
 import { cn } from "@/lib/utils";
 import {
   type ComponentProps,
@@ -31,7 +31,7 @@ export interface TOCProps {
   children: ReactNode;
 }
 
-export function Toc(props: HTMLAttributes<HTMLDivElement>) {
+export function DocsTOC(props: HTMLAttributes<HTMLDivElement>) {
   const { toc } = usePageStyles();
   const [isScrolled, setIsScrolled] = useState(false);
 
