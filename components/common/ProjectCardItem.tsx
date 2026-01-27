@@ -27,7 +27,7 @@ export default function ProjectCardItem({ index, item, sizes }: ProjectCardItemP
     <BrowserWrapper>
       <Card
         className={cn(
-          "h-full gap-0 py-0 transition-all duration-300 rounded-none border-none",
+          "h-full gap-0 py-0 transition-all duration-300 rounded-xl corner-squircle border-none",
         )}
         role="article"
         aria-labelledby={`card-title-${index}`}

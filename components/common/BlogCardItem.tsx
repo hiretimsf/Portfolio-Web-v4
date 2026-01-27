@@ -34,14 +34,14 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
     <BrowserWrapper>
       <Card
         className={cn(
-          "h-full gap-0 py-0 transition-all duration-300 rounded-none border-none",
+          "h-full gap-0 py-0 transition-all duration-300 rounded-xl corner-squircle border-none",
         )}
         role="article"
         aria-labelledby={`card-title-${index}`}
       >
         <CoverImage
           index={index}
-          imageUrl={item.image}
+          imageUrl={item.thumbnail || item.image}
           imageAlt={item.imageAlt || item.title}
           href={href}
           sizes={sizes}

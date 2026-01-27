@@ -104,7 +104,7 @@ export default function HeroSection({
   return (
     <Section gridId="hero">
       <BrowserWrapper>  
-      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-6 bg-background">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-6 bg-background rounded-xl corner-squircle">
         
         {/* Image Section */}
         <div className="w-full lg:col-span-1">
@@ -144,7 +144,7 @@ export default function HeroSection({
         </div>
 
         {/* Content Section */}
-        <div className="relative lg:col-span-1 lg:flex lg:items-center lg:border-l lg:border-dashed lg:border-black/10 dark:border-white/10">
+        <div className="relative lg:col-span-1 lg:flex lg:items-center lg:border-l lg:border-dashed lg:border-black/10 dark:border-white/10 rounded-xl corner-squircle">
           <HeroContent />
         </div>
       </div>
