@@ -60,7 +60,7 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
   return (
     <div className={cn("w-full", className)}>
       {/* Desktop View */}
-      <div className="hidden sm:flex mx-auto w-full max-w-5xl flex-row items-center justify-start divide-x divide-black/10 dark:divide-white/10 divide-dashed">
+      <div className="hidden sm:flex mx-auto w-full max-w-5xl flex-row items-center justify-start divide-x divide-black/10 dark:divide-white/10">
         <InfoBarItem
           text={
             <span className="font-medium text-foreground">{authorName}</span>

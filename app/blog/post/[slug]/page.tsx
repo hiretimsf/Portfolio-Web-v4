@@ -2,6 +2,7 @@ import Contact from "@/components/layout/main/Contact";
 import { DocsLayout } from "@/components/fuma/DocsLayout";
 import { DocsBody, DocsPage } from "@/components/fuma/DocsPage";
 import LastModified from "@/components/common/LastModified";
+import ImageWithLoader from "@/components/common/ImageWithLoader";
 import Divider from "@/components/Divider";
 import { SITE_INFO, USER } from "@/lib/config";
 import BlogPostMetaData from "@/features/blog/components/BlogPostMetaData";
@@ -15,7 +16,6 @@ import { getBaseUrl } from "@/lib/utils";
 import { getMDXComponents } from "@/mdx-components";
 import type { MDXComponents } from "mdx/types";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { BlogPosting, WithContext } from "schema-dts";
 
@@ -154,7 +154,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           next={nextPostWithoutBody}
         />
         <Divider plain={true} />
-        <Image
+        <ImageWithLoader
           alt={post.title}
           src={post.image}
           width={1000}

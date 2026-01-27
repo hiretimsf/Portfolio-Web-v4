@@ -55,7 +55,7 @@ export function CopyButton({
     <Button
       size="icon"
       variant="secondary"
-      className={cn("z-10 size-6 rounded-md", className)}
+      className={cn("z-10 size-6 rounded-xl corner-squircle hover:bg-black/5 dark:hover:bg-white/5 border border-black/10 dark:border-white/10 border-dashed", className)}
       onClick={() => {
         startTransition(async () => {
           try {

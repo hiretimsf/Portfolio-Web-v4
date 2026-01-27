@@ -168,7 +168,7 @@ export function LLMCopyButtonWithViewOptions({
           size: "sm",
           variant: "secondary",
           className:
-            "gap-0 divide-x px-0 font-sans active:scale-none dark:divide-white/10 border border-black/10 dark:border-white/10 rounded-md",
+            "gap-0 divide-x px-0 font-sans active:scale-none dark:divide-white/10 divide-dashed border border-black/10 dark:border-white/10 rounded-xl corner-squircle hover:bg-black/5 dark:hover:bg-white/5 border-dashed",
         }),
       )}
     >

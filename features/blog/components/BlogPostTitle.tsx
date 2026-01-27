@@ -18,7 +18,7 @@ export default function BlogPostTitle({
     >
       <svg
         aria-hidden="true"
-        className="absolute inset-0 z-0 h-full mask-[radial-gradient(circle_at_10%_0,black,transparent_90%)]"
+        className="absolute inset-0 z-0 h-full mask-[radial-gradient(circle_at_90%_0,black,transparent_95%)]"
         width="100%"
         height="100%"
       >

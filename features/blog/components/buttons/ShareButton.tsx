@@ -28,7 +28,7 @@ export function ShareButton({ url }: { url: string }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className="active:scale-none border border-black/10 dark:border-white/10 rounded-md"
+          className="active:scale-none border border-black/10 dark:border-white/10 rounded-xl corner-squircle hover:bg-black/5 dark:hover:bg-white/5 border-dashed"
           variant="secondary"
           size="icon-sm"
         >
