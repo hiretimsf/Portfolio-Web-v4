@@ -161,7 +161,7 @@ export function ContactForm() {
             )}
           />
         </div>
-        <div className="max-w-xl mx-auto items-center justify-center flex border-x border-black/10 dark:border-white/10 border-dashed px-6 py-2">
+        <div className="max-w-xl mx-auto items-center justify-center flex border-x border-black/10 dark:border-white/10 border-dashed px-6 py-4">
           {/* Submit button with loading state */}
           <Button
             variant="outline"

@@ -23,7 +23,7 @@ const CardItem: FC<Props> = ({
   return (
     <NavigationMenuLink asChild>
       <Link
-        className="group border-black/10 dark:border-white/10 bg-accent/50 hover:bg-accent relative flex flex-col justify-center overflow-hidden border transition-all duration-200"
+        className="group border-black/10 dark:border-white/10 bg-accent/50 hover:bg-accent relative flex flex-col justify-center overflow-hidden border transition-all duration-200 border-dashed"
         href={href}
         aria-label={`${title} - ${description}`}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}

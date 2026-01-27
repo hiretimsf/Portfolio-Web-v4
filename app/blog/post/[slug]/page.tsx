@@ -146,14 +146,14 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           __html: JSON.stringify(getPageJsonLd(post)).replace(/</g, "\\u003c"),
         }}
       />
-      <Divider borderTop={false} short={true} />
+      <Divider />
       <main className="mx-auto flex flex-col">
         <BlogPostNavigation
           post={postWithoutBody}
           previous={prevPostWithoutBody}
           next={nextPostWithoutBody}
         />
-        <Divider short={true} />
+        <Divider plain={true} />
         <Image
           alt={post.title}
           src={post.image}
@@ -163,7 +163,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1000px"
           priority
         />
-        <Divider short={true} />
+        <Divider plain={true} />
         <BlogPostMetaData
           authorImage={authorImage}
           authorName={authorName}
@@ -171,13 +171,13 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           category={category}
           readTime={readTime}
         />
-        <Divider short={true} />
+        <Divider plain={true} />
         <BlogPostTitle
           title={post.title}
           textStyleClassName="text-2xl font-semibold md:text-3xl"
           gridId="grid-blog-post-heading"
         />
-        <Divider short={true} />
+        <Divider plain={true} />
         <div className="mx-auto w-full max-w-5xl">
           <DocsLayout tree={blogSource.pageTree}>
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
@@ -189,11 +189,11 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           </DocsLayout>
         </div>
       </main>
-      <Divider short={true} />
+      <Divider plain={true} />
       <LastModified
         lastModified={post.lastUpdated ?? new Date().toISOString()}
       />
-      <Divider short={true} />
+      <Divider plain={true} />
       <Contact />
       <Divider borderBottom={false} />
     </>

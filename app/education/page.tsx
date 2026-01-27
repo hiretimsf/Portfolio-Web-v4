@@ -61,14 +61,14 @@ export default async function EducationPage() {
 
   return (
     <>
-      <Divider borderTop={false} />
+      <Divider />
       <main className="mx-auto flex flex-col">
         <Title
           title={title ?? "Education"}
           textStyleClassName="text-3xl font-semibold md:text-4xl"
           gridId="grid-education"
         />
-        <Divider short={true} />
+        <Divider plain={true} />
         <div className="border-border relative min-h-52 max-w-full">
           <DocsLayout
             tree={educationSource.pageTree}
@@ -82,11 +82,11 @@ export default async function EducationPage() {
           </DocsLayout>
         </div>
       </main>
-      <Divider short={true} />
+      <Divider plain={true} />
       <LastModified
         lastModified={pageData.lastModified ?? new Date().toISOString()}
       />
-      <Divider short={true} />
+      <Divider plain={true} />
       <Contact />
       <Divider borderBottom={false} />
     </>

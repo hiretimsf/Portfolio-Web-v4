@@ -14,7 +14,7 @@ export function Testimonial({
     <figure
       data-slot="testimonial"
       className={cn(
-        "flex h-full flex-col bg-card rounded-xl border p-2",
+        "flex h-full flex-col bg-card border p-2",
         className,
       )}
       {...props}

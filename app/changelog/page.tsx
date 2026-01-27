@@ -62,32 +62,32 @@ export default async function ChangelogPage() {
 
   return (
     <>
-      <Divider borderTop={false} />
+      <Divider />
       <main className="mx-auto flex flex-col">
         <Title
           title={title ?? "Changelog"}
           textStyleClassName="text-3xl font-semibold md:text-4xl"
           gridId="grid-changelog"
         />
-        <Divider short={true} />
+        <Divider plain={true} />
         <div className="border-border relative min-h-52 max-w-full">
           <DocsLayout
             tree={privacySource.pageTree}
             containerProps={{ className: "relative bg-transparent" }}
           >
             <DocsPage toc={pageData.toc}>
-              <DocsBody prose={false}>
+              <DocsBody>
                 <MDX code={MDX} components={{ ...getMDXComponents() }} />
               </DocsBody>
             </DocsPage>
           </DocsLayout>
         </div>
       </main>
-      <Divider short={true} />
+      <Divider plain={true} />
       <LastModified
         lastModified={pageData.lastModified ?? new Date().toISOString()}
       />
-      <Divider short={true} />
+      <Divider plain={true} />
       <Contact />
       <Divider borderBottom={false} />
     </>

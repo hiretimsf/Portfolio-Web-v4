@@ -61,14 +61,14 @@ export default async function PrivacyPage() {
 
   return (
     <>
-      <Divider borderTop={false} />
+      <Divider />
       <main className="mx-auto flex flex-col">
         <Title
           title={title ?? "Privacy Policy"}
           textStyleClassName="text-3xl font-semibold md:text-4xl"
           gridId="grid-privacy"
         />
-        <Divider short={true} />
+        <Divider plain={true} />
         <div className="border-border relative min-h-52 max-w-full">
           <DocsLayout
             tree={privacySource.pageTree}
@@ -82,11 +82,11 @@ export default async function PrivacyPage() {
           </DocsLayout>
         </div>
       </main>
-      <Divider short={true} />
+      <Divider plain={true} />
       <LastModified
         lastModified={pageData.lastModified ?? new Date().toISOString()}
       />
-      <Divider short={true} />
+      <Divider plain={true} />
       <Contact />
       <Divider borderBottom={false} />
     </>

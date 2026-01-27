@@ -1,6 +1,6 @@
 import type { LoaderConfig, LoaderOutput, Page } from "fumadocs-core/source";
 import type { ComponentProps, FC } from "react";
-import defaultMdxComponents from "./MdxComponents";
+import defaultMdxComponents from "./mdxComponents";
 import * as path from "node:path";
 
 /**

@@ -37,19 +37,19 @@ export const metadata: Metadata = {
 export default async function ContactPage() {
   return (
     <>
-      <Divider borderTop={false} />
+      <Divider />
       <main className="mx-auto flex flex-col">
         <Title
           title={"Contact"}
           textStyleClassName="text-3xl font-semibold md:text-4xl"
           gridId="grid-contact"
         />
-        <Divider short={true} />
+        <Divider plain={true} />
         <div className="border-border relative min-h-52 max-w-full">
           <ContactForm />
         </div>
       </main>
-      <Divider short={true} />
+      <Divider plain={true} />
       <Contact showSocialLinks={true} />
       <Divider borderBottom={false} />
     </>

@@ -1,4 +1,4 @@
-import defaultMdxComponents from "@/components/common/MdxComponents";
+import defaultMdxComponents from "@/components/mdx/mdxComponents";
 import type { MDXComponents } from "mdx/types";
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {

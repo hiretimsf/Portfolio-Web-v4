@@ -48,7 +48,7 @@ const Contact = ({
                 key={link.label}
                 asChild
                 variant="outline"
-                className="rounded-full"
+                className="corner-squircle text-white rounded-xl bg-transparent border-white/20 hover:bg-background/10 dark:bg-background/5"
                 onClick={() => {
                   trackEvent({
                     name: "social_link_clicked",

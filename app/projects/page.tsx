@@ -37,11 +37,11 @@ export const metadata: Metadata = {
 export default async function ProjectsPage() {
   return (
     <>
-      <Divider borderTop={false} />
+      <Divider />
       <Title title="Projects" />
-      <Divider short={true} />
+      <Divider plain={true} />
       <ProjectList />
-      <Divider short={true} />
+      <Divider plain={true} />
       <Contact />
       <Divider borderBottom={false} />
     </>
