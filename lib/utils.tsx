@@ -104,7 +104,7 @@ export function getBaseUrl(slug?: string): string {
 /**
  * Formats a date string into a human-readable format
  */
-export function formatDate(date: string, formatStr: string = "MMM d, yyyy") {
+export function formatDate(date: string, formatStr: string = "MM/dd/yyyy") {
   if (date === "Present" || date === "present") return "Present";
   return format(new Date(date), formatStr);
 }

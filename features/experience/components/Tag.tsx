@@ -11,7 +11,7 @@ export default function Tag({ title, skills, className }: TagProps) {
     return (
       <ul
         className={cn(
-          "flex flex-wrap gap-1.5 border-x border-border-edge border-dashed px-4 py-4",
+          "flex flex-wrap gap-1.5 border-x border-black/10 dark:border-white/10 border-dashed px-4 py-4",
           className,
         )}
       >

@@ -23,11 +23,11 @@ function getProject(page: Page, index: number): ProjectType {
     description: data.description,
     imageUrl: data.imageUrl ?? "",
     imageAlt: data.imageAlt ?? "",
-    fromDate: formatDate(data.fromDate, "MMM yyyy"),
+    fromDate: formatDate(data.fromDate, "MM/yyyy"),
     toDate:
       data.toDate === "Present"
         ? "Present"
-        : formatDate(data.toDate, "MMM yyyy"),
+        : formatDate(data.toDate, "MM/yyyy"),
     category: data.category,
     websiteUrl: data.websiteUrl,
     githubUrl: data.githubUrl,

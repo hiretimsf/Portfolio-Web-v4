@@ -38,10 +38,10 @@ export default function PositionPosition({
   }
 
   return (
-    <div className="flex items-center gap-4 border-x border-border-edge border-dashed px-4 py-4 md:gap-3 md:py-2">
+    <div className="flex items-center gap-4 border-x border-black/10 dark:border-white/10 border-dashed px-4 py-4 md:gap-3 md:py-2">
       <div className="relative mx-auto flex items-center gap-3 text-center md:mx-0 md:text-left">
         {iconNode && (
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-border-edge md:size-6">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-black/10 dark:border-white/10 md:size-6">
             {iconNode}
           </span>
         )}

@@ -42,7 +42,7 @@ export default function BlogPostNavigation({
               <Button
                 variant="secondary"
                 size="icon"
-                className="h-7 w-7 border border-border-edge rounded-md"
+                className="h-7 w-7 border border-black/10 dark:border-white/10 rounded-md"
                 asChild
               >
                 <Link href={`/blog/post/${previous.slug}`}>
@@ -71,7 +71,7 @@ export default function BlogPostNavigation({
               <Button
                 variant="secondary"
                 size="icon"
-                className="h-7 w-7 border border-border-edge rounded-md"
+                className="h-7 w-7 border border-black/10 dark:border-white/10 rounded-md"
                 asChild
               >
                 <Link href={`/blog/post/${next.slug}`}>

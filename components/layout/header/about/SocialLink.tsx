@@ -14,7 +14,7 @@ const SocialLink: FC<SocialLinkType> = ({ href, icon: Icon, label }) => {
         href={href}
       >
         <div className="flex items-center justify-between gap-3">
-          <div className="border-border-edge bg-background shrink-0 rounded-[10px] border p-1.5">
+          <div className="border-black/10 dark:border-white/10 bg-background shrink-0 rounded-[10px] border p-1.5">
             <Icon
               className="text-foreground group-hover:text-accent-foreground size-4 transition-colors duration-200"
               aria-hidden="true"

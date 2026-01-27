@@ -108,13 +108,13 @@ export function ContactForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto">
-        <div className="border-b border-border-edge border-dashed w-full mx-auto items-center justify-center flex">
+        <div className="border-b border-black/10 dark:border-white/10 border-dashed w-full mx-auto items-center justify-center flex">
           {/* Name input field */}
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem className="max-w-xl w-full border-x border-border-edge border-dashed px-6 py-4">
+              <FormItem className="max-w-xl w-full border-x border-black/10 dark:border-white/10 border-dashed px-6 py-4">
                 <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Your name" {...field} />
@@ -125,13 +125,13 @@ export function ContactForm() {
           />
         </div>
 
-        <div className="border-b border-border-edge border-dashed w-full mx-auto items-center justify-center flex">
+        <div className="border-b border-black/10 dark:border-white/10 border-dashed w-full mx-auto items-center justify-center flex">
           {/* Email input field */}
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem className="max-w-xl w-full border-x border-border-edge border-dashed px-6 py-4">
+              <FormItem className="max-w-xl w-full border-x border-black/10 dark:border-white/10 border-dashed px-6 py-4">
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="your@email.com" type="email" {...field} />
@@ -141,13 +141,13 @@ export function ContactForm() {
             )}
           />
         </div>
-        <div className="border-b border-border-edge border-dashed w-full mx-auto items-center justify-center flex">
+        <div className="border-b border-black/10 dark:border-white/10 border-dashed w-full mx-auto items-center justify-center flex">
           {/* Message textarea field */}
           <FormField
             control={form.control}
             name="message"
             render={({ field }) => (
-              <FormItem className="max-w-xl w-full border-x border-border-edge border-dashed px-6 py-4">
+              <FormItem className="max-w-xl w-full border-x border-black/10 dark:border-white/10 border-dashed px-6 py-4">
                 <FormLabel>Message</FormLabel>
                 <FormControl>
                   <Textarea
@@ -161,7 +161,7 @@ export function ContactForm() {
             )}
           />
         </div>
-        <div className="max-w-xl mx-auto items-center justify-center flex border-x border-border-edge border-dashed px-6 py-2">
+        <div className="max-w-xl mx-auto items-center justify-center flex border-x border-black/10 dark:border-white/10 border-dashed px-6 py-2">
           {/* Submit button with loading state */}
           <Button
             variant="outline"

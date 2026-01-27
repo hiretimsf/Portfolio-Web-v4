@@ -25,7 +25,7 @@ type EmbedVideoItemProps = {
 function EmbedVideoItem({ embedUrl, embedAlt }: EmbedVideoItemProps) {
   return (
     <Card
-      className="h-full gap-0 rounded-md border-x border-b border-border-edge py-0 shadow-lg transition-all duration-300"
+      className="h-full gap-0 rounded-md border-x border-b border-black/10 dark:border-white/10 py-0 shadow-lg transition-all duration-300"
       role="article"
     >
       <BrowserWrapper>

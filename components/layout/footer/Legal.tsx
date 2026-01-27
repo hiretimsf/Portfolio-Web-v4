@@ -39,7 +39,7 @@ export default function Legal() {
       {/* Mobile View */}
       <Section
         className="sm:hidden"
-        innerClassName="max-w-2xl divide-x divide-border-edge"
+        innerClassName="max-w-2xl divide-x divide-black/10 dark:divide-white/10"
       >
         <div className="flex items-center justify-center gap-3">
           {renderLink("privacy")}

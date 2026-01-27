@@ -23,7 +23,7 @@ export default function CompanyMain({
   country,
 }: CompanyMainProps) {
   return (
-    <div className="relative flex flex-col items-center gap-3 border-b border-border-edge border-dashed px-6 py-6 md:flex-row md:px-8 md:py-4">
+    <div className="relative flex flex-col items-center gap-3 border-b border-black/10 dark:border-white/10 border-dashed px-6 py-6 md:flex-row md:px-8 md:py-4">
       <CompanyLogo
         companyLogo={companyLogo}
         companyLogoAlt={companyLogoAlt}

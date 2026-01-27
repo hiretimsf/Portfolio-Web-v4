@@ -40,8 +40,8 @@ export function GET_WEB_APPS(): ProjectType[] {
       videoEmbedUrl: data.videoEmbedUrl,
       videoEmbedAlt: data.videoEmbedAlt,
       techStacks: data.techStacks,
-      fromDate: data.fromDate ? formatDate(data.fromDate, "MMM yyyy") : "",
-      toDate: data.toDate ? formatDate(data.toDate, "MMM yyyy") : "",
+      fromDate: data.fromDate ? formatDate(data.fromDate, "MM/yyyy") : "",
+      toDate: data.toDate ? formatDate(data.toDate, "MM/yyyy") : "",
       weight: data.weight,
     };
   });

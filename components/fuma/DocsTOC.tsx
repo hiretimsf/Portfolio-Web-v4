@@ -49,7 +49,7 @@ export function DocsTOC(props: HTMLAttributes<HTMLDivElement>) {
       id="nd-toc"
       {...(props as ComponentProps<typeof motion.div>)}
       className={cn(
-        "sticky top-[calc(var(--fd-banner-height,0px)+var(--fd-nav-height,0px))] h-(--fd-toc-height) pb-2 pl-4 border-l border-border-edge border-dashed bg-accent/20 dark:bg-accent/10",
+        "sticky top-[calc(var(--fd-banner-height,0px)+var(--fd-nav-height,0px))] h-(--fd-toc-height) pb-2 pl-4 border-l border-black/10 dark:border-white/10 border-dashed bg-accent/20 dark:bg-accent/10",
         toc,
         props.className,
       )}
@@ -75,7 +75,7 @@ export function TocItemsEmpty() {
   const { text } = useI18n();
 
   return (
-    <div className="bg-fd-card text-foreground rounded-lg border border-border-edge p-3 text-xs">
+    <div className="bg-fd-card text-foreground rounded-lg border border-black/10 dark:border-white/10 p-3 text-xs">
       {text.tocNoHeadings}
     </div>
   );

@@ -37,23 +37,23 @@ export function ProjectMain({
     <div className="px-6 md:flex-row md:px-8">
       <div
         className={cn(
-          "flex w-full flex-row gap-4 border-x border-border-edge border-dashed px-4 md:gap-4",
+          "flex w-full flex-row gap-4 border-x border-black/10 dark:border-white/10 border-dashed px-4 md:gap-4",
           !isLast && "border-b",
           hasBorderTop && "border-t",
         )}
       >
-        <div className="shrink-0 border-r border-border-edge border-dashed py-4 pr-4">
+        <div className="shrink-0 border-r border-black/10 dark:border-white/10 border-dashed py-4 pr-4">
           <ProjectImage imageUrl={imageUrl} imageAlt={imageAlt ?? title} />
         </div>
-        <div className="flex flex-col gap-1 border-border-edge border-dashed py-4">
+        <div className="flex flex-col gap-1 border-black/10 dark:border-white/10 border-dashed py-4">
           <ProjectTitle
             title={title}
             demoLink={websiteUrl ?? githubUrl ?? ""}
           />
           <ProjectDate
-            date={`${formatDate(fromDate, "MMM yyyy")} - ${formatDate(
+            date={`${formatDate(fromDate, "MM/yyyy")} - ${formatDate(
               toDate,
-              "MMM yyyy",
+              "MM/yyyy",
             )}`}
           />
           <ProjectDescription description={description} />

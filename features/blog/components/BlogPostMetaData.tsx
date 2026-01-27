@@ -60,7 +60,7 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
   return (
     <div className={cn("w-full", className)}>
       {/* Desktop View */}
-      <div className="hidden sm:flex mx-auto w-full max-w-5xl flex-row items-center justify-start divide-x divide-border-edge divide-dashed">
+      <div className="hidden sm:flex mx-auto w-full max-w-5xl flex-row items-center justify-start divide-x divide-black/10 dark:divide-white/10 divide-dashed">
         <InfoBarItem
           text={
             <span className="font-medium text-foreground">{authorName}</span>
@@ -87,9 +87,9 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
       </div>
 
       {/* Mobile View */}
-      <div className="sm:hidden grid grid-cols-2 items-center justify-start divide-x divide-border-edge divide-dashed">
+      <div className="sm:hidden grid grid-cols-2 items-center justify-start divide-x divide-black/10 dark:divide-white/10 divide-dashed">
         <InfoBarItem
-          className="border-b border-border-edge border-dashed"
+          className="border-b border-black/10 dark:border-white/10 border-dashed"
           text={
             <span className="font-medium text-foreground">{authorName}</span>
           }
@@ -107,7 +107,7 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
         <InfoBarItem
           icon={FolderIcon}
           text={category}
-          className="border-b border-border-edge border-dashed"
+          className="border-b border-black/10 dark:border-white/10 border-dashed"
         />
 
         <InfoBarItem

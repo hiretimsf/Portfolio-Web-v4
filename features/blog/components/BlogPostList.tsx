@@ -1,6 +1,6 @@
 import { getBlogPosts } from "@/features/blog/lib/blog.server";
 import BackgroundDots from "@/components/common/BackgroundDots";
-import CardItem from "@/components/common/CardItem";
+import BlogCardItem from "@/components/common/BlogCardItem";
 
 export default function BlogPostList() {
   const posts = getBlogPosts().sort(
@@ -14,11 +14,10 @@ export default function BlogPostList() {
         {posts.map((post, index) => {
           const { body, ...postItem } = post;
           return (
-            <CardItem
+            <BlogCardItem
               key={post.slug}
               index={index}
               item={postItem}
-              type="blog"
             />
           );
         })}

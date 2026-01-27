@@ -1,6 +1,6 @@
 import { getBlogPosts } from "@/features/blog/lib/blog.server";
 import Section from "@/components/layout/main/Section";
-import CardItem from "@/components/common/CardItem";
+import BlogCardItem from "@/components/common/BlogCardItem";
 import { slugify } from "@/lib/utils";
 
 export default function LatestBlogPostsSection() {
@@ -19,11 +19,10 @@ export default function LatestBlogPostsSection() {
         {latestPosts.map((post, index) => {
           const { body, ...postWithoutBody } = post;
           return (
-            <CardItem
+            <BlogCardItem
               key={slugify(post.title ?? "")}
               item={postWithoutBody}
               index={index}
-              type="blog"
               sizes="(max-width: 1024px) 100vw, (max-width: 1280px) 33vw, 400px"
             />
           );

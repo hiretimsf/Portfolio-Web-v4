@@ -402,7 +402,7 @@
   }
 
   .tag {
-    @apply bg-muted/50 text-foreground/80 inline-flex items-center rounded-lg border border-border-edge px-1.5 py-0.5 font-mono text-xs;
+    @apply bg-muted/50 text-foreground/80 inline-flex items-center rounded-lg border border-black/10 dark:border-white/10 px-1.5 py-0.5 font-mono text-xs;
   }
 
   /* Custom Prose Overrides */

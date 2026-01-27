@@ -5,7 +5,7 @@ export default function Banner() {
   return (
     <Link
       href="/contact"
-      className="group relative block rounded-xl border border-border-edge border-dashed bg-background p-4"
+      className="group relative block rounded-xl border border-black/10 dark:border-white/10 border-dashed bg-background p-4"
     >
       <div className="absolute bg-background right-2 top-2 z-10 rounded-full border border-border-edg border-dashed p-2.5 opacity-0 backdrop-blur-lg transition-opacity  group-hover:opacity-100">
         <svg
@@ -24,7 +24,7 @@ export default function Banner() {
           <path d="m12 5 7 7-7 7"></path>
         </svg>
       </div>
-      <div className="aspect-video relative w-full overflow-hidden rounded-lg border border-border-edge">
+      <div className="aspect-video relative w-full overflow-hidden rounded-lg border border-black/10 dark:border-white/10">
         <Image
           alt="Looking for a Frontend Developer?"
           fill

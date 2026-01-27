@@ -14,7 +14,7 @@ export function ProjectAccordion({ children }: { children: React.ReactNode }) {
     <Accordion type="single" collapsible>
       <AccordionItem value="items" className="border-none">
         <div className="px-6 md:px-8">
-          <div className="border border-border-edge border-dashed px-4">
+          <div className="border border-black/10 dark:border-white/10 border-dashed px-4">
             <AccordionTrigger className="group justify-center md:justify-start text-muted-foreground py-4 hover:no-underline [&>svg]:hidden [&[data-state=open]_.custom-chevron]:rotate-180">
               <Button asChild>
                 <div className="flex items-center gap-2">

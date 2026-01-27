@@ -16,7 +16,7 @@ import BrowserWrapper from "@/components/common/BrowserWrapper";
 
 function HeroContent() {
   return (
-    <div className="mx-auto grid w-full max-w-2xl grid-cols-1 divide-y divide-dashed divide-border-edge">
+    <div className="mx-auto grid w-full max-w-2xl grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10">
       
       <p className="text-foreground px-4 py-2 text-2xl font-semibold tracking-tight sm:text-left sm:text-3xl hidden sm:block">
         HELLO
@@ -26,13 +26,13 @@ function HeroContent() {
         I&apos;m Tim
       </h1>
 
-      <p className="text-foreground/80 px-4 text-lg/8 text-left py-4">
+      <p className="text-foreground/80 px-4 text-[18px] text-left py-4 leading-[32px] text-pretty">
         I&apos;m a Frontend Developer based in the San Francisco Bay Area. I
         help people solve real-world problems by building web and mobile apps.
       </p>
 
       <ul
-        className="text-foreground space-y-2 divide-y divide-dashed divide-border-edge"
+        className="text-foreground space-y-2 divide-y divide-dashed divide-black/10 dark:divide-white/10"
         aria-label="Skills and qualifications"
       >
         {SKILLS.map((item, index) => (
@@ -49,11 +49,11 @@ function HeroContent() {
             />
             <div className="flex flex-row gap-x-1">
               {item.name && (
-                <span className="font-semibold text-foreground">
+                <span className="font-semibold text-foreground text-[14px] sm:text-[16px]">
                   {item.name}:
                 </span>
               )}
-              <span className="text-foreground/80">{item.description}</span>
+              <span className="text-foreground/80 text-[14px] sm:text-[16px]">{item.description}</span>
             </div>
           </li>
         ))}
@@ -61,7 +61,7 @@ function HeroContent() {
 
       <div className="px-4 py-4 text-left">
         <Button asChild>
-          <Link href="/about" className="w-full px-6 py-5 sm:w-auto">
+          <Link href="/about" className="w-full px-6 py-5 sm:w-auto text-[16px] font-semibold">
             Learn more about Tim
           </Link>
         </Button>
@@ -144,7 +144,7 @@ export default function HeroSection({
         </div>
 
         {/* Content Section */}
-        <div className="relative lg:col-span-1 lg:flex lg:items-center lg:border-l lg:border-dashed lg:border-border-edge">
+        <div className="relative lg:col-span-1 lg:flex lg:items-center lg:border-l lg:border-dashed lg:border-black/10 dark:border-white/10">
           <HeroContent />
         </div>
       </div>
