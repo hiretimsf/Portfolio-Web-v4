@@ -117,13 +117,6 @@ export function GET_TESTIMONIALS() {
     quote: "Where are u based I need you 😭",
   },
   {
-    authorAvatar: "https://unavatar.io/twitter/hiretimsf",
-    authorName: "HireTimSF.com",
-    authorBio: "@hiretimsf",
-    url: "https://x.com/hiretimsf/status/1799500139662651526",
-    quote: "Thank you @vercel",
-  },
-  {
     authorAvatar: "https://unavatar.io/twitter/alfonsusac",
     authorName: "Alfon",
     authorBio: "@alfonsusac",
@@ -188,13 +181,6 @@ export function GET_TESTIMONIALS() {
     authorBio: "@the_best_codes",
     url: "https://x.com/the_best_codes/status/2006158234952868134",
     quote: "Someone hire Tim",
-  },
-  {
-    authorAvatar: "https://unavatar.io/youtube/CodingWithMitch",
-    authorName: "CodingWithMitch",
-    authorBio: "YouTube",
-    url: "https://www.youtube.com/watch?v=OHo64fiWx2k",
-    quote: "Codingwithmitch App Reviews #1",
   },
   {
     authorAvatar: "https://unavatar.io/youtube/DThompsonDev",
