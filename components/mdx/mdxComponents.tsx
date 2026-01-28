@@ -159,7 +159,7 @@ const defaultMdxComponents = {
   code: (props: HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        "bg-muted/50 px-[0.3rem] py-[0.2rem] rounded font-mono text-sm font-medium text-foreground dark:bg-white/10 dark:text-white border border-border/50",
+        "bg-muted/50 px-[0.3rem] py-[0.2rem] rounded text-sm font-medium text-foreground dark:bg-white/10 dark:text-white border border-border/50",
         props.className,
       )}
       {...props}

@@ -159,7 +159,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           src={post.image}
           width={1000}
           height={500}
-          className="h-auto max-h-96 w-full object-cover dark:grayscale"
+          className="h-auto max-h-96 w-full object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1000px"
           priority
         />

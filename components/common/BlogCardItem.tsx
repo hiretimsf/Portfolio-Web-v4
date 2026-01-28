@@ -13,13 +13,13 @@ import type { BlogPostType } from "@/features/blog/types/BlogPostType";
 import {
   DateIcon,
   ReadingTimeIcon,
+  FolderIcon,
 } from "@/components/common/Icons";
 import { cn, formatDate, trackEvent } from "@/lib/utils";
 import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 
 type BlogCardItemProps = {
   index: number;
@@ -40,7 +40,6 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
         aria-labelledby={`card-title-${index}`}
       >
         <CoverImage
-          index={index}
           imageUrl={item.thumbnail || item.image}
           imageAlt={item.imageAlt || item.title}
           href={href}
@@ -51,33 +50,7 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
           <SideBorder position="left" />
           <div className="flex flex-1 flex-col">
             <CardHeader className="gap-0">
-              <div className="mb-2 flex w-full flex-row items-center border-b border-dashed border-black/10 dark:border-white/10">
-                <div className="flex items-center px-2 py-2">
-                  <DateIcon size={20} className="mr-2 size-5 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground font-mono">
-                    {item.created ? formatDate(item.created as string) : "No date"}
-                  </span>
-                </div>
-
-                {item.readingTimeMinutes !== undefined && (
-                  <>
-                    <Separator
-                      orientation="vertical"
-                      className="data-[orientation=vertical]:h-4 border-dashed border-black/10 dark:border-white/10"
-                    />
-                    <div className="flex items-center px-2 py-2">
-                      <ReadingTimeIcon
-                        size={20}
-                        className="mr-2 size-5 text-muted-foreground"
-                      />
-                      <span className="text-sm text-muted-foreground font-mono">
-                        {item.readingTimeMinutes} min
-                      </span>
-                    </div>
-                  </>
-                )}
-              </div>
-              <div className="flex w-full pb-2 flex-row items-center border-b border-dashed border-black/10 dark:border-white/10">
+              <div className="flex w-full py-2 flex-row items-center border-b border-dashed border-black/10 dark:border-white/10">
                 <Link href={href} className="group/title">
                   <CardTitle
                     id={`card-title-${index}`}
@@ -87,31 +60,58 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
                   </CardTitle>
                 </Link>
               </div>
+              <div className="grid grid-cols-2 grid-rows-1 w-full border-b border-dashed border-black/10 dark:border-white/10">
+                <div className="flex items-center px-2 py-2 border-r border-dashed border-black/10 dark:border-white/10">
+                  <DateIcon size={20} className="mr-2 size-5 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
+                    {item.created ? formatDate(item.created as string) : "No date"}
+                  </span>
+                </div>
+                <div className="flex items-center px-2 py-2">
+                  <ReadingTimeIcon
+                    size={20}
+                    className="mr-2 size-5 text-muted-foreground"
+                  />
+                  <span className="text-sm text-muted-foreground">
+                    {item.readingTimeMinutes !== undefined ? `${item.readingTimeMinutes} min` : "N/A"}
+                  </span>
+                </div>
+              </div>
             </CardHeader>
             <CardContent className="p-0">
-              <CardDescription className="my-2 line-clamp-3 px-2 text-left text-md/6 text-muted-foreground font-mono text-pretty">
+              <CardDescription className="my-2 line-clamp-3 px-2 text-left text-md leading-6 text-muted-foreground">
                 {item.description}
               </CardDescription>
             </CardContent>
             <CardFooter className="flex w-full flex-col items-stretch p-0">
-              {item.author && (
-                <div className="flex w-full border-t border-dashed border-black/10 dark:border-white/10 px-2 py-2">
-                  <div className="flex items-center space-x-2">
-                    <div className="relative size-6 shrink-0 overflow-hidden rounded-full">
-                      <Image
-                        src={item.authorAvatar || ""}
-                        alt={item.author}
-                        fill
-                        className="object-cover"
-                        sizes="24px"
-                      />
-                    </div>
-                    <span className="text-sm font-medium text-muted-foreground">
-                      {item.author}
-                    </span>
-                  </div>
+              <div className="grid grid-cols-2 grid-rows-1 w-full border-y border-dashed border-black/10 dark:border-white/10">
+                <div className="flex items-center px-2 py-2 border-r border-dashed border-black/10 dark:border-white/10">
+                  {item.author ? (
+                    <>
+                      <div className="relative size-5 shrink-0 overflow-hidden rounded-full mr-2">
+                        <Image
+                          src={item.authorAvatar || ""}
+                          alt={item.author}
+                          fill
+                          className="object-cover"
+                          sizes="20px"
+                        />
+                      </div>
+                      <span className="text-sm text-muted-foreground">
+                        {item.author}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-sm text-muted-foreground">No author</span>
+                  )}
                 </div>
-              )}
+                <div className="flex items-center px-2 py-2">
+                  <FolderIcon size={20} className="mr-2 size-5 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
+                    {item.category || "Uncategorized"}
+                  </span>
+                </div>
+              </div>
               <div className="flex w-full border-t border-dashed border-black/10 dark:border-white/10 px-2 py-2">
                 <Button
                   variant="outline"
@@ -160,7 +160,6 @@ const CoverImage = ({
   href,
   sizes,
 }: {
-  index: number;
   imageUrl: string;
   imageAlt: string;
   href?: string;
@@ -173,7 +172,7 @@ const CoverImage = ({
         src={imageUrl || ""}
         width={600}
         height={338}
-        className="h-full w-full rounded-none object-cover dark:grayscale"
+        className="h-full w-full rounded-none object-cover"
         sizes={sizes || "(max-width: 1023px) 100vw, 33vw"}
         priority={false}
       />

@@ -38,6 +38,7 @@ const Header: FC<Props> = () => {
   return (
     <>
       <header
+        suppressHydrationWarning
         className={cn(
           "w-full border-y border-edge bg-background transition-transform fixed top-0 inset-x-0",
           mobileMenuOpen || isFixed ? "z-100" : "z-50",
@@ -49,6 +50,7 @@ const Header: FC<Props> = () => {
         }}
       >
         <div
+          suppressHydrationWarning
           data-affix={affix}
           className={cn(
             "mx-auto max-w-5xl px-4 border-x border-edge",

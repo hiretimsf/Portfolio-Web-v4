@@ -28,7 +28,7 @@ export default function Banner() {
         <Image
           alt="Looking for a Frontend Developer?"
           fill
-          className="blur-0 object-cover dark:grayscale"
+          className="blur-0 object-cover"
           src="/images/twitter-image.jpg"
           sizes="(max-width: 768px) 100vw, 300px"
         />

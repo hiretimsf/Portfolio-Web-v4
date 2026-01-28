@@ -5,17 +5,22 @@ import { cn } from "@/lib/utils";
 
 type PositionDescriptionProps = {
   description?: string;
+  hasSkills?: boolean;
 };
 
 export default function PositionDescription({
   description,
+  hasSkills = false,
 }: PositionDescriptionProps) {
   if (!description) {
     return null;
   }
 
   return (
-    <Prose className="border-r border-b border-l border-black/10 dark:border-white/10 border-dashed px-4 py-4">
+    <Prose className={cn(
+      "border-x border-black/10 dark:border-white/10 border-dashed px-4 py-4",
+      !hasSkills && "border-b"
+    )}>
       <ReactMarkdown
         components={{
           a: ({ node: _node, ...props }) => {

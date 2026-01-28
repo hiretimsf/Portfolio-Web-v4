@@ -30,16 +30,13 @@ export function ProjectMain({
   techStacks,
   websiteUrl,
   githubUrl,
-  hasBorderTop = false,
-  isLast = false,
 }: ProjectMainProps) {
   return (
     <div className="px-6 md:flex-row md:px-8">
       <div
         className={cn(
-          "flex w-full flex-row gap-4 border-x border-black/10 dark:border-white/10 border-dashed px-4 md:gap-4",
-          !isLast && "border-b",
-          hasBorderTop && "border-t",
+          "flex w-full flex-row gap-4 border-x border-t border-black/10 dark:border-white/10 border-dashed px-4 md:gap-4",
+
         )}
       >
         <div className="shrink-0 border-r border-black/10 dark:border-white/10 border-dashed py-4 pr-4">

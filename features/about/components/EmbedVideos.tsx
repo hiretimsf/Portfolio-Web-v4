@@ -33,7 +33,7 @@ function EmbedVideoItem({ embedUrl, embedAlt }: EmbedVideoItemProps) {
           <YouTubeEmbed
             embedUrl={embedUrl}
             alt={embedAlt}
-            className="absolute inset-0 h-full w-full dark:grayscale"
+            className="absolute inset-0 h-full w-full"
           />
         </div>
       </BrowserWrapper>

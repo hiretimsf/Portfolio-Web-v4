@@ -47,14 +47,14 @@ export default function ProjectCardItem({ index, item, sizes }: ProjectCardItemP
                 {item.comingSoon ? (
                   <div className="flex items-center">
                     <CalendarIcon className="mr-2 size-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground font-mono">
+                    <span className="text-sm text-muted-foreground">
                       Coming Soon
                     </span>
                   </div>
                 ) : item.fromDate ? (
                   <div className="flex items-center">
                     <CalendarIcon className="mr-2 size-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground font-mono">
+                    <span className="text-sm text-muted-foreground">
                       {item.fromDate} - {item.toDate}
                     </span>
                   </div>
@@ -70,7 +70,7 @@ export default function ProjectCardItem({ index, item, sizes }: ProjectCardItemP
             </CardHeader>
             <CardContent className="p-0">
               <CardDescription className="border-b border-dashed border-black/10 dark:border-white/10 px-2 py-2">
-                <span className="line-clamp-3 font-mono text-left text-md/6 text-muted-foreground text-pretty">
+                <span className="line-clamp-3 text-left text-md leading-6 text-muted-foreground">
                   {item.description}
                 </span>
               </CardDescription>
@@ -178,7 +178,7 @@ const CoverImage = ({
         src={imageUrl || ""}
         width={600}
         height={338}
-        className="h-full w-full rounded-none object-cover dark:grayscale"
+        className="h-full w-full rounded-none object-cover"
         sizes={sizes || "(max-width: 1023px) 100vw, 33vw"}
         priority={false}
       />

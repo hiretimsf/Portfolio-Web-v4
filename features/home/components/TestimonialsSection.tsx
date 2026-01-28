@@ -33,7 +33,7 @@ export function TestimonialQuote({
     <blockquote
       data-slot="quote"
       className={cn(
-        "grow px-4 py-3 text-sm/6 font-mono text-left text-pretty text-foreground/80",
+        "grow px-4 py-3 text-md leading-6 text-left text-foreground/80",
         className,
       )}
       {...props}
@@ -125,7 +125,7 @@ export function TestimonialAuthorName({
     <div
       data-slot="author-name"
       className={cn(
-        "text-sm leading-4 font-mono font-semibold text-foreground text-left",
+        "text-sm leading-4 font-semibold text-foreground text-left",
         className,
       )}
       {...props}
@@ -144,7 +144,7 @@ export function TestimonialAuthorBio({
     <div
       data-slot="author-bio"
       className={cn(
-        "text-xs leading-4 font-mono text-left text-muted-foreground",
+        "text-xs leading-4 text-left text-muted-foreground",
         className,
       )}
       {...props}
