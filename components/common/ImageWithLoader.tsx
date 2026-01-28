@@ -7,11 +7,12 @@ import { cn } from "@/lib/utils";
 interface ImageWithLoaderProps {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   className?: string;
   sizes?: string;
   priority?: boolean;
+  onError?: () => void;
 }
 
 export default function ImageWithLoader({
@@ -22,11 +23,14 @@ export default function ImageWithLoader({
   className,
   sizes,
   priority = false,
-}: ImageWithLoaderProps) {
+  fill = false,
+  unoptimized = false,
+  ...props
+}: ImageWithLoaderProps & { fill?: boolean; unoptimized?: boolean }) {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className={cn("relative overflow-hidden", fill ? "w-full h-full" : "")}>
       {/* Loading Animation */}
       {isLoading && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
@@ -57,8 +61,10 @@ export default function ImageWithLoader({
       <Image
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={!fill ? width : undefined}
+        height={!fill ? height : undefined}
+        fill={fill}
+        unoptimized={unoptimized}
         className={cn(
           "transition-opacity duration-500",
           isLoading ? "opacity-0" : "opacity-100",
@@ -67,6 +73,7 @@ export default function ImageWithLoader({
         sizes={sizes}
         priority={priority}
         onLoad={() => setIsLoading(false)}
+        onError={props.onError}
       />
     </div>
   );

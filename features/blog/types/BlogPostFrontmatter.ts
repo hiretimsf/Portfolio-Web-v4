@@ -4,6 +4,7 @@ type BlogPostFrontmatter = {
   created: string;
   lastUpdated?: string;
   image: string;
+  thumbnail?: string;
   imageAlt?: string;
   author?: string;
   authorAvatar?: string;

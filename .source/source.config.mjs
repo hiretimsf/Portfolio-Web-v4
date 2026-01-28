@@ -265,6 +265,7 @@ var blogPostSchema = z2.object({
   title: z2.string(),
   description: z2.string(),
   image: z2.string().optional(),
+  thumbnail: z2.string().optional(),
   imageAlt: z2.string().optional(),
   author: z2.string(),
   authorAvatar: z2.string(),

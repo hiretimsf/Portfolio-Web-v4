@@ -513,6 +513,7 @@ export const blogPostSchema = z.object({
   title: z.string(),
   description: z.string(),
   image: z.string().optional(),
+  thumbnail: z.string().optional(),
   imageAlt: z.string().optional(),
   author: z.string(),
   authorAvatar: z.string(),

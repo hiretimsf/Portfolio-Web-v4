@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import BrowserWrapper from "@/components/common/BrowserWrapper";
 import {
   Card,
@@ -20,6 +21,7 @@ import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import ImageWithLoader from "@/components/common/ImageWithLoader";
 
 type BlogCardItemProps = {
   index: number;
@@ -40,7 +42,7 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
         aria-labelledby={`card-title-${index}`}
       >
         <CoverImage
-          imageUrl={item.thumbnail || item.image}
+          imageUrl={item.thumbnail || `/images/blog/${item.slug}/thumbnail.jpg`}
           imageAlt={item.imageAlt || item.title}
           href={href}
           sizes={sizes}
@@ -167,18 +169,19 @@ const CoverImage = ({
   href?: string;
   sizes?: string;
 }) => {
+  const [src, setSrc] = useState(imageUrl);
+
   const content = (
     <div className="relative aspect-video w-full overflow-hidden">
-      <Image
+      <ImageWithLoader
         alt={imageAlt || "Card image"}
-        src={imageUrl || ""}
+        src={src || ""}
         width={600}
         height={338}
         className="h-full w-full rounded-none object-cover"
         sizes={sizes || "(max-width: 1023px) 100vw, 33vw"}
         priority={false}
-        placeholder="blur"
-        blurDataURL={getShimmerDataUrl(600, 338)}
+        onError={() => setSrc("/images/placeholder.jpg")}
       />
     </div>
   );

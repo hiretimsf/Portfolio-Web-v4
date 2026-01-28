@@ -54,14 +54,24 @@ const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <linearGradient id="g">
-      <stop stop-color="#333" offset="20%" />
-      <stop stop-color="#222" offset="50%" />
-      <stop stop-color="#333" offset="70%" />
+      <stop class="s-base" offset="20%" />
+      <stop class="s-shine" offset="50%" />
+      <stop class="s-base" offset="70%" />
     </linearGradient>
   </defs>
-  <rect width="${w}" height="${h}" fill="#333" />
+  <style>
+    .base { fill: #f3f4f6; }
+    .s-base { stop-color: #f3f4f6; }
+    .s-shine { stop-color: #e5e7eb; }
+    @media (prefers-color-scheme: dark) {
+      .base { fill: #374151; }
+      .s-base { stop-color: #374151; }
+      .s-shine { stop-color: #4b5563; }
+    }
+  </style>
+  <rect width="${w}" height="${h}" class="base" />
   <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
-  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+  <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite" />
 </svg>`;
 
 /**

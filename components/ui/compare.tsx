@@ -5,6 +5,7 @@ import { IconDotsVertical } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { MemoizedSparklesCore } from "@/components/ui/sparkles";
+import ImageWithLoader from "@/components/common/ImageWithLoader";
 
 interface CompareProps {
   firstImage?: string;
@@ -195,14 +196,15 @@ export const Compare = ({
               }}
               transition={{ duration: 0 }}
             >
-              <img
+              <ImageWithLoader
                 alt="first image"
                 src={firstImage}
                 className={cn(
                   "absolute inset-0  z-20 rounded-2xl shrink-0 w-full h-full select-none",
                   firstImageClassName,
                 )}
-                draggable={false}
+                unoptimized
+                fill
               />
             </motion.div>
           ) : null}
@@ -211,15 +213,23 @@ export const Compare = ({
 
       <AnimatePresence initial={false}>
         {secondImage ? (
-          <motion.img
+          <motion.div
             className={cn(
               "absolute top-0 left-0 z-19 w-full h-full select-none",
               secondImageClassname,
             )}
-            alt="second image"
-            src={secondImage}
-            draggable={false}
-          />
+          >
+            <ImageWithLoader
+              alt="second image"
+              src={secondImage}
+              className={cn(
+                "absolute inset-0 z-19 w-full h-full select-none",
+                secondImageClassname,
+              )}
+              unoptimized
+              fill
+            />
+          </motion.div>
         ) : null}
       </AnimatePresence>
     </div>
