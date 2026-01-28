@@ -3,6 +3,7 @@
 import { Play } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { getShimmerDataUrl } from "@/lib/utils";
 
 type YouTubeEmbedProps = {
   embedUrl: string;
@@ -71,6 +72,8 @@ export default function YouTubeEmbed({
         fill
         className="object-cover opacity-90 transition-opacity hover:opacity-100"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        placeholder="blur"
+        blurDataURL={getShimmerDataUrl(480, 360)}
       />
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-600 shadow-lg transition-transform hover:scale-110">

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn, getShimmerDataUrl } from "@/lib/utils";
 
 type CompanyLogoProps = {
   className?: string;
@@ -30,6 +30,8 @@ export default function CompanyLogo({
         className,
       )}
       sizes="(max-width: 768px) 64px, (max-width: 1200px) 64px, 64px"
+      placeholder="blur"
+      blurDataURL={getShimmerDataUrl(64, 64)}
     />
   );
 }

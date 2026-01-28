@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImageWithLoader from "@/components/common/ImageWithLoader";
 import Link from "next/link";
 
 export default function Banner() {
@@ -25,10 +25,11 @@ export default function Banner() {
         </svg>
       </div>
       <div className="aspect-video relative w-full overflow-hidden rounded-lg border border-black/10 dark:border-white/10">
-        <Image
+        <ImageWithLoader
           alt="Looking for a Frontend Developer?"
-          fill
-          className="blur-0 object-cover"
+          width={800}
+          height={450}
+          className="blur-0 object-cover w-full h-full"
           src="/images/twitter-image.jpg"
           sizes="(max-width: 768px) 100vw, 300px"
         />

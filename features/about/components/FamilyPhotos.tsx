@@ -12,6 +12,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Image from "next/image";
 import { useState } from "react";
 import { GET_FAMILY_PHOTOS } from "../data/static";
+import { getShimmerDataUrl } from "@/lib/utils";
 
 export default function FamilyPhotos() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +48,8 @@ export default function FamilyPhotos() {
                       height={photo.height}
                       className="h-auto w-full rounded-xl object-cover"
                       sizes="100vw"
+                      placeholder="blur"
+                      blurDataURL={getShimmerDataUrl(photo.width, photo.height)}
                     />
                 </div>
               </CarouselItem>
@@ -72,6 +75,8 @@ export default function FamilyPhotos() {
               height={photo.height}
               className="h-auto w-full transition-transform hover:scale-105 rounded-xl object-cover"
               sizes="33vw"
+              placeholder="blur"
+              blurDataURL={getShimmerDataUrl(photo.width, photo.height)}
             />
           </div>
         ))}
@@ -104,6 +109,8 @@ export default function FamilyPhotos() {
                         className="object-contain"
                         sizes="100vw"
                         priority={index === initialSlide}
+                        placeholder="blur"
+                        blurDataURL={getShimmerDataUrl(1200, 800)}
                       />
                     </div>
                   </CarouselItem>

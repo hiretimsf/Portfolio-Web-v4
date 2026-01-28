@@ -5,7 +5,7 @@ import { Compare } from "@/components/ui/compare";
 import Section from "@/components/layout/main/Section";
 import { SKILLS } from "@/features/home/data/source";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import ImageWithLoader from "@/components/common/ImageWithLoader";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -132,7 +132,7 @@ export default function HeroSection({
 
           {/* Mobile Image */}
           <div className="block lg:hidden relative w-full">
-            <Image
+            <ImageWithLoader
               src={isDark ? imageSrcMobileDark : imageSrcMobile}
               alt={imageAlt}
               width={600}

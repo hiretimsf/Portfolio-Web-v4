@@ -10,11 +10,11 @@ import { getMDXComponents } from "@/mdx-components";
 import type { HeadType } from "@/types";
 import type { TableOfContents } from "fumadocs-core/toc";
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { ComponentType } from "react";
 import Web from "@/features/about/components/Web";
 import LastModified from "@/components/common/LastModified";
+import ImageWithLoader from "@/components/common/ImageWithLoader";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -78,7 +78,7 @@ export default async function AboutMePage() {
         <div className="relative">
           {/* Mobile Image */}
           <div className="md:hidden">
-            <Image
+            <ImageWithLoader
               alt={imageAlt}
               src={imageUrlMobile}
               width={1000}
@@ -90,7 +90,7 @@ export default async function AboutMePage() {
           </div>
           {/* Desktop Image */}
           <div className="hidden md:block">
-            <Image
+            <ImageWithLoader
               alt={imageAlt}
               src={imageUrlDesktop}
               width={1000}

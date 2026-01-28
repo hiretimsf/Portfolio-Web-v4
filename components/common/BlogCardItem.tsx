@@ -15,7 +15,7 @@ import {
   ReadingTimeIcon,
   FolderIcon,
 } from "@/components/common/Icons";
-import { cn, formatDate, trackEvent } from "@/lib/utils";
+import { cn, formatDate, trackEvent, getShimmerDataUrl } from "@/lib/utils";
 import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -95,6 +95,8 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
                           fill
                           className="object-cover"
                           sizes="20px"
+                          placeholder="blur"
+                          blurDataURL={getShimmerDataUrl(20, 20)}
                         />
                       </div>
                       <span className="text-sm text-muted-foreground">
@@ -175,6 +177,8 @@ const CoverImage = ({
         className="h-full w-full rounded-none object-cover"
         sizes={sizes || "(max-width: 1023px) 100vw, 33vw"}
         priority={false}
+        placeholder="blur"
+        blurDataURL={getShimmerDataUrl(600, 338)}
       />
     </div>
   );

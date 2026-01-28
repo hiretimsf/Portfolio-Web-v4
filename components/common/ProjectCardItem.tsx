@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import type { ProjectType } from "@/features/projects/types/ProjectType";
 import { CalendarIcon } from "@/components/common/Icons";
-import { cn, trackEvent } from "@/lib/utils";
+import { cn, trackEvent, getShimmerDataUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -181,6 +181,8 @@ const CoverImage = ({
         className="h-full w-full rounded-none object-cover"
         sizes={sizes || "(max-width: 1023px) 100vw, 33vw"}
         priority={false}
+        placeholder="blur"
+        blurDataURL={getShimmerDataUrl(600, 338)}
       />
     </div>
   );

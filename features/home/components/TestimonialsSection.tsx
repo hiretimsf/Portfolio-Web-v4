@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, getShimmerDataUrl } from "@/lib/utils";
 import Image from "next/image";
 import { GET_TESTIMONIALS } from "@/features/home/data/source";
 import Section from "@/components/layout/main/Section";
@@ -95,6 +95,8 @@ export function TestimonialAvatarImg({
       alt={alt}
       width={32}
       height={32}
+      placeholder="blur"
+      blurDataURL={getShimmerDataUrl(32, 32)}
       {...props}
     />
   );
