@@ -37,6 +37,7 @@ function getProject(page: Page, index: number): ProjectType {
     featured: data.featured,
     showOnPortfolio: data.showOnPortfolio,
     comingSoon: data.comingSoon,
+    weight: data.weight,
   };
 }
 
@@ -48,6 +49,13 @@ export function getProjects(): ProjectType[] {
     )
     .map((page, index) => getProject(page, index))
     .sort((a, b) => {
+      const weightA = a.weight ?? 0;
+      const weightB = b.weight ?? 0;
+      
+      if (weightA !== weightB) {
+        return weightB - weightA;
+      }
+      
       const dateA = parseDate(a.toDate ?? a.fromDate);
       const dateB = parseDate(b.toDate ?? b.fromDate);
       return dateB - dateA;

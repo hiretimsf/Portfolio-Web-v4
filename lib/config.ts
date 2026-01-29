@@ -507,6 +507,7 @@ export const baseProjectSchema = z.object({
   videoEmbedAlt: z.string().optional(),
   comingSoon: z.boolean().default(false),
   techStacks: z.array(z.string()).default([]),
+  weight: z.number().default(0),
 });
 
 export const blogPostSchema = z.object({

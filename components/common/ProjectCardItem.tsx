@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import BrowserWrapper from "@/components/common/BrowserWrapper";
 import {
   Card,
@@ -10,11 +12,75 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { ProjectType } from "@/features/projects/types/ProjectType";
-import { CalendarIcon, TechStackIcon } from "@/components/common/Icons";
+import { CalendarIcon, TechStackIcon, StarIcon } from "@/components/common/Icons";
 import { cn, trackEvent, formatDate } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ImageWithLoader from "@/components/common/ImageWithLoader";
+import {
+  SiAndroid,
+  SiNextdotjs,
+  SiReact,
+  SiTypescript,
+  SiTailwindcss,
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiFirebase,
+  SiJquery,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiEclipseide,
+  SiKotlin,
+
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import { IconType } from "react-icons";
+import { getGitHubStars } from "@/actions/github";
+
+const getTechIcon = (tech: string): IconType => {
+  const normalizedTech = tech.toLowerCase().replace(/\s+/g, "");
+  switch (normalizedTech) {
+    case "android":
+      return SiAndroid;
+    case "next.js":
+    case "nextjs":
+      return SiNextdotjs;
+    case "react":
+      return SiReact;
+    case "typescript":
+      return SiTypescript;
+    case "tailwindcss":
+    case "tailwind":
+      return SiTailwindcss;
+    case "html":
+      return SiHtml5;
+    case "css":
+      return SiCss3;
+    case "javascript":
+      return SiJavascript;
+    case "firebase":
+      return SiFirebase;
+    case "jquery":
+      return SiJquery;
+    case "adobephotoshop":
+    case "photoshop":
+      return SiAdobephotoshop;
+    case "adobeillustrator":
+    case "illustrator":
+      return SiAdobeillustrator;
+    case "eclipseide":
+    case "eclipse":
+      return SiEclipseide;
+    case "kotlin":
+      return SiKotlin;
+    case "java":
+      return FaJava;
+
+    default:
+      return TechStackIcon as unknown as IconType;
+  }
+};
 
 /**
  * Props for the ProjectCardItem component.
@@ -39,6 +105,31 @@ export default function ProjectCardItem({
   sizes,
 }: ProjectCardItemProps) {
   const href = item.websiteUrl ?? item.githubUrl ?? "#";
+  const [stars, setStars] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchStars = async () => {
+      if (!item.githubUrl) return;
+      try {
+        const urlObj = new URL(item.githubUrl);
+        // Pathname usually starts with /, so split by / gives ["", "owner", "repo"]
+        const parts = urlObj.pathname.split("/");
+        if (parts.length >= 3) {
+          const owner = parts[1];
+          const repo = parts[2];
+          if (owner && repo) {
+            const { stars } = await getGitHubStars(owner, repo);
+            setStars(stars);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to parse GitHub URL or fetch stars", error);
+      }
+    };
+
+    fetchStars();
+  }, [item.githubUrl]);
+
 
   return (
     <BrowserWrapper>
@@ -102,13 +193,8 @@ export default function ProjectCardItem({
                   </span>
                 </div>
                 <div className="flex items-center px-2 py-2">
-                  <TechStackIcon
-                    size={16}
-                    className="mr-2 size-4 text-muted-foreground"
-                  />
-                  <span className="text-sm text-muted-foreground">
-                    {item.category || "Uncategorized"}
-                  </span>
+                  <StarIcon className="mr-2 size-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">{stars}</span>
                 </div>
               </div>
             </CardHeader>
@@ -121,6 +207,47 @@ export default function ProjectCardItem({
                 </span>
               </CardDescription>
             </CardContent>
+             <CardHeader className="gap-0">
+              <div
+                className={cn(
+                  "grid grid-cols-2 grid-rows-2 w-full border-b",
+                  dashedBorder
+                )}
+              >
+                {item.techStacks?.slice(0, 4).map((tech, i) => {
+                  const TechIcon = getTechIcon(tech);
+                  // Left column (index 0 and 2) gets border-r
+                  const isLeftColumn = i % 2 === 0;
+                  // Top row (index 0 and 1) gets border-b if there are more than 2 items
+                  const isTopRow = i < 2; 
+                  // Actually, for a pure 2x2 grid in this border system:
+                  // The container already has border-b.
+                  // We need internal borders.
+                  // Row 1 items need border-b if Row 2 exists.
+                  // Col 1 items need border-r.
+
+                  return (
+                    <div
+                      key={tech}
+                      className={cn(
+                        "flex items-center px-2 py-2",
+                        isLeftColumn && `border-r ${dashedBorder}`,
+                        isTopRow && item.techStacks && item.techStacks.length > 2 && `border-b ${dashedBorder}`
+                      )}
+                    >
+                      <TechIcon
+                        size={16}
+                        className="mr-2 size-4 text-muted-foreground"
+                      />
+                      <span className="text-sm text-muted-foreground truncate">
+                        {tech}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardHeader>
+
             <CardFooter className="flex w-full flex-col items-stretch p-0">
               <ProjectButton
                 label="Live Demo"

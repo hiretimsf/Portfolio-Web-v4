@@ -259,7 +259,8 @@ var baseProjectSchema = z2.object({
   videoEmbedUrl: z2.string().optional(),
   videoEmbedAlt: z2.string().optional(),
   comingSoon: z2.boolean().default(false),
-  techStacks: z2.array(z2.string()).default([])
+  techStacks: z2.array(z2.string()).default([]),
+  weight: z2.number().default(0)
 });
 var blogPostSchema = z2.object({
   title: z2.string(),

@@ -10,9 +10,13 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { IoCheckmarkCircle as CheckmarkIcon } from "react-icons/io5";
+import {
+  RiNextjsFill as NextJsLogo,
+  RiTailwindCssFill as TailwindcssLogo,
+} from "react-icons/ri";
+import { SiTypescript } from "react-icons/si";
 import BrowserWrapper from "@/components/common/BrowserWrapper";
 import CornerDecorations from "@/components/common/CornerDecorations";
-
 
 // --- Hero Component ---
 
@@ -20,13 +24,8 @@ function HeroContent() {
   return (
     <div className="mx-auto grid w-full max-w-2xl grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10">
       
-      
-      <p className="text-foreground px-4 py-2 text-2xl font-semibold tracking-tight sm:text-left sm:text-3xl hidden sm:block">
-        HELLO
-      </p>
       <h1 className="text-foreground px-4 text-[32px] font-semibold tracking-tight sm:text-[40px] sm:text-left py-2">
-        <span className="sm:hidden">Hello, </span>
-        I&apos;m Tim
+        Hello, I&apos;m Tim
       </h1>
 
       <p className="text-foreground/80 px-4 text-[18px] text-left py-4 leading-[32px] text-pretty">
@@ -50,26 +49,38 @@ function HeroContent() {
                 "top-1/2 -translate-y-1/2",
               )}
             />
-            <div className="flex flex-row gap-x-1">
+            <div className="flex flex-row gap-x-1 items-center flex-wrap">
               {item.name && (
                 <span className="font-semibold text-foreground text-[14px] sm:text-[16px]">
                   {item.name}:
                 </span>
               )}
-              <span className="text-foreground/80 text-[14px] sm:text-[16px]">{item.description}</span>
+              {item.name === "Love" ? (
+                 <span className="text-foreground/80 text-[14px] sm:text-[16px] inline-flex items-center  flex-wrap gap-0.5">
+                  &nbsp;<NextJsLogo className="hidden sm:inline-block size-4 text-black dark:text-white" />Next.js &nbsp;
+                  <TailwindcssLogo className="hidden sm:inline-block size-4 text-[#06B6D4]" />TailwindCSS &nbsp;
+                  <span className="inline-flex items-center gap-1"><SiTypescript className="hidden sm:inline-block size-4 text-[#3178C6]" />Typescript</span>
+                </span>
+              ) : (
+                <span className="text-foreground/80 text-[14px] sm:text-[16px]">{item.description}</span>
+              )}
             </div>
+            
           </li>
         ))}
       </ul>
 
       <div className="px-4 py-4 text-left">
-        <Button asChild>
-          <Link href="/about" className="w-full px-6 py-5 sm:w-auto text-[16px] font-semibold">
-            Learn more about Tim
-          </Link>
-        </Button>
+        <div className="flex flex-col gap-6">
+          <Button asChild className="w-fit">
+            <Link href="/about" className="px-6 py-5 text-[16px] font-semibold">
+              Learn more about Tim
+            </Link>
+          </Button>
+        </div>
       </div>
     </div>
+    
   );
 }
 
@@ -108,7 +119,7 @@ export default function HeroSection({
     <Section gridId="hero">
       <CornerDecorations top={true}/>
       <BrowserWrapper>  
-      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-6 bg-background rounded-xl corner-squircle">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-6 bg-background">
         
         {/* Image Section */}
         <div className="w-full lg:col-span-1">
