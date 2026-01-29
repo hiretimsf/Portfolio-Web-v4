@@ -6,7 +6,7 @@ import Divider from "@/components/Divider";
 
 export default function Footer() {
   return (
-    <footer className="w-full mx-auto overflow-x-hidden">
+    <footer className="w-full mx-auto">
       <Inspiration />
       <TechStack />
       <Divider short={true} />

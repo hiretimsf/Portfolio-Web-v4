@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import type { ElementType, FC, ReactNode } from "react";
+import CornerDecorations from "@/components/common/CornerDecorations";
 
 interface InfoBarItemProps {
   icon?: ElementType;
@@ -74,7 +75,8 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
   className,
 }) => {
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn("w-full relative", className)}>
+      <CornerDecorations top={true}/>
       {/* Desktop View */}
       <div className="hidden sm:flex mx-auto w-full max-w-5xl flex-row items-center justify-start divide-x divide-black/10 dark:divide-white/10">
         <InfoBarItem

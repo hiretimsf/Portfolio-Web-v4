@@ -11,12 +11,15 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { IoCheckmarkCircle as CheckmarkIcon } from "react-icons/io5";
 import BrowserWrapper from "@/components/common/BrowserWrapper";
+import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 // --- Hero Component ---
 
 function HeroContent() {
   return (
     <div className="mx-auto grid w-full max-w-2xl grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10">
+      
       
       <p className="text-foreground px-4 py-2 text-2xl font-semibold tracking-tight sm:text-left sm:text-3xl hidden sm:block">
         HELLO
@@ -103,6 +106,7 @@ export default function HeroSection({
 
   return (
     <Section gridId="hero">
+      <CornerDecorations top={true}/>
       <BrowserWrapper>  
       <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-6 bg-background rounded-xl corner-squircle">
         

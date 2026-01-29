@@ -29,9 +29,26 @@ export interface TOCProps {
   footer?: ReactNode;
 
   children: ReactNode;
+
+  /**
+   * Enabled the banner in the TOC
+   *
+   * @defaultValue true
+   */
+  bannerEnabled?: boolean;
 }
 
-export function DocsTOC(props: HTMLAttributes<HTMLDivElement>) {
+export function DocsTOC({
+  header,
+  footer,
+  children,
+  bannerEnabled = true,
+  ...props
+}: HTMLAttributes<HTMLDivElement> & {
+  header?: ReactNode;
+  footer?: ReactNode;
+  bannerEnabled?: boolean;
+}) {
   const { toc } = usePageStyles();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -63,9 +80,16 @@ export function DocsTOC(props: HTMLAttributes<HTMLDivElement>) {
         } as object
       }
     >
-      <div className="flex h-full w-(--fd-toc-width) max-w-full flex-col pe-4">
-        {props.children}
-        <Banner />
+      <div
+        className={cn(
+          "flex h-full max-w-full flex-col pe-4 transition-[width]",
+          bannerEnabled ? "w-(--fd-toc-width)" : "w-[220px]",
+        )}
+      >
+        {header}
+        {children}
+        {footer}
+        {bannerEnabled && <Banner />}
       </div>
     </motion.div>
   );
@@ -103,9 +127,11 @@ export function TOCScrollArea(props: ComponentProps<"div">) {
 export function TOCItems({
   items,
   prose = true,
+  compact = false,
 }: {
   items: TOCItemType[];
   prose?: boolean;
+  compact?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -122,7 +148,12 @@ export function TOCItems({
         className="border-fd-foreground/10 flex flex-col border-s"
       >
         {items.map((item) => (
-          <TOCItem key={item.url} item={item} prose={prose} />
+          <TOCItem
+            key={item.url}
+            item={item}
+            prose={prose}
+            compact={compact}
+          />
         ))}
       </div>
     </>
@@ -132,19 +163,22 @@ export function TOCItems({
 function TOCItem({
   item,
   prose = true,
+  compact = false,
 }: {
   item: TOCItemType;
   prose?: boolean;
+  compact?: boolean;
 }) {
   return (
     <Primitive.TOCItem
       href={item.url}
       className={cn(
-        "text-foreground/60 text-left data-[active=true]:text-foreground py-1.5 text-sm [overflow-wrap:anywhere] transition-colors first:pt-0 last:pb-0",
+        "text-foreground/60 text-left data-[active=true]:text-foreground py-1.5 text-sm transition-colors first:pt-0 last:pb-0",
         prose && "prose",
         item.depth <= 2 && "ps-3",
         item.depth === 3 && "ps-6",
         item.depth >= 4 && "ps-8",
+        compact ? "truncate" : "[overflow-wrap:anywhere]",
       )}
     >
       {item.title}

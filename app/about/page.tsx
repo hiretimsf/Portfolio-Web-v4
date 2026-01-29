@@ -15,6 +15,7 @@ import type { ComponentType } from "react";
 import Web from "@/features/about/components/Web";
 import LastModified from "@/components/common/LastModified";
 import ImageWithLoader from "@/components/common/ImageWithLoader";
+import CornerDecorations from "@/components/common/CornerDecorations";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -73,9 +74,10 @@ export default async function AboutMePage() {
 
   return (
     <>
-      <Divider />
+      <Divider short={true}/>
       <main className="mx-auto flex flex-col">
         <div className="relative">
+          <CornerDecorations className="z-10"/>
           {/* Mobile Image */}
           <div className="md:hidden">
             <ImageWithLoader
@@ -101,7 +103,7 @@ export default async function AboutMePage() {
             />
           </div>
         </div>
-        <Divider plain={true} />
+        <Divider short={true}/>
         <Title
           title={title ?? "Hello, I'm Tim"}
           textStyleClassName="text-3xl font-semibold md:text-4xl"
@@ -109,11 +111,12 @@ export default async function AboutMePage() {
         />
         <Divider plain={true} />
         <div className="border-border relative min-h-52 max-w-full">
+          <CornerDecorations bottom={true}/>
           <DocsLayout
             tree={aboutSource.pageTree}
             containerProps={{ className: "relative bg-transparent" }}
           >
-            <DocsPage toc={pageData.toc}>
+            <DocsPage toc={pageData.toc} tableOfContent={{ bannerEnabled: false }}>
               <DocsBody prose={false}>
                 <MDX code={MDX} components={{ ...getMDXComponents(), Web }} />
               </DocsBody>
@@ -121,13 +124,13 @@ export default async function AboutMePage() {
           </DocsLayout>
         </div>
       </main>
-      <Divider plain={true} />
+      <Divider short={true} />
       <LastModified
         lastModified={pageData.lastModified ?? new Date().toISOString()}
       />
-      <Divider plain={true} />
+      <Divider short={true} />
       <Contact />
-      <Divider borderBottom={false} />
+      <Divider short={true} borderBottom={false}/>
     </>
   );
 }

@@ -1,8 +1,8 @@
 import {
   CalendarIcon,
   ClockIcon,
+  UserIcon,
 } from "@/components/common/Icons";
-import BriefcaseIcon from "@/features/experience/icons/briefcase-icon";
 
 interface PositionMetaProps {
   employmentType: string;
@@ -47,7 +47,7 @@ export default function PositionMeta({
 }: PositionMetaProps) {
   const metaItems = [
     {
-      icon: <BriefcaseIcon className="size-4" />,
+      icon: <UserIcon className="size-4" />,
       value: employmentType,
     },
     {

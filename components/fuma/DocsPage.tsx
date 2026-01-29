@@ -216,7 +216,7 @@ export function DocsPage({
       </DocsPageBody>
       {slot(
         { enabled: tocEnabled, component: tocReplace },
-        <DocsTOC>
+        <DocsTOC bannerEnabled={tocOptions.bannerEnabled}>
           {tocOptions.header}
           <h3 className="text-foreground inline-flex items-center gap-1.5 text-sm">
             <Text className="size-4" />
@@ -226,7 +226,11 @@ export function DocsPage({
             {tocOptions.style === "clerk" ? (
               <ClerkTOCItems />
             ) : (
-              <TOCItems items={toc} prose={prose} />
+              <TOCItems
+                items={toc}
+                prose={prose}
+                compact={!(tocOptions.bannerEnabled ?? true)}
+              />
             )}
           </TOCScrollArea>
           {tocOptions.footer}

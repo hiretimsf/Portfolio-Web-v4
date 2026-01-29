@@ -37,16 +37,16 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   return (
     <>
-      <Divider />
+      <Divider short={true}/>
       <Title
         title="Blog"
         textStyleClassName="text-2xl font-bold sm:text-3xl"
       />
-      <Divider plain={true} />
+      <Divider plain={true}/>
       <BlogPostList />
-      <Divider plain={true} />
+      <Divider short={true}/>
       <Contact />
-      <Divider borderBottom={false} />
+      <Divider short={true} borderBottom={false}/>
     </>
   );
 }

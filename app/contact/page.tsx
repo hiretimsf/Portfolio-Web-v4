@@ -6,6 +6,7 @@ import type { HeadType } from "@/types";
 import type { Metadata } from "next";
 import { ContactForm } from "@/features/contact/ContactForm";
 import Contact from "@/components/layout/main/Contact";
+import CornerDecorations from "@/components/common/CornerDecorations";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -37,21 +38,22 @@ export const metadata: Metadata = {
 export default async function ContactPage() {
   return (
     <>
-      <Divider />
+      <Divider short={true}/>
       <main className="mx-auto flex flex-col">
         <Title
           title={"Contact"}
           textStyleClassName="text-3xl font-semibold md:text-4xl"
           gridId="grid-contact"
         />
-        <Divider plain={true} />
+        <Divider plain={true}/>
         <div className="border-border relative min-h-52 max-w-full">
+          <CornerDecorations bottom={true}/>
           <ContactForm />
         </div>
       </main>
-      <Divider plain={true} />
+      <Divider short={true}/>
       <Contact showSocialLinks={true} />
-      <Divider borderBottom={false} />
+      <Divider short={true} borderBottom={false}/>
     </>
   );
 }

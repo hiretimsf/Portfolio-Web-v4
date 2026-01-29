@@ -13,6 +13,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ComponentType } from "react";
 import LastModified from "@/components/common/LastModified";
+import CornerDecorations from "@/components/common/CornerDecorations";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -61,7 +62,7 @@ export default async function PrivacyPage() {
 
   return (
     <>
-      <Divider />
+      <Divider short={true}/>
       <main className="mx-auto flex flex-col">
         <Title
           title={title ?? "Privacy Policy"}
@@ -70,6 +71,7 @@ export default async function PrivacyPage() {
         />
         <Divider plain={true} />
         <div className="border-border relative min-h-52 max-w-full">
+          <CornerDecorations bottom={true}/>
           <DocsLayout
             tree={privacySource.pageTree}
             containerProps={{ className: "relative bg-transparent" }}
@@ -82,13 +84,13 @@ export default async function PrivacyPage() {
           </DocsLayout>
         </div>
       </main>
-      <Divider plain={true} />
+      <Divider short={true} />
       <LastModified
         lastModified={pageData.lastModified ?? new Date().toISOString()}
       />
-      <Divider plain={true} />
+      <Divider short={true} />
       <Contact />
-      <Divider borderBottom={false} />
+      <Divider short={true} borderBottom={false} />
     </>
   );
 }

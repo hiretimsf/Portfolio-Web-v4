@@ -18,6 +18,7 @@ import type { MDXComponents } from "mdx/types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { BlogPosting, WithContext } from "schema-dts";
+import CornerDecorations from "@/components/common/CornerDecorations";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -146,24 +147,28 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           __html: JSON.stringify(getPageJsonLd(post)).replace(/</g, "\\u003c"),
         }}
       />
-      <Divider />
+      <Divider short={true} />
       <main className="mx-auto flex flex-col">
         <BlogPostNavigation
           post={postWithoutBody}
           previous={prevPostWithoutBody}
           next={nextPostWithoutBody}
         />
-        <Divider plain={true} />
+        <Divider short={true} />
+        <div className="relative mx-auto w-full max-w-5xl">
+          <CornerDecorations className="z-10"/>
         <ImageWithLoader
           alt={post.title}
           src={post.image}
           width={1000}
           height={500}
-          className="h-auto max-h-96 w-full object-cover"
+          className="h-auto max-h-96 w-full object-cover z-0"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1000px"
           priority
         />
-        <Divider plain={true} />
+        </div>
+     
+        <Divider short={true} />
         <BlogPostMetaData
           authorImage={authorImage}
           authorName={authorName}
@@ -180,10 +185,11 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           gridId="grid-blog-post-heading"
         />
         <Divider plain={true} />
-        <div className="mx-auto w-full max-w-5xl">
+        <div className="relative mx-auto w-full max-w-5xl">
+          <CornerDecorations />
           <DocsLayout tree={blogSource.pageTree}>
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            <DocsPage toc={(page.data as any).toc ?? []}>
+            <DocsPage toc={(page.data as any).toc ?? []} tableOfContent={{ bannerEnabled: false }}>
               <DocsBody prose={false}>
                 <MDXContent components={getMDXComponents()} />
               </DocsBody>
@@ -191,13 +197,13 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           </DocsLayout>
         </div>
       </main>
-      <Divider plain={true} />
+      <Divider short={true}/>
       <LastModified
         lastModified={post.lastUpdated ?? new Date().toISOString()}
       />
-      <Divider plain={true} />
+      <Divider short={true}/>
       <Contact />
-      <Divider borderBottom={false} />
+      <Divider short={true} borderBottom={false}/>
     </>
   );
 }
