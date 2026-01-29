@@ -12,8 +12,8 @@ import {
 } from "@/components/ui/card";
 import type { BlogPostType } from "@/features/blog/types/BlogPostType";
 import {
-  DateIcon,
-  ReadingTimeIcon,
+  CalendarIcon,
+  ClockIcon,
   FolderIcon,
 } from "@/components/common/Icons";
 import { cn, formatDate, trackEvent, getShimmerDataUrl } from "@/lib/utils";
@@ -23,12 +23,22 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ImageWithLoader from "@/components/common/ImageWithLoader";
 
+/**
+ * Props for the BlogCardItem component.
+ * @property index - Index of the card for accessibility labeling.
+ * @property item - The blog post data.
+ * @property sizes - Optional image sizes for optimization.
+ */
 type BlogCardItemProps = {
   index: number;
   item: Omit<BlogPostType, "body">;
   sizes?: string;
 };
 
+/**
+ * A card component representing a single blog post.
+ * Displays a cover image, title, metadata, description, and author info.
+ */
 export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) {
   const href = `/blog/post/${item.slug}`;
 
@@ -64,15 +74,15 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
               </div>
               <div className="grid grid-cols-2 grid-rows-1 w-full border-b border-dashed border-black/10 dark:border-white/10">
                 <div className="flex items-center px-2 py-2 border-r border-dashed border-black/10 dark:border-white/10">
-                  <DateIcon size={20} className="mr-2 size-5 text-muted-foreground" />
+                  <CalendarIcon size={16} className="mr-2 size-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">
                     {item.created ? formatDate(item.created as string) : "No date"}
                   </span>
                 </div>
                 <div className="flex items-center px-2 py-2">
-                  <ReadingTimeIcon
-                    size={20}
-                    className="mr-2 size-5 text-muted-foreground"
+                  <ClockIcon
+                    size={16}
+                    className="mr-2 size-4 text-muted-foreground"
                   />
                   <span className="text-sm text-muted-foreground">
                     {item.readingTimeMinutes !== undefined ? `${item.readingTimeMinutes} min` : "N/A"}
@@ -86,7 +96,7 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
               </CardDescription>
             </CardContent>
             <CardFooter className="flex w-full flex-col items-stretch p-0">
-              <div className="grid grid-cols-2 grid-rows-1 w-full border-y border-dashed border-black/10 dark:border-white/10">
+              <div className="grid grid-cols-2 grid-rows-1 w-full border-t border-dashed border-black/10 dark:border-white/10">
                 <div className="flex items-center px-2 py-2 border-r border-dashed border-black/10 dark:border-white/10">
                   {item.author ? (
                     <>
@@ -96,9 +106,9 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
                           alt={item.author}
                           fill
                           className="object-cover"
-                          sizes="20px"
+                          sizes="16px"
                           placeholder="blur"
-                          blurDataURL={getShimmerDataUrl(20, 20)}
+                          blurDataURL={getShimmerDataUrl(16, 16)}
                         />
                       </div>
                       <span className="text-sm text-muted-foreground">
@@ -110,7 +120,7 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
                   )}
                 </div>
                 <div className="flex items-center px-2 py-2">
-                  <FolderIcon size={20} className="mr-2 size-5 text-muted-foreground" />
+                  <FolderIcon size={16} className="mr-2 size-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">
                     {item.category || "Uncategorized"}
                   </span>

@@ -1,8 +1,9 @@
-import { type ClassValue, clsx } from "clsx";
+import { clsx } from "clsx";
+import type { ClassValue } from "clsx";
 import { format } from "date-fns";
 import { LRUCache } from "lru-cache";
 import * as React from "react";
-import { type JSX } from "react";
+import type { JSX } from "react";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
@@ -149,6 +150,13 @@ export function getBaseUrl(slug?: string): string {
  */
 export function formatDate(date: string, formatStr: string = "MM/dd/yyyy") {
   if (date === "Present" || date === "present") return "Present";
+
+  // Handle MM/yyyy format
+  if (/^\d{1,2}\/\d{4}$/.test(date)) {
+    const [month, year] = date.split("/");
+    return format(new Date(Number(year), Number(month) - 1, 1), formatStr);
+  }
+
   return format(new Date(date), formatStr);
 }
 

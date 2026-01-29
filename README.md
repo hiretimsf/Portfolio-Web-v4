@@ -135,11 +135,18 @@ A quick look at the top-level directory structure:
 hiretimsf.com/
 ├── actions/        # Server actions for mutations/data
 ├── app/            # Next.js App Router (pages & layouts)
-├── components/     # React components (atomic design)
+├── components/     # React components (atomic: ui, common, layout)
+│   ├── common/     # Reusable business components (cards, icons)
+│   ├── layout/     # Structural components (Header, Footer)
+│   ├── ui/         # Shadcn UI primitives
+│   └── mdx/        # MDX-specific components
 ├── config/         # Static configuration (site, nav, SEO)
-├── features/       # Feature-based modules (blog, projects, etc.)
-├── hooks/          # Custom React hooks
-├── lib/            # Shared utilities and helpers
+├── features/       # Feature-based modules (blog, projects, home)
+│   ├── blog/       # Blog logic, components, and content
+│   ├── projects/   # Portfolio projects data and components
+│   └── home/       # Landing page sections
+├── hooks/          # Custom React hooks (useMedia, useDebounce)
+├── lib/            # Shared utilities (utils, config)
 ├── public/         # Static assets (images, fonts)
 ├── styles/         # Global styles & Tailwind setup
 └── types/          # TypeScript type definitions

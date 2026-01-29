@@ -170,6 +170,8 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           date={date}
           category={category}
           readTime={readTime}
+          comments={0}
+          views={0}
         />
         <Divider plain={true} />
         <BlogPostTitle

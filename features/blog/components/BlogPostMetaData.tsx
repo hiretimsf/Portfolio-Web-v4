@@ -1,8 +1,10 @@
 import { getMinutes } from "@/features/blog/lib/get-minutes";
 import {
-  DateIcon,
+  CalendarIcon,
   FolderIcon,
-  ReadingTimeIcon,
+  ClockIcon,
+  CommentIcon,
+  EyeIcon,
 } from "@/components/common/Icons";
 import { cn } from "@/lib/utils";
 import { format, parseISO } from "date-fns";
@@ -27,12 +29,15 @@ const InfoBarItem: FC<InfoBarItemProps> = ({
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-2 px-6 py-2 sm:py-3",
+        "inline-flex items-center gap-2 px-6 py-2",
         className,
       )}
     >
       {Icon && (
-        <Icon className={cn("size-6", iconClassName)} aria-hidden="true" />
+        <Icon
+          className={cn("size-4 text-muted-foreground", iconClassName)}
+          aria-hidden="true"
+        />
       )}
       {children}
       <span className="text-sm">{text}</span>
@@ -40,21 +45,32 @@ const InfoBarItem: FC<InfoBarItemProps> = ({
   );
 };
 
+/**
+ * Displays metadata for a blog post including author, date, category, and stats.
+ */
 interface BlogPostMetaDataProps {
   authorImage: string;
   authorName: string;
   date: string;
   category: string;
   readTime: number;
+  comments?: number;
+  views?: number;
   className?: string;
 }
 
+/**
+ * A responsive metadata bar for blog posts.
+ * Renders a row layout on desktop and a grid layout on mobile.
+ */
 const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
   authorImage,
   authorName,
   date,
   category,
   readTime,
+  comments = 0,
+  views = 0,
   className,
 }) => {
   return (
@@ -69,9 +85,9 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
           <Image
             src={authorImage}
             alt={authorName}
-            width={24}
-            height={24}
-            className="size-6 rounded-full"
+            width={16}
+            height={16}
+            className="size-4 rounded-full"
             loading="lazy"
           />
         </InfoBarItem>
@@ -79,17 +95,19 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
         <InfoBarItem icon={FolderIcon} text={category} />
 
         <InfoBarItem
-          icon={DateIcon}
+          icon={CalendarIcon}
           text={format(parseISO(date), "MMM dd, yyyy")}
         />
 
-        <InfoBarItem icon={ReadingTimeIcon} text={getMinutes(readTime)} />
+        <InfoBarItem icon={ClockIcon} text={getMinutes(readTime)} />
+        <InfoBarItem icon={CommentIcon} text={`${comments} Comments`} />
+        <InfoBarItem icon={EyeIcon} text={`${views} Views`} />
       </div>
 
       {/* Mobile View */}
-      <div className="sm:hidden grid grid-cols-2 items-center justify-start divide-x divide-black/10 dark:divide-white/10 divide-dashed">
+      <div className="sm:hidden grid grid-cols-2 items-center justify-start border-black/10 dark:border-white/10">
         <InfoBarItem
-          className="border-b border-black/10 dark:border-white/10 border-dashed"
+          className="border-b border-r border-dashed border-black/10 dark:border-white/10"
           text={
             <span className="font-medium text-foreground">{authorName}</span>
           }
@@ -97,9 +115,9 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
           <Image
             src={authorImage}
             alt={authorName}
-            width={24}
-            height={24}
-            className="size-6 rounded-full"
+            width={16}
+            height={16}
+            className="size-4 rounded-full"
             loading="lazy"
           />
         </InfoBarItem>
@@ -107,15 +125,27 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
         <InfoBarItem
           icon={FolderIcon}
           text={category}
-          className="border-b border-black/10 dark:border-white/10 border-dashed"
+          className="border-b border-dashed border-black/10 dark:border-white/10"
         />
 
         <InfoBarItem
-          icon={DateIcon}
+          icon={CalendarIcon}
           text={format(parseISO(date), "MMM dd, yyyy")}
+          className="border-b border-r border-dashed border-black/10 dark:border-white/10"
         />
 
-        <InfoBarItem icon={ReadingTimeIcon} text={getMinutes(readTime)} />
+        <InfoBarItem
+          icon={ClockIcon}
+          text={getMinutes(readTime)}
+          className="border-b border-dashed border-black/10 dark:border-white/10"
+        />
+
+        <InfoBarItem
+          icon={CommentIcon}
+          text={`${comments} Comments`}
+          className="border-r border-dashed border-black/10 dark:border-white/10"
+        />
+        <InfoBarItem icon={EyeIcon} text={`${views} Views`} />
       </div>
     </div>
   );

@@ -1,12 +1,6 @@
-import type { FC, SVGProps } from "react";
+import type { FC } from "react";
 
 // --- Types ---
-
-type IconProps = SVGProps<SVGSVGElement> & {
-  secondaryfill?: string;
-  strokewidth?: number;
-  title?: string;
-};
 
 interface SizedIconProps {
   size?: number;
@@ -15,300 +9,98 @@ interface SizedIconProps {
 
 // --- Icons ---
 
-export function CalendarIcon({ title = "calendar", ...props }: IconProps) {
-  return (
-    <svg
-      height="48"
-      width="48"
-      viewBox="0 0 48 48"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <title>{title}</title>
-      <g>
-        <path
-          d="M7 5H41C43.76 5 46 7.24 46 10V18H2V10C2 7.24 4.24 5 7 5Z"
-          fill="url(#nc-ui-7-0_linear_219_158)"
-        />
-        <path
-          d="M2 18H46V41C46 43.76 43.76 46 41 46H7C4.24 46 2 43.76 2 41V18Z"
-          fill="url(#nc-ui-7-1_linear_219_158)"
-        />
-        <path
-          d="M13 10C12.448 10 12 9.552 12 9V2C12 1.448 12.448 1 13 1C13.552 1 14 1.448 14 2V9C14 9.552 13.552 10 13 10Z"
-          fill="url(#nc-ui-7-2_linear_219_158)"
-        />
-        <path
-          d="M35 10C34.448 10 34 9.552 34 9V2C34 1.448 34.448 1 35 1C35.552 1 36 1.448 36 2V9C36 9.552 35.552 10 35 10Z"
-          fill="url(#nc-ui-7-3_linear_219_158)"
-        />
-        <path
-          d="M17 32H11C10.4477 32 10 32.4477 10 33V39C10 39.5523 10.4477 40 11 40H17C17.5523 40 18 39.5523 18 39V33C18 32.4477 17.5523 32 17 32Z"
-          fill="url(#nc-ui-7-4_linear_219_158)"
-        />
-        <path
-          d="M17 22H11C10.4477 22 10 22.4477 10 23V29C10 29.5523 10.4477 30 11 30H17C17.5523 30 18 29.5523 18 29V23C18 22.4477 17.5523 22 17 22Z"
-          fill="url(#nc-ui-7-5_linear_219_158)"
-        />
-        <path
-          d="M27 32H21C20.4477 32 20 32.4477 20 33V39C20 39.5523 20.4477 40 21 40H27C27.5523 40 28 39.5523 28 39V33C28 32.4477 27.5523 32 27 32Z"
-          fill="url(#nc-ui-7-6_linear_219_158)"
-        />
-        <path
-          d="M27 22H21C20.4477 22 20 22.4477 20 23V29C20 29.5523 20.4477 30 21 30H27C27.5523 30 28 29.5523 28 29V23C28 22.4477 27.5523 22 27 22Z"
-          fill="url(#nc-ui-7-7_linear_219_158)"
-        />
-        <path
-          d="M37 22H31C30.4477 22 30 22.4477 30 23V29C30 29.5523 30.4477 30 31 30H37C37.5523 30 38 29.5523 38 29V23C38 22.4477 37.5523 22 37 22Z"
-          fill="url(#nc-ui-7-8_linear_219_158)"
-        />
-        <defs>
-          <linearGradient
-            id="nc-ui-7-0_linear_219_158"
-            gradientUnits="userSpaceOnUse"
-            x1="24"
-            x2="24"
-            y1="5"
-            y2="18"
-          >
-            <stop stopColor="#5B5E71" />
-            <stop offset="1" stopColor="#393A46" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-7-1_linear_219_158"
-            gradientUnits="userSpaceOnUse"
-            x1="24"
-            x2="24"
-            y1="18"
-            y2="46"
-          >
-            <stop stopColor="#E0E0E6" />
-            <stop offset="1" stopColor="#C2C3CD" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-7-2_linear_219_158"
-            gradientUnits="userSpaceOnUse"
-            x1="13"
-            x2="13"
-            y1="1"
-            y2="10"
-          >
-            <stop stopColor="#A2A3B4" />
-            <stop offset="1" stopColor="#83849B" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-7-3_linear_219_158"
-            gradientUnits="userSpaceOnUse"
-            x1="35"
-            x2="35"
-            y1="1"
-            y2="10"
-          >
-            <stop stopColor="#A2A3B4" />
-            <stop offset="1" stopColor="#83849B" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-7-4_linear_219_158"
-            gradientUnits="userSpaceOnUse"
-            x1="14"
-            x2="14"
-            y1="32"
-            y2="40"
-          >
-            <stop stopColor="#A2A3B4" />
-            <stop offset="1" stopColor="#83849B" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-7-5_linear_219_158"
-            gradientUnits="userSpaceOnUse"
-            x1="14"
-            x2="14"
-            y1="22"
-            y2="30"
-          >
-            <stop stopColor="#A2A3B4" />
-            <stop offset="1" stopColor="#83849B" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-7-6_linear_219_158"
-            gradientUnits="userSpaceOnUse"
-            x1="24"
-            x2="24"
-            y1="32"
-            y2="40"
-          >
-            <stop stopColor="#A2A3B4" />
-            <stop offset="1" stopColor="#83849B" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-7-7_linear_219_158"
-            gradientUnits="userSpaceOnUse"
-            x1="24"
-            x2="24"
-            y1="22"
-            y2="30"
-          >
-            <stop stopColor="#A2A3B4" />
-            <stop offset="1" stopColor="#83849B" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-7-8_linear_219_158"
-            gradientUnits="userSpaceOnUse"
-            x1="34"
-            x2="34"
-            y1="22"
-            y2="30"
-          >
-            <stop stopColor="#A2A3B4" />
-            <stop offset="1" stopColor="#83849B" />
-          </linearGradient>
-        </defs>
-      </g>
-    </svg>
-  );
-}
-
-export function ClockIcon({ title = "clock", ...props }: IconProps) {
-  return (
-    <svg
-      height="48"
-      width="48"
-      viewBox="0 0 48 48"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <title>{title}</title>
-      <g>
-        <path
-          d="M24 47C36.7025 47 47 36.7025 47 24C47 11.2975 36.7025 1 24 1C11.2975 1 1 11.2975 1 24C1 36.7025 11.2975 47 24 47Z"
-          fill="url(#nc-ui-2-0_linear_103_120)"
-        />
-        <path
-          d="M32 25H24C23.7 25 23.4 24.8 23.2 24.6L15.2 12.6C14.9 12.1 15 11.5 15.5 11.2C16 10.9 16.6 11 16.9 11.5L24.5 23H32C32.6 23 33 23.4 33 24C33 24.6 32.6 25 32 25Z"
-          fill="url(#nc-ui-2-1_linear_103_120)"
-        />
-        <path
-          d="M23 5C23 4.4 23.4 4 24 4C24.6 4 25 4.4 25 5V9C25 9.6 24.6 10 24 10C23.4 10 23 9.6 23 9V5Z"
-          fill="url(#nc-ui-2-2_linear_103_120)"
-        />
-        <path
-          d="M9 25H5C4.4 25 4 24.6 4 24C4 23.4 4.4 23 5 23H9C9.6 23 10 23.4 10 24C10 24.6 9.6 25 9 25Z"
-          fill="url(#nc-ui-2-3_linear_103_120)"
-        />
-        <path
-          d="M25 43C25 43.6 24.6 44 24 44C23.4 44 23 43.6 23 43V39C23 38.4 23.4 38 24 38C24.6 38 25 38.4 25 39V43Z"
-          fill="url(#nc-ui-2-4_linear_103_120)"
-        />
-        <path
-          d="M43 25H39C38.4 25 38 24.6 38 24C38 23.4 38.4 23 39 23H43C43.6 23 44 23.4 44 24C44 24.6 43.6 25 43 25Z"
-          fill="url(#nc-ui-2-5_linear_103_120)"
-        />
-        <defs>
-          <linearGradient
-            id="nc-ui-2-0_linear_103_120"
-            gradientUnits="userSpaceOnUse"
-            x1="24"
-            x2="24"
-            y1="1"
-            y2="47"
-          >
-            <stop stopColor="#C5DCE7" />
-            <stop offset="1" stopColor="#80B0CB" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-2-1_linear_103_120"
-            gradientUnits="userSpaceOnUse"
-            x1="24.0156"
-            x2="24.0156"
-            y1="11.0312"
-            y2="25"
-          >
-            <stop stopColor="#4480A7" />
-            <stop offset="1" stopColor="#32597C" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-2-2_linear_103_120"
-            gradientUnits="userSpaceOnUse"
-            x1="24"
-            x2="24"
-            y1="4"
-            y2="44.5"
-          >
-            <stop stopColor="#80B0CB" />
-            <stop offset="1" stopColor="#4480A7" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-2-3_linear_103_120"
-            gradientUnits="userSpaceOnUse"
-            x1="7"
-            x2="7"
-            y1="4"
-            y2="43.5"
-          >
-            <stop stopColor="#80B0CB" />
-            <stop offset="1" stopColor="#4480A7" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-2-4_linear_103_120"
-            gradientUnits="userSpaceOnUse"
-            x1="24"
-            x2="24"
-            y1="4.5"
-            y2="44"
-          >
-            <stop stopColor="#80B0CB" />
-            <stop offset="1" stopColor="#4480A7" />
-          </linearGradient>
-          <linearGradient
-            id="nc-ui-2-5_linear_103_120"
-            gradientUnits="userSpaceOnUse"
-            x1="41"
-            x2="41"
-            y1="4.5"
-            y2="44.5"
-          >
-            <stop stopColor="#80B0CB" />
-            <stop offset="1" stopColor="#4480A7" />
-          </linearGradient>
-        </defs>
-      </g>
-    </svg>
-  );
-}
-
-export const DateIcon: FC<SizedIconProps> = ({ size, className }) => {
+export const CalendarIcon: FC<SizedIconProps> = ({ size, className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox={`0 0 ${size} ${size}`}
+      viewBox="0 0 18 18"
       className={className}
     >
-      <g>
+      <title>calendar-days</title>
+      <g fill="currentColor">
         <path
-          d="M0.84 17.22a2.1 2.1 0 0 0 2.1 2.1h14.28a2.1 2.1 0 0 0 2.1-2.1v-10.5h-18.48z"
-          fill="#e3e3e3"
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M1.5 4.75C1.5 3.23069 2.73128 2 4.25 2H13.75C15.2687 2 16.5 3.23069 16.5 4.75V13.25C16.5 14.7693 15.2687 16 13.75 16H4.25C2.73128 16 1.5 14.7693 1.5 13.25V4.75Z"
+          fill="currentColor"
+          fillOpacity="0.4"
         />
         <path
-          d="M17.22 2.52h-14.28a2.1 2.1 0 0 0-2.1 2.1v2.1h18.48v-2.1a2.1 2.1 0 0 0-2.1-2.1z"
-          fill="#ff7163"
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M6.5 0.75C6.5 0.335786 6.16421 0 5.75 0C5.33579 0 5 0.335786 5 0.75V2H4.25C2.73079 2 1.5 3.23079 1.5 4.75V6H16.5V4.75C16.5 3.23079 15.2692 2 13.75 2H13V0.75C13 0.335786 12.6642 0 12.25 0C11.8358 0 11.5 0.335786 11.5 0.75V2H6.5V0.75Z"
+          fill="currentColor"
         />
         <path
-          d="M9.76 16.34h-4.57v-0.97c1.21-1.23 2.25-2.25 2.59-2.69 0.58-0.75 0.48-1.39 0.21-1.63-0.54-0.48-1.44-0.04-2.07 0.48l-0.75-0.89a3.2 3.2 0 0 1 2.34-0.94c1.21 0 2.07 0.7 2.07 1.77a2.54 2.54 0 0 1-0.65 1.66c-0.35 0.43-2.02 2.04-2.02 2.04h2.85z"
-          fill="#aeaeae"
+          d="M9 8C8.449 8 8 8.449 8 9C8 9.551 8.449 10 9 10C9.551 10 10 9.551 10 9C10 8.449 9.551 8 9 8Z"
+          fill="currentColor"
         />
         <path
-          d="M10.37 13.51q0-1.94 0.82-2.89a3.07 3.07 0 0 1 2.46-0.95 4.47 4.47 0 0 1 0.88 0.07v1.1a3.58 3.58 0 0 0-0.79-0.09c-0.76 0-1.48 0.18-1.83 0.85a2.91 2.91 0 0 0-0.27 1.19 1.77 1.77 0 0 1 1.48-0.76c1.23 0 1.87 0.85 1.87 2.07 0 1.37-0.8 2.27-2.23 2.27-1.59 0-2.39-1.2-2.39-2.86z m2.36 1.76c0.65 0 0.92-0.49 0.92-1.15 0-0.61-0.27-1.03-0.89-1.03a0.97 0.97 0 0 0-1.01 0.91c0 0.64 0.36 1.27 0.98 1.27z"
-          fill="#aeaeae"
+          d="M12.5 10C13.051 10 13.5 9.551 13.5 9C13.5 8.449 13.051 8 12.5 8C11.949 8 11.5 8.449 11.5 9C11.5 9.551 11.949 10 12.5 10Z"
+          fill="currentColor"
         />
         <path
-          d="M4.83 5.04a0.63 0.63 0 0 1-0.63-0.63v-2.94a0.63 0.63 0 0 1 1.26 0v2.94a0.63 0.63 0 0 1-0.63 0.63z"
-          fill="#363636"
+          d="M9 11.5C8.449 11.5 8 11.949 8 12.5C8 13.051 8.449 13.5 9 13.5C9.551 13.5 10 13.051 10 12.5C10 11.949 9.551 11.5 9 11.5Z"
+          fill="currentColor"
         />
         <path
-          d="M15.33 5.04a0.63 0.63 0 0 1-0.63-0.63v-2.94a0.63 0.63 0 0 1 1.26 0v2.94a0.63 0.63 0 0 1-0.63 0.63z"
-          fill="#363636"
+          d="M5.5 11.5C4.949 11.5 4.5 11.949 4.5 12.5C4.5 13.051 4.949 13.5 5.5 13.5C6.051 13.5 6.5 13.051 6.5 12.5C6.5 11.949 6.051 11.5 5.5 11.5Z"
+          fill="currentColor"
+        />
+        <path
+          d="M12.5 11.5C11.949 11.5 11.5 11.949 11.5 12.5C11.5 13.051 11.949 13.5 12.5 13.5C13.051 13.5 13.5 13.051 13.5 12.5C13.5 11.949 13.051 11.5 12.5 11.5Z"
+          fill="currentColor"
+        />
+      </g>
+    </svg>
+  );
+}
+
+export const ClockIcon: FC<SizedIconProps> = ({ size, className }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 18 18"
+      className={className}
+    >
+      <title>alarm-clock</title>
+      <g fill="currentColor">
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M2 9C2 5.13379 5.13379 2 9 2C12.8662 2 16 5.13379 16 9C16 12.8662 12.8662 16 9 16C5.13379 16 2 12.8662 2 9Z"
+          fill="currentColor"
+          fillOpacity="0.4"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M13.9697 0.96967C14.2626 0.676777 14.7374 0.676777 15.0303 0.96967L17.0303 2.96967C17.3232 3.26256 17.3232 3.73744 17.0303 4.03033C16.7374 4.32322 16.2626 4.32322 15.9697 4.03033L13.9697 2.03033C13.6768 1.73744 13.6768 1.26256 13.9697 0.96967Z"
+          fill="currentColor"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M4.03033 0.96967C4.32322 1.26256 4.32322 1.73744 4.03033 2.03033L2.03033 4.03033C1.73744 4.32322 1.26256 4.32322 0.96967 4.03033C0.676777 3.73744 0.676777 3.26256 0.96967 2.96967L2.96967 0.96967C3.26256 0.676777 3.73744 0.676777 4.03033 0.96967Z"
+          fill="currentColor"
+        />
+        <path
+          d="M3.54816 13.3912L2.21967 14.7197C1.92678 15.0126 1.92678 15.4874 2.21967 15.7803C2.51257 16.0732 2.98744 16.0732 3.28033 15.7803L4.60882 14.4518C4.2186 14.1371 3.86286 13.7814 3.54816 13.3912Z"
+          fill="currentColor"
+        />
+        <path
+          d="M13.3912 14.4518L14.7197 15.7803C15.0126 16.0732 15.4874 16.0732 15.7803 15.7803C16.0732 15.4874 16.0732 15.0126 15.7803 14.7197L14.4518 13.3912C14.1371 13.7814 13.7814 14.1371 13.3912 14.4518Z"
+          fill="currentColor"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M9 5C9.41421 5 9.75 5.33579 9.75 5.75V8.58829L12.1527 10.1173C12.5021 10.3396 12.6051 10.8032 12.3827 11.1527C12.1604 11.5021 11.6968 11.6051 11.3473 11.3827L8.59734 9.63275C8.38101 9.49508 8.25 9.25643 8.25 9V5.75C8.25 5.33579 8.58579 5 9 5Z"
+          fill="currentColor"
         />
       </g>
     </svg>
@@ -321,86 +113,113 @@ export const FolderIcon: FC<SizedIconProps> = ({ size, className }) => {
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox={`0 0 ${size} ${size}`}
+      viewBox="0 0 18 18"
       className={className}
     >
-      <g>
+      <title>folder</title>
+      <g fill="currentColor">
         <path
-          fill="#5F4025"
-          d="M0.84 13.44l2.94-5.88h12.6l2.94 5.88-9.24 4.2z"
+          d="M1.5 6.5H16.5V13.25C16.5 14.7692 15.2692 16 13.75 16H4.25C2.73079 16 1.5 14.7692 1.5 13.25V6.5Z"
+          fill="currentColor"
+          fillOpacity="0.4"
         />
         <path
-          fill="#A67C52"
-          d="M10.08 18.06a0.42 0.42 0 0 1-0.17-0.04l-9.24-4.2a0.42 0.42 0 0 1-0.23-0.24 0.42 0.42 0 0 1 0.02-0.33l2.94-5.88c0.07-0.14 0.22-0.23 0.38-0.23h12.6c0.16 0 0.3 0.09 0.38 0.23l2.94 5.88a0.42 0.42 0 0 1-0.21 0.57l-9.24 4.2a0.43 0.43 0 0 1-0.17 0.04z m-8.67-4.82l8.67 3.94 8.67-3.94-2.63-5.26h-12.08l-2.63 5.26z"
-        />
-        <path
-          fill="#E6E6E6"
-          d="M16.38 15.96h-12.6a0.42 0.42 0 0 1-0.42-0.42v-14.7a0.42 0.42 0 0 1 0.42-0.42h12.6a0.42 0.42 0 0 1 0.42 0.42v14.7a0.42 0.42 0 0 1-0.42 0.42z"
-        />
-        <path
-          fill="#A67C52"
-          d="M13.02 13.02v2.1a0.42 0.42 0 0 1-0.42 0.42h-5.04a0.42 0.42 0 0 1-0.42-0.42v-2.1h-6.3a0.42 0.42 0 0 0-0.42 0.42v5.88a0.42 0.42 0 0 0 0.42 0.42h18.48a0.42 0.42 0 0 0 0.42-0.42v-5.88a0.42 0.42 0 0 0-0.42-0.42h-6.3z"
-        />
-        <path
-          fill="#B3B3B3"
-          d="M13.86 5.46h-7.56a0.42 0.42 0 0 1 0-0.84h7.56a0.42 0.42 0 0 1 0 0.84z"
-        />
-        <path
-          fill="#B3B3B3"
-          d="M13.86 9.24h-7.56a0.42 0.42 0 0 1 0-0.84h7.56a0.42 0.42 0 0 1 0 0.84z"
+          d="M4.25 2C2.73079 2 1.5 3.23079 1.5 4.75V6.5H16.5V6.25C16.5 4.73079 15.2692 3.5 13.75 3.5H8.72395L8.34569 3.02827C7.82347 2.37825 7.03552 2 6.201 2H4.25Z"
+          fill="currentColor"
         />
       </g>
     </svg>
   );
 };
 
-export const ReadingTimeIcon: FC<SizedIconProps> = ({ size, className }) => {
+export const CommentIcon: FC<SizedIconProps> = ({ size, className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
-      viewBox={`0 0 ${size} ${size}`}
+      viewBox="0 0 18 18"
       className={className}
     >
-      <g>
+      <title>msg-writing</title>
+      <g fill="currentColor">
         <path
-          fill="#e3e3e3"
-          d="M10.08 1.26a8.82 8.82 0 1 0 0 17.64 8.82 8.82 0 1 0 0-17.64z"
+          d="M9.00002 1C4.58181 1 1.00002 4.58179 1.00002 9C1.00002 10.4506 1.39246 11.8068 2.06488 12.977C2.09295 13.0343 2.13116 13.1672 2.13177 13.3972C2.13238 13.6268 2.09518 13.9039 2.01741 14.1997C1.85824 14.8052 1.55932 15.3797 1.2194 15.72C1.01031 15.9293 0.943812 16.242 1.04964 16.5183C1.15547 16.7946 1.41385 16.9828 1.70928 16.9989C2.44913 17.0391 3.26319 16.8932 3.96902 16.6876C4.4872 16.5366 4.98601 16.3421 5.39182 16.1345C5.91986 16.4026 6.63844 16.6947 7.52247 16.8619C8.00127 16.9526 8.49599 17 9.00002 17C13.4182 17 17 13.4182 17 9C17 4.58179 13.4182 1 9.00002 1Z"
+          fill="currentColor"
+          fillOpacity="0.4"
         />
         <path
-          d="M10.08 19.74a9.66 9.66 0 1 1 9.66-9.66 9.67 9.67 0 0 1-9.66 9.66z m0-17.64a7.98 7.98 0 1 0 7.98 7.98 7.99 7.99 0 0 0-7.98-7.98z"
-          fill="#2a4b55"
+          opacity="0.75"
+          d="M9 10C8.448 10 8 9.551 8 9C8 8.449 8.448 8 9 8C9.552 8 10 8.449 10 9C10 9.551 9.552 10 9 10Z"
+          fill="currentColor"
         />
         <path
-          d="M6.3 15.12a0.42 0.42 0 0 1-0.32-0.69l3.78-4.62a0.42 0.42 0 0 1 0.65 0.54l-3.78 4.62a0.42 0.42 0 0 1-0.33 0.15z"
-          fill="#ff7163"
+          d="M5.5 10C4.948 10 4.5 9.551 4.5 9C4.5 8.449 4.948 8 5.5 8C6.052 8 6.5 8.449 6.5 9C6.5 9.551 6.052 10 5.5 10Z"
+          fill="currentColor"
         />
         <path
-          fill="#2a4b55"
-          d="M10.08 8.82a1.26 1.26 0 1 0 0 2.52 1.26 1.26 0 1 0 0-2.52z"
-        />
-        <path
-          d="M13.86 10.5h-3.78a0.42 0.42 0 0 1-0.35-0.19l-3.36-5.04a0.42 0.42 0 1 1 0.7-0.46l3.23 4.85h3.56a0.42 0.42 0 0 1 0 0.84z"
-          fill="#2a4b55"
-        />
-        <path
-          d="M10.08 4.62a0.42 0.42 0 0 1-0.42-0.42v-0.84a0.42 0.42 0 0 1 0.84 0v0.84a0.42 0.42 0 0 1-0.42 0.42z"
-          fill="#aeaeae"
-        />
-        <path
-          d="M15.54 10.08a0.42 0.42 0 0 1 0.42-0.42h0.84a0.42 0.42 0 0 1 0 0.84h-0.84a0.42 0.42 0 0 1-0.42-0.42z"
-          fill="#aeaeae"
-        />
-        <path
-          d="M10.08 15.54a0.42 0.42 0 0 1 0.42 0.42v0.84a0.42 0.42 0 0 1-0.84 0v-0.84a0.42 0.42 0 0 1 0.42-0.42z"
-          fill="#aeaeae"
-        />
-        <path
-          d="M4.62 10.08a0.42 0.42 0 0 1-0.42 0.42h-0.84a0.42 0.42 0 0 1 0-0.84h0.84a0.42 0.42 0 0 1 0.42 0.42z"
-          fill="#aeaeae"
+          opacity="0.5"
+          d="M12.5 10C11.948 10 11.5 9.551 11.5 9C11.5 8.449 11.948 8 12.5 8C13.052 8 13.5 8.449 13.5 9C13.5 9.551 13.052 10 12.5 10Z"
+          fill="currentColor"
         />
       </g>
     </svg>
   );
 };
+
+export const TechStackIcon: FC<SizedIconProps> = ({ size, className }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 18 18"
+      className={className}
+    >
+      <title>layers-3</title>
+      <g fill="currentColor">
+        <path
+          opacity="0.4"
+          d="M15.6856 7.67326L9.8165 4.58299C9.3058 4.31299 8.69539 4.31251 8.18469 4.58251L2.3156 7.67326V7.6743C1.8215 7.9346 1.5148 8.44289 1.5148 9.00139C1.5148 9.55989 1.8214 10.0683 2.3156 10.3285L8.18381 13.4179C8.43971 13.5532 8.7199 13.6205 9.0007 13.6205C9.2805 13.6205 9.5608 13.5531 9.8156 13.4184L15.6857 10.3276C16.1798 10.0673 16.4865 9.55897 16.4865 9.00047C16.4865 8.44197 16.1798 7.93346 15.6856 7.67326Z"
+          fill="currentColor"
+        />
+        <path
+          opacity="0.2"
+          d="M15.6856 10.9233L15.1199 10.6254L9.81552 13.4184C9.56062 13.5532 9.28031 13.6205 9.00061 13.6205C8.71981 13.6205 8.43962 13.5531 8.18372 13.4179L2.88031 10.6259L2.31552 10.9233V10.9243C1.82142 11.1846 1.51471 11.6929 1.51471 12.2514C1.51471 12.8099 1.82132 13.3183 2.31552 13.5785L8.18381 16.6679C8.43962 16.8032 8.7199 16.8705 9.00061 16.8705C9.28041 16.8705 9.56072 16.8031 9.81552 16.6684L15.6856 13.5776C16.1797 13.3173 16.4864 12.809 16.4864 12.2505C16.4864 11.692 16.1798 11.1835 15.6856 10.9233Z"
+          fill="currentColor"
+        />
+        <path
+          d="M15.6856 4.42241L9.8165 1.33208C9.3058 1.06208 8.69539 1.06159 8.18469 1.33159L2.3156 4.42241C1.8215 4.68271 1.5148 5.19197 1.5148 5.75047C1.5148 6.30897 1.8214 6.81736 2.3156 7.07756L8.18381 10.167C8.43971 10.3023 8.7199 10.3696 9.0007 10.3696C9.2805 10.3696 9.5608 10.3022 9.8156 10.1675L15.6857 7.07671C16.1798 6.81641 16.4865 6.30806 16.4865 5.74956C16.4865 5.19106 16.1798 4.68261 15.6856 4.42241Z"
+          fill="currentColor"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const EyeIcon: FC<SizedIconProps> = ({ size, className }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 18 18"
+      className={className}
+    >
+      <title>eye-open</title>
+      <g fill="currentColor">
+        <path
+          opacity="0.4"
+          d="M16.6768 7.47511C16.162 6.94971 15.6028 6.48512 15.0082 6.08232L15.8897 4.64161C16.1055 4.28811 15.9952 3.82672 15.6417 3.61042C15.2872 3.39412 14.8263 3.50591 14.6105 3.85841L13.7036 5.34062C13.0258 5.00982 12.3157 4.75271 11.5799 4.57231L11.9122 2.91652C11.9933 2.51032 11.7306 2.1152 11.3243 2.0337C10.919 1.9536 10.5225 2.21492 10.4415 2.62162L10.1034 4.30641C9.73929 4.26951 9.37129 4.25001 9.00009 4.25001C8.62889 4.25001 8.26089 4.26951 7.89679 4.30641L7.55869 2.62162C7.47759 2.21492 7.0812 1.9531 6.6759 2.0337C6.2697 2.1152 6.00701 2.51032 6.08801 2.91652L6.42029 4.57252C5.68439 4.75322 4.9741 5.01022 4.2962 5.34132L3.3898 3.8589C3.174 3.5059 2.713 3.39412 2.3586 3.61042C2.0061 3.82622 1.8947 4.28762 2.1106 4.64122L2.9921 6.08311C2.3979 6.48541 1.839 6.9503 1.3244 7.4752C1.0344 7.7711 1.0383 8.24572 1.3342 8.53572C1.6301 8.82572 2.1047 8.82091 2.3947 8.52501C4.1496 6.73541 6.49531 5.7501 9.00021 5.7501C11.5051 5.7501 13.8518 6.73551 15.6047 8.52501C15.7522 8.67491 15.9465 8.7501 16.1408 8.7501C16.3303 8.7501 16.5197 8.67882 16.6652 8.53572C16.9611 8.24612 16.9659 7.77101 16.6768 7.47511Z"
+          fill="currentColor"
+        />
+        <path
+          d="M9.00012 14C10.9331 14 12.5001 12.433 12.5001 10.5C12.5001 8.567 10.9331 7 9.00012 7C7.06713 7 5.50012 8.567 5.50012 10.5C5.50012 12.433 7.06713 14 9.00012 14Z"
+          fill="currentColor"
+        />
+      </g>
+    </svg>
+  );
+};
+
+
