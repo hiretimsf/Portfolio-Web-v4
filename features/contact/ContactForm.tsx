@@ -80,7 +80,9 @@ export function ContactForm() {
 
       form.reset();
     } catch (error) {
-      console.error("Form submission error:", error);
+      if (process.env.NODE_ENV === "development") {
+        console.error("Form submission error:", error);
+      }
 
       // Track failed contact form submission
       trackEvent({

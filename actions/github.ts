@@ -28,7 +28,9 @@ const fetchGitHubStars = cache(
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("GitHub API Error:", errorText);
+      if (process.env.NODE_ENV === "development") {
+        console.error("GitHub API Error:", errorText);
+      }
       throw new Error("GitHub API request failed");
     }
 
@@ -48,7 +50,9 @@ export async function getGitHubStars(owner: string, repo: string) {
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "Unknown error";
-    console.error(errorMessage);
+    if (process.env.NODE_ENV === "development") {
+      console.error(errorMessage);
+    }
     return { stars: 0 }; // Return 0 on error to avoid crashing UI
   }
 }

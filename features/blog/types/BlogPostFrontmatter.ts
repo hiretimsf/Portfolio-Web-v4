@@ -1,3 +1,5 @@
+import type { TOCItemType } from "fumadocs-core/toc";
+
 type BlogPostFrontmatter = {
   title: string;
   description: string;
@@ -12,6 +14,7 @@ type BlogPostFrontmatter = {
   category?: string;
   tags?: string[];
   seo?: string[];
+  toc?: TOCItemType[];
 };
 
 export type { BlogPostFrontmatter };

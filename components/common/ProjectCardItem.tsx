@@ -123,7 +123,9 @@ export default function ProjectCardItem({
           }
         }
       } catch (error) {
-        console.error("Failed to parse GitHub URL or fetch stars", error);
+        if (process.env.NODE_ENV === "development") {
+          console.error("Failed to parse GitHub URL or fetch stars", error);
+        }
       }
     };
 

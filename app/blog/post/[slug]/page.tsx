@@ -188,8 +188,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
         <div className="relative mx-auto w-full max-w-5xl">
           <CornerDecorations />
           <DocsLayout tree={blogSource.pageTree}>
-            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            <DocsPage toc={(page.data as any).toc ?? []} tableOfContent={{ bannerEnabled: false }}>
+            <DocsPage toc={(page.data as BlogPostFrontmatter).toc ?? []} tableOfContent={{ bannerEnabled: false }}>
               <DocsBody prose={false}>
                 <MDXContent components={getMDXComponents()} />
               </DocsBody>

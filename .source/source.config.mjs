@@ -1,5 +1,5 @@
 // source.config.ts
-import { z as z3 } from "zod";
+import { z as z4 } from "zod";
 import {
   defineCollections,
   defineDocs,
@@ -9,28 +9,46 @@ import {
 import lastModified from "fumadocs-mdx/plugins/last-modified";
 
 // lib/config.ts
-import { z as z2 } from "zod";
+import { z as z3 } from "zod";
 
-// lib/utils.tsx
+// lib/ui/cn.ts
 import { clsx } from "clsx";
-import { format } from "date-fns";
-import { LRUCache } from "lru-cache";
-import * as React from "react";
 import { twMerge } from "tailwind-merge";
-import { z } from "zod";
-import { jsx, jsxs } from "react/jsx-runtime";
+
+// lib/string/truncate.ts
+function truncate(text, maxLength = 160) {
+  return text.length > maxLength ? text.slice(0, maxLength - 3) + "..." : text;
+}
 function truncateTitle(title, maxLength = 60) {
-  return title.length > maxLength ? title.slice(0, maxLength - 3) + "..." : title;
+  return truncate(title, maxLength);
 }
 function truncateDescription(description, maxLength = 160) {
-  return description.length > maxLength ? description.slice(0, maxLength - 3) + "..." : description;
+  return truncate(description, maxLength);
 }
+
+// lib/string/url.ts
 function getBaseUrl(slug) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || (process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://hiretimsf.com");
   if (!slug) return baseUrl;
   const normalizedSlug = slug.startsWith("/") ? slug : `/${slug}`;
   return `${baseUrl}${normalizedSlug}`;
 }
+
+// lib/date/format.ts
+import { format } from "date-fns";
+
+// lib/network/rate-limit.ts
+import { LRUCache } from "lru-cache";
+
+// lib/component/highlight.tsx
+import * as React from "react";
+import { jsx, jsxs } from "react/jsx-runtime";
+
+// lib/component/markdown.tsx
+import { jsx as jsx2 } from "react/jsx-runtime";
+
+// lib/analytics/env.ts
+import { z } from "zod";
 var envSchema = z.object({
   RESEND_API_KEY: z.string().min(1, "RESEND_API_KEY is required"),
   CONTACT_EMAIL: z.string().email().optional(),
@@ -40,11 +58,14 @@ var envSchema = z.object({
   NEXT_PUBLIC_BASE_URL: z.string().url().optional(),
   NODE_ENV: z.enum(["development", "production", "test"]).default("development")
 });
-var eventSchema = z.object({
-  name: z.string(),
-  properties: z.record(
-    z.string(),
-    z.union([z.string(), z.number(), z.boolean(), z.null()])
+
+// lib/analytics/tracking.ts
+import { z as z2 } from "zod";
+var eventSchema = z2.object({
+  name: z2.string(),
+  properties: z2.record(
+    z2.string(),
+    z2.union([z2.string(), z2.number(), z2.boolean(), z2.null()])
   ).optional()
 });
 
@@ -244,47 +265,47 @@ var HEAD = [
     slug: "/changelog"
   }
 ];
-var baseProjectSchema = z2.object({
-  title: z2.string(),
-  description: z2.string(),
-  category: z2.string(),
-  fromDate: z2.union([z2.string(), z2.number()]),
-  toDate: z2.union([z2.string(), z2.number()]),
-  imageUrl: z2.string().optional(),
-  imageAlt: z2.string().optional(),
-  featured: z2.boolean().default(false),
-  showOnPortfolio: z2.boolean().default(true),
-  websiteUrl: z2.string().optional(),
-  githubUrl: z2.string().optional(),
-  videoEmbedUrl: z2.string().optional(),
-  videoEmbedAlt: z2.string().optional(),
-  comingSoon: z2.boolean().default(false),
-  techStacks: z2.array(z2.string()).default([]),
-  weight: z2.number().default(0)
+var baseProjectSchema = z3.object({
+  title: z3.string(),
+  description: z3.string(),
+  category: z3.string(),
+  fromDate: z3.union([z3.string(), z3.number()]),
+  toDate: z3.union([z3.string(), z3.number()]),
+  imageUrl: z3.string().optional(),
+  imageAlt: z3.string().optional(),
+  featured: z3.boolean().default(false),
+  showOnPortfolio: z3.boolean().default(true),
+  websiteUrl: z3.string().optional(),
+  githubUrl: z3.string().optional(),
+  videoEmbedUrl: z3.string().optional(),
+  videoEmbedAlt: z3.string().optional(),
+  comingSoon: z3.boolean().default(false),
+  techStacks: z3.array(z3.string()).default([]),
+  weight: z3.number().default(0)
 });
-var blogPostSchema = z2.object({
-  title: z2.string(),
-  description: z2.string(),
-  image: z2.string().optional(),
-  thumbnail: z2.string().optional(),
-  imageAlt: z2.string().optional(),
-  author: z2.string(),
-  authorAvatar: z2.string(),
-  authorAvatarAlt: z2.string(),
-  created: z2.string(),
-  lastUpdated: z2.string().optional(),
-  category: z2.string(),
-  tags: z2.array(z2.string()).default([]),
-  seo: z2.array(z2.string()).default([])
+var blogPostSchema = z3.object({
+  title: z3.string(),
+  description: z3.string(),
+  image: z3.string().optional(),
+  thumbnail: z3.string().optional(),
+  imageAlt: z3.string().optional(),
+  author: z3.string(),
+  authorAvatar: z3.string(),
+  authorAvatarAlt: z3.string(),
+  created: z3.string(),
+  lastUpdated: z3.string().optional(),
+  category: z3.string(),
+  tags: z3.array(z3.string()).default([]),
+  seo: z3.array(z3.string()).default([])
 });
-var privacySchema = z2.object({
-  title: z2.string(),
-  description: z2.string()
+var privacySchema = z3.object({
+  title: z3.string(),
+  description: z3.string()
 });
-var changelogSchema = z2.object({
-  title: z2.string(),
-  description: z2.string(),
-  created: z2.string()
+var changelogSchema = z3.object({
+  title: z3.string(),
+  description: z3.string(),
+  created: z3.string()
 });
 
 // source.config.ts
@@ -294,12 +315,12 @@ var about = defineDocs({
     type: "doc",
     dir: "features/about/content",
     schema: frontmatterSchema.extend({
-      title: z3.string(),
-      description: z3.string().optional(),
-      imageUrl: z3.string().optional(),
-      imageUrlDesktop: z3.string().optional(),
-      imageUrlMobile: z3.string().optional(),
-      imageAlt: z3.string().optional()
+      title: z4.string(),
+      description: z4.string().optional(),
+      imageUrl: z4.string().optional(),
+      imageUrlDesktop: z4.string().optional(),
+      imageUrlMobile: z4.string().optional(),
+      imageAlt: z4.string().optional()
     })
   })
 });

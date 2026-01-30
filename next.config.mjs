@@ -1,4 +1,9 @@
 import { createMDX } from "fumadocs-mdx/next";
+import bundleAnalyzer from "@next/bundle-analyzer";
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 /** @type {import('next').NextConfig} */
 const config = {
@@ -85,4 +90,4 @@ const withMDX = createMDX({
   // customise the config file path
   // configPath: "source.config.ts"
 });
-export default withMDX(config);
+export default withBundleAnalyzer(withMDX(config));

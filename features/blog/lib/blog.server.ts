@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import readingTime from "reading-time";
+import { LRUCache } from "lru-cache";
 import { blogSource } from "@/features/blog/data/blogSource";
 import type { BlogPostType } from "@/features/blog/types/BlogPostType";
 import type { BlogPostFrontmatter } from "@/features/blog/types/BlogPostFrontmatter";
@@ -9,7 +10,16 @@ import { getContextAroundMatch, levenshtein } from "@/lib/utils";
 
 type BlogPage = ReturnType<typeof blogSource.getPages>[number];
 
-export function getBlogPosts(): BlogPostType[] {
+// LRU cache for blog posts to avoid repeated file system reads
+// TTL: 5 minutes in development, 1 hour in production
+const blogPostCache = new LRUCache<string, BlogPostType[]>({
+  max: 1, // Only cache one entry (all blog posts)
+  ttl: process.env.NODE_ENV === "development" ? 1000 * 60 * 5 : 1000 * 60 * 60,
+});
+
+const BLOG_CACHE_KEY = "all-blog-posts";
+
+function getBlogPostsUncached(): BlogPostType[] {
   return blogSource.getPages().map((page) => {
     const data = page.data as unknown as BlogPostFrontmatter & {
       body: React.ComponentType<object>;
@@ -78,6 +88,20 @@ export function getBlogPosts(): BlogPostType[] {
   });
 }
 
+/**
+ * Gets all blog posts with LRU caching to improve performance
+ */
+export function getBlogPosts(): BlogPostType[] {
+  const cached = blogPostCache.get(BLOG_CACHE_KEY);
+  if (cached) {
+    return cached;
+  }
+
+  const posts = getBlogPostsUncached();
+  blogPostCache.set(BLOG_CACHE_KEY, posts);
+  return posts;
+}
+
 export async function getPostsBySearchQuery(query: string) {
   if (!query.trim()) return [];
 
@@ -106,7 +130,7 @@ export async function getPostsBySearchQuery(query: string) {
       if (
         searchableContent.title
           .split(/\s+/)
-          .some((term) => levenshtein(term, word) <= fuzzyThreshold)
+          .some((term: string) => levenshtein(term, word) <= fuzzyThreshold)
       ) {
         score += 5;
       }
@@ -114,7 +138,7 @@ export async function getPostsBySearchQuery(query: string) {
       if (
         searchableContent.content
           .split(/\s+/)
-          .some((term) => levenshtein(term, word) <= fuzzyThreshold)
+          .some((term: string) => levenshtein(term, word) <= fuzzyThreshold)
       ) {
         score += 2;
       }
