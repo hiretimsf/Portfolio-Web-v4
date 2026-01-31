@@ -1,6 +1,6 @@
 import { getBlogPosts } from "@/features/blog/lib/blog.server";
 import Section from "@/components/layout/main/Section";
-import BlogCardItem from "@/components/common/BlogCardItem";
+import BlogCardItem from "@/features/blog/components/BlogCardItem";
 import { slugify } from "@/lib/utils";
 
 export default function LatestBlogPostsSection() {

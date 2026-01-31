@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { NuqsAdapter } from "nuqs/adapters/next/app";
 import type { Person, WebSite, WithContext } from "schema-dts";
 
 import ConsentManager from "@/features/privacy/components/ConsentManager";
@@ -238,8 +237,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body suppressHydrationWarning>
         <SkipLink />
         <Providers>
-          <NuqsAdapter>
-            <ConsentManager>
+          <ConsentManager>
               <div className="mx-auto min-h-screen w-full">
                 <Header />
                 <main
@@ -252,7 +250,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <ScrollToTop />
               </div>
             </ConsentManager>
-          </NuqsAdapter>
         </Providers>
       </body>
     </html>

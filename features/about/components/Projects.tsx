@@ -1,6 +1,9 @@
 "use client";
 
-import ProjectCardItem from "@/components/common/ProjectCardItem";
+import * as React from "react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { motion } from "motion/react";
+
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -13,10 +16,9 @@ import {
   PaginationContent,
   PaginationItem,
 } from "@/components/ui/pagination";
+
 import type { ProjectType } from "@/features/projects/types/ProjectType";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { motion } from "motion/react";
-import * as React from "react";
+import ProjectCardItem from "@/features/projects/components/ProjectCardItem";
 
 export default function Projects({ data }: { data: ProjectType[] }) {
   const sortedData = React.useMemo(() => {

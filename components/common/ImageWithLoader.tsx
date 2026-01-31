@@ -33,9 +33,9 @@ export default function ImageWithLoader({
     <div className={cn("relative overflow-hidden", fill ? "w-full h-full" : "")}>
       {/* Loading Animation */}
       {isLoading && (
-        <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-muted-foreground/20">
           <svg
-            className="h-10 w-10 animate-spin text-gray-400 dark:text-gray-600"
+            className="h-10 w-10 animate-spin text-muted-foreground"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

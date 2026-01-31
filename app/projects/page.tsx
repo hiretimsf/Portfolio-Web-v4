@@ -5,7 +5,10 @@ import ProjectList from "@/features/projects/components/ProjectList";
 import { getBaseUrl } from "@/lib/utils";
 import type { HeadType } from "@/types";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Title from "@/components/layout/main/Title";
+import Paging from "@/components/common/Paging";
+import { getProjects } from "@/features/projects/data/projectSource";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -34,13 +37,21 @@ export const metadata: Metadata = {
   },
 };
 
+const PAGE_SIZE = 6;
+
 export default async function ProjectsPage() {
+  const projects = getProjects();
+
   return (
     <>
       <Divider short={true}/>
       <Title title="Projects" />
       <Divider plain={true}/>
-      <ProjectList />
+      <Suspense>
+        <ProjectList />
+        <Divider short={true}/>
+        <Paging totalItems={projects.length} pageSize={PAGE_SIZE} />
+      </Suspense>
       <Divider short={true}/>
       <Contact />
       <Divider short={true} borderBottom={false}/>

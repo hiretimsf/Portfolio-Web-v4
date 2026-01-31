@@ -23,31 +23,21 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ImageWithLoader from "@/components/common/ImageWithLoader";
 
-/**
- * Props for the BlogCardItem component.
- * @property index - Index of the card for accessibility labeling.
- * @property item - The blog post data.
- * @property sizes - Optional image sizes for optimization.
- */
+const DASHED_BORDER = "border-dashed border-black/10 dark:border-white/10";
+
 type BlogCardItemProps = {
   index: number;
   item: Omit<BlogPostType, "body">;
   sizes?: string;
 };
 
-/**
- * A card component representing a single blog post.
- * Displays a cover image, title, metadata, description, and author info.
- */
 export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) {
   const href = `/blog/post/${item.slug}`;
 
   return (
     <BrowserWrapper>
       <Card
-        className={cn(
-          "h-full gap-0 py-0 transition-all duration-300 rounded-xl corner-squircle border-none",
-        )}
+        className="h-full gap-0 py-0 transition-all duration-300 rounded-xl corner-squircle border-none"
         role="article"
         aria-labelledby={`card-title-${index}`}
       >
@@ -58,11 +48,11 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
           sizes={sizes}
         />
 
-        <div className="flex w-full items-stretch justify-between border-t border-dashed border-black/10 dark:border-white/10">
+        <div className={cn("flex w-full items-stretch justify-between border-t", DASHED_BORDER)}>
           <SideBorder position="left" />
           <div className="flex flex-1 flex-col">
             <CardHeader className="gap-0">
-              <div className="flex w-full py-2 flex-row items-center border-b border-dashed border-black/10 dark:border-white/10">
+              <div className={cn("flex w-full py-2 flex-row items-center border-b", DASHED_BORDER)}>
                 <Link href={href} className="group/title">
                   <CardTitle
                     id={`card-title-${index}`}
@@ -72,22 +62,13 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
                   </CardTitle>
                 </Link>
               </div>
-              <div className="grid grid-cols-2 grid-rows-1 w-full border-b border-dashed border-black/10 dark:border-white/10">
-                <div className="flex items-center px-2 py-2 border-r border-dashed border-black/10 dark:border-white/10">
-                  <CalendarIcon size={16} className="mr-2 size-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">
-                    {item.created ? formatDate(item.created as string) : "No date"}
-                  </span>
-                </div>
-                <div className="flex items-center px-2 py-2">
-                  <ClockIcon
-                    size={16}
-                    className="mr-2 size-4 text-muted-foreground"
-                  />
-                  <span className="text-sm text-muted-foreground">
-                    {item.readingTimeMinutes !== undefined ? `${item.readingTimeMinutes} min` : "N/A"}
-                  </span>
-                </div>
+              <div className={cn("grid grid-cols-2 grid-rows-1 w-full border-b", DASHED_BORDER)}>
+                <MetaCell icon={<CalendarIcon size={16} className="mr-2 size-4 text-muted-foreground" />} bordered>
+                  {item.created ? formatDate(item.created as string) : "No date"}
+                </MetaCell>
+                <MetaCell icon={<ClockIcon size={16} className="mr-2 size-4 text-muted-foreground" />}>
+                  {item.readingTimeMinutes !== undefined ? `${item.readingTimeMinutes} min` : "N/A"}
+                </MetaCell>
               </div>
             </CardHeader>
             <CardContent className="p-0">
@@ -96,10 +77,10 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
               </CardDescription>
             </CardContent>
             <CardFooter className="flex w-full flex-col items-stretch p-0">
-              <div className="grid grid-cols-2 grid-rows-1 w-full border-t border-dashed border-black/10 dark:border-white/10">
-                <div className="flex items-center px-2 py-2 border-r border-dashed border-black/10 dark:border-white/10">
-                  {item.author ? (
-                    <>
+              <div className={cn("grid grid-cols-2 grid-rows-1 w-full border-t", DASHED_BORDER)}>
+                <MetaCell
+                  icon={
+                    item.author ? (
                       <div className="relative size-5 shrink-0 overflow-hidden rounded-full mr-2">
                         <Image
                           src={item.authorAvatar || ""}
@@ -111,22 +92,17 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
                           blurDataURL={getShimmerDataUrl(16, 16)}
                         />
                       </div>
-                      <span className="text-sm text-muted-foreground">
-                        {item.author}
-                      </span>
-                    </>
-                  ) : (
-                    <span className="text-sm text-muted-foreground">No author</span>
-                  )}
-                </div>
-                <div className="flex items-center px-2 py-2">
-                  <FolderIcon size={16} className="mr-2 size-4 text-muted-foreground" />
-                  <span className="text-sm text-muted-foreground">
-                    {item.category || "Uncategorized"}
-                  </span>
-                </div>
+                    ) : null
+                  }
+                  bordered
+                >
+                  {item.author || "No author"}
+                </MetaCell>
+                <MetaCell icon={<FolderIcon size={16} className="mr-2 size-4 text-muted-foreground" />}>
+                  {item.category || "Uncategorized"}
+                </MetaCell>
               </div>
-              <div className="flex w-full border-t border-dashed border-black/10 dark:border-white/10 px-2 py-2">
+              <div className={cn("flex w-full border-t px-2 py-2", DASHED_BORDER)}>
                 <Button
                   variant="outline"
                   asChild
@@ -159,16 +135,36 @@ export default function BlogCardItem({ index, item, sizes }: BlogCardItemProps) 
 
 // Sub-components
 
-const SideBorder = ({ position }: { position: "left" | "right" }) => (
-  <div
-    className={cn(
-      "flex w-4 flex-none flex-col border-dashed border-black/10 dark:border-white/10",
-      position === "left" ? "border-r" : "border-l",
-    )}
-  />
-);
+function MetaCell({
+  icon,
+  bordered,
+  children,
+}: {
+  icon: React.ReactNode;
+  bordered?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className={cn("flex items-center px-2 py-2", bordered && cn("border-r", DASHED_BORDER))}>
+      {icon}
+      <span className="text-sm text-muted-foreground">{children}</span>
+    </div>
+  );
+}
 
-const CoverImage = ({
+function SideBorder({ position }: { position: "left" | "right" }) {
+  return (
+    <div
+      className={cn(
+        "flex w-4 flex-none flex-col",
+        DASHED_BORDER,
+        position === "left" ? "border-r" : "border-l",
+      )}
+    />
+  );
+}
+
+function CoverImage({
   imageUrl,
   imageAlt,
   href,
@@ -178,7 +174,7 @@ const CoverImage = ({
   imageAlt: string;
   href?: string;
   sizes?: string;
-}) => {
+}) {
   const [src, setSrc] = useState(imageUrl);
 
   const content = (
@@ -205,4 +201,4 @@ const CoverImage = ({
   }
 
   return content;
-};
+}

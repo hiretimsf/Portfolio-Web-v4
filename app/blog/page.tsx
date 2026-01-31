@@ -5,7 +5,10 @@ import { HEAD } from "@/lib/config";
 import { getBaseUrl } from "@/lib/utils";
 import type { HeadType } from "@/types";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import BlogPostList from "@/features/blog/components/BlogPostList";
+import Paging from "@/components/common/Paging";
+import { getBlogPosts } from "@/features/blog/lib/blog.server";
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -34,19 +37,23 @@ export const metadata: Metadata = {
   },
 };
 
+const PAGE_SIZE = 6;
+
 export default async function BlogPage() {
+  const posts = getBlogPosts();
+
   return (
     <>
-      <Divider short={true}/>
-      <Title
-        title="Blog"
-        textStyleClassName="text-2xl font-bold sm:text-3xl"
-      />
-      <Divider plain={true}/>
-      <BlogPostList />
-      <Divider short={true}/>
+      <Divider short={true} />
+      <Title title="Blog" textStyleClassName="text-2xl font-bold sm:text-3xl" />
+      <Divider plain={true} />
+      <Suspense>
+        <BlogPostList />
+        <Divider short={true} />
+        <Paging totalItems={posts.length} pageSize={PAGE_SIZE} />
+      </Suspense>
       <Contact />
-      <Divider short={true} borderBottom={false}/>
+      <Divider short={true} borderBottom={false} />
     </>
   );
 }

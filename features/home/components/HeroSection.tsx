@@ -28,7 +28,7 @@ function HeroContent() {
         Hello, I&apos;m Tim
       </h1>
 
-      <p className="text-foreground/80 px-4 text-[18px] text-left py-4 leading-[32px] text-pretty">
+      <p className="text-foreground/80 px-4 text-[16px] text-left py-4 leading-[32px] text-pretty">
         I&apos;m a Frontend Developer based in the San Francisco Bay Area. I
         help people solve real-world problems by building web and mobile apps.
       </p>
@@ -72,8 +72,8 @@ function HeroContent() {
 
       <div className="px-4 py-4 text-left">
         <div className="flex flex-col gap-6">
-          <Button asChild className="w-fit">
-            <Link href="/about" className="px-6 py-5 text-[16px] font-semibold">
+          <Button asChild className="w-full sm:w-fit">
+            <Link href="/about" className="px-6 py-5 text-[16px] font-semibold w-full sm:w-auto">
               Learn more about Tim
             </Link>
           </Button>

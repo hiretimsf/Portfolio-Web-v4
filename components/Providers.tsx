@@ -7,6 +7,7 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import { ThemeProvider } from "next-themes";
 import { useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -28,10 +29,11 @@ export function Providers({ children }: { children: React.ReactNode }) {
             delay={500}
             options={{ showSpinner: false }}
           >
-            {children}
+            <NuqsAdapter>
+              {children}
+            </NuqsAdapter>
           </AppProgressProvider>
         </RootProvider>
-
         <Toaster />
         <SpeedInsights />
       </ThemeProvider>

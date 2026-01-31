@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 import BrowserWrapper from "@/components/common/BrowserWrapper";
 import {
@@ -11,76 +12,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { ProjectType } from "@/features/projects/types/ProjectType";
-import { CalendarIcon, TechStackIcon, StarIcon } from "@/components/common/Icons";
-import { cn, trackEvent, formatDate } from "@/lib/utils";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ImageWithLoader from "@/components/common/ImageWithLoader";
-import {
-  SiAndroid,
-  SiNextdotjs,
-  SiReact,
-  SiTypescript,
-  SiTailwindcss,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiFirebase,
-  SiJquery,
-  SiAdobephotoshop,
-  SiAdobeillustrator,
-  SiEclipseide,
-  SiKotlin,
-
-} from "react-icons/si";
-import { FaJava } from "react-icons/fa";
-import { IconType } from "react-icons";
+import { CalendarIcon, StarIcon } from "@/components/common/Icons";
+import { cn, trackEvent, formatDate } from "@/lib/utils";
 import { getGitHubStars } from "@/actions/github";
 
-const getTechIcon = (tech: string): IconType => {
-  const normalizedTech = tech.toLowerCase().replace(/\s+/g, "");
-  switch (normalizedTech) {
-    case "android":
-      return SiAndroid;
-    case "next.js":
-    case "nextjs":
-      return SiNextdotjs;
-    case "react":
-      return SiReact;
-    case "typescript":
-      return SiTypescript;
-    case "tailwindcss":
-    case "tailwind":
-      return SiTailwindcss;
-    case "html":
-      return SiHtml5;
-    case "css":
-      return SiCss3;
-    case "javascript":
-      return SiJavascript;
-    case "firebase":
-      return SiFirebase;
-    case "jquery":
-      return SiJquery;
-    case "adobephotoshop":
-    case "photoshop":
-      return SiAdobephotoshop;
-    case "adobeillustrator":
-    case "illustrator":
-      return SiAdobeillustrator;
-    case "eclipseide":
-    case "eclipse":
-      return SiEclipseide;
-    case "kotlin":
-      return SiKotlin;
-    case "java":
-      return FaJava;
-
-    default:
-      return TechStackIcon as unknown as IconType;
-  }
-};
+import type { ProjectType } from "@/features/projects/types/ProjectType";
+import { getTechIcon } from "@/features/projects/icons";
 
 /**
  * Props for the ProjectCardItem component.
@@ -94,7 +33,33 @@ type ProjectCardItemProps = {
   sizes?: string;
 };
 
-const dashedBorder = "border-dashed border-black/10 dark:border-white/10";
+const DASHED_BORDER = "border-dashed border-black/10 dark:border-white/10";
+
+/**
+ * Parses a GitHub URL to extract owner and repository name.
+ * @param githubUrl - The GitHub repository URL
+ * @returns Object containing owner and repo, or null if parsing fails
+ */
+const parseGitHubUrl = (
+  githubUrl: string
+): { owner: string; repo: string } | null => {
+  try {
+    const urlObj = new URL(githubUrl);
+    const parts = urlObj.pathname.split("/").filter(Boolean);
+
+    if (parts.length >= 2) {
+      const [owner, repo] = parts;
+      if (owner && repo) {
+        return { owner, repo };
+      }
+    }
+  } catch (error) {
+    if (process.env.NODE_ENV === "development") {
+      console.error("Failed to parse GitHub URL:", githubUrl, error);
+    }
+  }
+  return null;
+};
 
 /**
  * Displays a project portfolio item with thumbnail, details, and action buttons.
@@ -110,23 +75,13 @@ export default function ProjectCardItem({
   useEffect(() => {
     const fetchStars = async () => {
       if (!item.githubUrl) return;
-      try {
-        const urlObj = new URL(item.githubUrl);
-        // Pathname usually starts with /, so split by / gives ["", "owner", "repo"]
-        const parts = urlObj.pathname.split("/");
-        if (parts.length >= 3) {
-          const owner = parts[1];
-          const repo = parts[2];
-          if (owner && repo) {
-            const { stars } = await getGitHubStars(owner, repo);
-            setStars(stars);
-          }
-        }
-      } catch (error) {
-        if (process.env.NODE_ENV === "development") {
-          console.error("Failed to parse GitHub URL or fetch stars", error);
-        }
-      }
+
+      const parsed = parseGitHubUrl(item.githubUrl);
+      if (!parsed) return;
+
+      const { owner, repo } = parsed;
+      const { stars } = await getGitHubStars(owner, repo);
+      setStars(stars);
     };
 
     fetchStars();
@@ -151,7 +106,7 @@ export default function ProjectCardItem({
         <div
           className={cn(
             "flex w-full items-stretch justify-between border-t",
-            dashedBorder
+            DASHED_BORDER
           )}
         >
           <SideBorder position="left" />
@@ -160,7 +115,7 @@ export default function ProjectCardItem({
               <div
                 className={cn(
                   "flex w-full py-2 flex-row items-center border-b",
-                  dashedBorder
+                  DASHED_BORDER
                 )}
               >
                 <Link href={href} className="group/title">
@@ -175,13 +130,13 @@ export default function ProjectCardItem({
               <div
                 className={cn(
                   "grid grid-cols-2 grid-rows-1 w-full border-b",
-                  dashedBorder
+                  DASHED_BORDER
                 )}
               >
                 <div
                   className={cn(
                     "flex items-center px-2 py-2 border-r",
-                    dashedBorder
+                    DASHED_BORDER
                   )}
                 >
                   <CalendarIcon
@@ -202,7 +157,7 @@ export default function ProjectCardItem({
             </CardHeader>
             <CardContent className="p-0">
               <CardDescription
-                className={cn("border-b px-2 py-2", dashedBorder)}
+                className={cn("border-b px-2 py-2", DASHED_BORDER)}
               >
                 <span className="line-clamp-3 text-left text-md leading-6 text-muted-foreground">
                   {item.description}
@@ -213,28 +168,22 @@ export default function ProjectCardItem({
               <div
                 className={cn(
                   "grid grid-cols-2 grid-rows-2 w-full border-b",
-                  dashedBorder
+                  DASHED_BORDER
                 )}
               >
                 {item.techStacks?.slice(0, 4).map((tech, i) => {
                   const TechIcon = getTechIcon(tech);
-                  // Left column (index 0 and 2) gets border-r
                   const isLeftColumn = i % 2 === 0;
-                  // Top row (index 0 and 1) gets border-b if there are more than 2 items
-                  const isTopRow = i < 2; 
-                  // Actually, for a pure 2x2 grid in this border system:
-                  // The container already has border-b.
-                  // We need internal borders.
-                  // Row 1 items need border-b if Row 2 exists.
-                  // Col 1 items need border-r.
+                  const isTopRow = i < 2;
+                  const hasMultipleRows = item.techStacks && item.techStacks.length > 2;
 
                   return (
                     <div
                       key={tech}
                       className={cn(
                         "flex items-center px-2 py-2",
-                        isLeftColumn && `border-r ${dashedBorder}`,
-                        isTopRow && item.techStacks && item.techStacks.length > 2 && `border-b ${dashedBorder}`
+                        isLeftColumn && `border-r ${DASHED_BORDER}`,
+                        isTopRow && hasMultipleRows && `border-b ${DASHED_BORDER}`
                       )}
                     >
                       <TechIcon
@@ -278,11 +227,15 @@ export default function ProjectCardItem({
 
 // Sub-components
 
-const SideBorder = ({ position }: { position: "left" | "right" }) => (
+type SideBorderProps = {
+  position: "left" | "right";
+};
+
+const SideBorder = ({ position }: SideBorderProps) => (
   <div
     className={cn(
       "flex w-4 flex-none flex-col",
-      dashedBorder,
+      DASHED_BORDER,
       position === "left" ? "border-r" : "border-l"
     )}
   />
@@ -310,22 +263,23 @@ const ProjectButton = ({
   borderBottom,
   srOnlySuffix,
 }: ProjectButtonProps) => {
-  if (!url || (url === "#" && !comingSoon)) return null;
+  const isDisabled = !url || url === "#";
 
   return (
     <div
       className={cn(
         "flex w-full px-2 py-2",
-        borderBottom && `border-b ${dashedBorder}`
+        borderBottom && `border-b ${DASHED_BORDER}`
       )}
     >
       <Button
-        asChild={!comingSoon}
-        disabled={comingSoon}
+        asChild={!comingSoon && !isDisabled}
+        disabled={comingSoon || isDisabled}
         className="w-full"
         variant="outline"
+        title={isDisabled ? `No ${label.toLowerCase()} URL` : undefined}
         onClick={() => {
-          if (comingSoon) return;
+          if (comingSoon || isDisabled) return;
           trackEvent({
             name: eventName,
             properties: {
@@ -337,7 +291,7 @@ const ProjectButton = ({
           });
         }}
       >
-        {comingSoon ? (
+        {comingSoon || isDisabled ? (
           <span>{label}</span>
         ) : (
           <Link target="_blank" rel="noopener noreferrer" href={url}>
@@ -353,15 +307,17 @@ const ProjectButton = ({
   );
 };
 
+type ThumbnailImageProps = {
+  imageUrl: string;
+  imageAlt: string;
+  sizes?: string;
+};
+
 const ThumbnailImage = ({
   imageUrl,
   imageAlt,
   sizes,
-}: {
-  imageUrl: string;
-  imageAlt: string;
-  sizes?: string;
-}) => {
+}: ThumbnailImageProps) => {
   return (
     <div className="relative aspect-video w-full overflow-hidden">
       <ImageWithLoader

@@ -1,7 +1,8 @@
 import Section from "@/components/layout/main/Section";
-import ProjectCardItem from "@/components/common/ProjectCardItem";
-import { GET_FEATURED_APPS } from "@/features/home/data/source";
 import { slugify } from "@/lib/utils";
+
+import { GET_FEATURED_APPS } from "@/features/home/data/source";
+import ProjectCardItem from "@/features/projects/components/ProjectCardItem";
 
 export default function FeaturedAppsSection() {
   const featuredApps = GET_FEATURED_APPS();
