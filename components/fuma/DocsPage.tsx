@@ -18,6 +18,7 @@ import {
   DocsTOCPopoverTrigger,
 } from "./DocsPageClient";
 import { TOCItems, type TOCProps, TOCScrollArea, DocsTOC } from "./DocsTOC";
+import DotsBackground from "@/components/common/BackgroundDots";
 
 const ClerkTOCItems = lazy(() =>
   import("fumadocs-ui/components/toc/clerk").then((mod) => ({
@@ -198,6 +199,11 @@ export function DocsPage({
             props.article?.className,
           )}
         >
+          <DotsBackground
+            gridId="company-main"
+            className="text-gray-200/80 h-16"
+            fadeBottomMask
+          />
           {slot(props.breadcrumb, <Breadcrumb {...props.breadcrumb} />)}
           {props.children}
           <div role="none" className="flex-1" />

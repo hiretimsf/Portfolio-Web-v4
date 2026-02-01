@@ -1,5 +1,5 @@
 ---
-title: "My Open Source Contribution"
+title: "Recognized for open source contributions"
 description: "How I built a full stack Next.js app and received official recognition from Vercel's Lee Robinson."
 image: "/images/blog/my-open-source-contribution/cover.jpg"
 imageAlt: "Vercel recognition and GitHub stars"
@@ -22,23 +22,58 @@ seo:
 
 import { ImageSlider } from "@/components/mdx/image-slider";
 import { Tweet } from "react-tweet";
+import { Steps, Step } from "@/components/mdx/steps";
 
+<Steps>
+<Step>
 ## Project
-
-<ImageSlider
-  images={[
-    { src: "/images/blog/my-open-source-contribution/project-frontend.jpg", alt: "Project Frontend" },
-    { src: "/images/blog/my-open-source-contribution/project-backend.jpg", alt: "Project Backend" }
-  ]}
-  caption="Screenshots"
-/>
 
 I built and open sourced a full stack Next.js and Supabase [blog-app](https://github.com/hiretimsf/Next.js-Blog-App) with over 460 GitHub stars. It is a multi user platform with auth, database, storage, and CMS, built with TypeScript and modern Next.js features.
 
-## Official Recognition
+<figure>
+  ![Project Frontend](/images/blog/my-open-source-contribution/project-frontend.jpg)
+  <figcaption className="text-center text-sm text-muted-foreground mt-2">
+    Frontend
+  </figcaption>
+</figure>
 
-![Lee Robinson's post about my open source contribution](/images/blog/my-open-source-contribution/leerob-post.jpg)
+<figure>
+  ![Project Backend](/images/blog/my-open-source-contribution/project-backend.jpg)
+  <figcaption className="text-center text-sm text-muted-foreground mt-2">
+    Backend
+  </figcaption>
+</figure>
 
-When [Lee Robinson](https://x.com/hiretimsf/status/1785051295721947348) tweeted this, I shared my project. A few weeks later, I received Vercel swag in the mail. It was my first real recognition for open source work, and it motivated me to keep building. I am very grateful.
+</Step>
 
-<Tweet id="1799500139662651526" />
+<Step>
+## Submission
+
+<figure>
+  ![Lee Robinson's post about my open source contribution](/images/blog/my-open-source-contribution/leerob-post.jpg)
+  <figcaption className="text-center text-sm text-muted-foreground mt-2">
+    This is how I submitted my project to Vercel Open Source Program
+  </figcaption>
+</figure>
+
+When [Lee Robinson](https://x.com/hiretimsf/status/1785051295721947348) tweeted this, I shared my project.
+
+</Step>
+
+<Step>
+## Recognition
+
+A few weeks later, I received Vercel swag in the mail. It was my first real recognition for open source work, and it motivated me to keep building. I am very grateful.
+
+<figure>
+  ![Vercel swag](/images/blog/my-open-source-contribution/recognition.jpg)
+  <figcaption className="text-center text-sm text-muted-foreground mt-2">
+    Recognition from Vercel
+  </figcaption>
+</figure>
+
+
+</Step>
+
+</Steps>
+

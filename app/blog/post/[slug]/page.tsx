@@ -187,7 +187,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
         <Divider plain={true} />
         <div className="relative mx-auto w-full max-w-5xl">
           <CornerDecorations />
-          <DocsLayout tree={blogSource.pageTree}>
+          <DocsLayout tree={blogSource.pageTree} containerProps={{ className: "relative bg-transparent" }}>
             <DocsPage toc={(page.data as BlogPostFrontmatter).toc ?? []} tableOfContent={{ bannerEnabled: false }}>
               <DocsBody prose={false}>
                 <MDXContent components={getMDXComponents()} />

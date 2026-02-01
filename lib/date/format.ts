@@ -12,5 +12,7 @@ export function formatDate(date: string, formatStr: string = "MM/dd/yyyy") {
     return format(new Date(Number(year), Number(month) - 1, 1), formatStr);
   }
 
-  return format(new Date(date), formatStr);
+  // Append time to date-only strings to avoid UTC parsing shifting the day
+  const parsed = /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T00:00:00` : date;
+  return format(new Date(parsed), formatStr);
 }

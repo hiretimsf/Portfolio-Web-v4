@@ -12,6 +12,7 @@ interface CompanyMainProps {
   companyLocation: string;
   companyWebsite: string;
   country: string;
+  hideDots?: boolean;
 }
 
 export default function CompanyMain({
@@ -21,6 +22,7 @@ export default function CompanyMain({
   companyLocation,
   companyWebsite,
   country,
+  hideDots,
 }: CompanyMainProps) {
   return (
     <div className="relative flex flex-col items-center gap-3 border-b border-black/10 dark:border-white/10 border-dashed px-6 py-6 md:flex-row md:px-8 md:py-4">
@@ -45,11 +47,13 @@ export default function CompanyMain({
           <CompanyWebsite companyWebsite={companyWebsite} />
         </div>
       </div>
-      <DotsBackground
-        gridId="company-main"
-        className="text-gray-200/80"
-        fadeBottomMask
-      />
+      {!hideDots && (
+        <DotsBackground
+          gridId="company-main"
+          className="text-gray-200/80"
+          fadeBottomMask
+        />
+      )}
     </div>
   );
 }
