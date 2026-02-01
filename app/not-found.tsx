@@ -1,9 +1,16 @@
 import { Button } from "@/components/ui/button";
+import type { Metadata } from "next";
 import Link from "next/link";
 
-/**
- * Custom 404 Not Found page
- */
+export const metadata: Metadata = {
+  title: "Page Not Found",
+  description: "The page you are looking for does not exist. Return to the homepage to explore Tim's portfolio.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
+
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-4">

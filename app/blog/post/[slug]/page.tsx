@@ -64,14 +64,18 @@ export async function generateMetadata({
   }
   const data = post.data as unknown as BlogPostFrontmatter;
 
+  const description = data.description
+    ? data.description.length > 155
+      ? `${data.description.slice(0, 155)}...`
+      : data.description
+    : `Read ${data.title} by Tim Baz.`;
+
   return {
     title: data.title || "Blog Post",
-    description:
-      data.description?.slice(0, 100) + ("..." as string) ||
-      "Read this insightful blog post.",
+    description,
     keywords: data.seo?.join(", ") || "blog, mdx, next.js",
     alternates: {
-      canonical: getBaseUrl(`blog/post/${slug}`),
+      canonical: getBaseUrl(`/blog/post/${slug}`),
     },
     robots: {
       index: true,
@@ -79,23 +83,25 @@ export async function generateMetadata({
     },
     openGraph: {
       title: data.title,
-      description: data.description?.slice(0, 100) + ("..." as string),
-      images: [
-        {
-          url: data.image,
-          width: 1200,
-          height: 630,
-          alt: data.title,
-          type: "image/png",
-        },
-      ],
+      description,
+      images: data.image
+        ? [
+            {
+              url: data.image,
+              width: 1200,
+              height: 630,
+              alt: data.title,
+              type: "image/png",
+            },
+          ]
+        : undefined,
       type: "article",
-      url: getBaseUrl(`blog/post/${slug}`),
+      url: getBaseUrl(`/blog/post/${slug}`),
     },
     twitter: {
       card: "summary_large_image",
       title: data.title,
-      description: data.description?.slice(0, 100) + ("..." as string),
+      description,
       images: data.image ? [data.image] : undefined,
     },
   };

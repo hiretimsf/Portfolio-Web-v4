@@ -200,13 +200,13 @@ var HEAD = [
     page: "About",
     title: truncateTitle("About Tim | Frontend Developer | 5+ Years Exp"),
     description: truncateDescription(
-      "Frontend Developer with 5+ years experience. Pixel-perfect execution in Next.js, React, & TypeScript. Building high-quality, user-centric web & mobile apps."
+      "Learn about Tim Baz, a Frontend Developer in San Francisco with 5+ years of experience building web apps with React, Next.js, and TypeScript."
     ),
     slug: "/about"
   },
   {
     page: "Experience",
-    title: truncateTitle("WorkExperience | Frontend Developer | 5+ Years Exp"),
+    title: truncateTitle("Work Experience | Frontend Developer | 5+ Years Exp"),
     description: truncateDescription(
       "Work experience of Tim, a Frontend Developer based in San Francisco Bay Area."
     ),
@@ -250,14 +250,14 @@ var HEAD = [
     page: "Privacy",
     title: truncateTitle("Privacy Policy | Hire Tim"),
     description: truncateDescription(
-      "Frontend Developer with 5+ years experience. Pixel-perfect execution in Next.js, React, & TypeScript. Building high-quality, user-centric web & mobile apps."
+      "Privacy policy for hiretimsf.com. Learn how your data is collected, used, and protected when visiting this site."
     ),
     slug: "/privacy"
   },
   {
     page: "Changelog",
     title: truncateTitle(
-      "Changelog | The history and evolution of my portfolio website."
+      "Changelog | Portfolio Website Updates & History"
     ),
     description: truncateDescription(
       "The history and evolution of my portfolio website."

@@ -89,10 +89,12 @@ export const viewport: Viewport = {
 
 // Metadata configuration
 export const metadata: Metadata = {
-  // Basic metadata
-  title: currentPageSEO?.title,
+  title: {
+    default: currentPageSEO?.title ?? "Hire Tim | Frontend Developer",
+    template: "%s | Hire Tim",
+  },
   generator: AUTHOR.name,
-  applicationName: currentPageSEO?.title,
+  applicationName: SITE_INFO.name,
   description: currentPageSEO?.description,
   referrer: "origin-when-cross-origin",
   keywords: (KEYWORDS ?? []).join(", "),

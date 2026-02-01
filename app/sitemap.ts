@@ -4,13 +4,12 @@ import { getBlogPosts } from "@/features/blog/lib/blog.server";
 import { getBaseUrl } from "@/lib/utils";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Define static pages with their configurations
   const staticPages = [
     {
       url: getBaseUrl(),
       lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 1.0, // Homepage gets highest priority
+      changeFrequency: "weekly" as const,
+      priority: 1.0,
     },
     {
       url: getBaseUrl("/about"),
@@ -28,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: getBaseUrl("/education"),
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
-      priority: 0.8,
+      priority: 0.6,
     },
     {
       url: getBaseUrl("/projects"),
@@ -39,56 +38,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: getBaseUrl("/blog"),
       lastModified: new Date(),
-      changeFrequency: "daily" as const,
+      changeFrequency: "weekly" as const,
       priority: 0.9,
     },
     {
       url: getBaseUrl("/contact"),
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: getBaseUrl("/llms.txt"),
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: getBaseUrl("/llms-full.txt"),
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: getBaseUrl("/rss.xml"),
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: getBaseUrl("/sitemap.xml"),
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-    },
-    {
-      url: getBaseUrl("/robots.txt"),
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
+      priority: 0.7,
     },
     {
       url: getBaseUrl("/privacy"),
       lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
     },
     {
       url: getBaseUrl("/changelog"),
       lastModified: new Date(),
-      changeFrequency: "daily" as const,
-      priority: 0.9,
+      changeFrequency: "monthly" as const,
+      priority: 0.4,
     },
   ];
 
