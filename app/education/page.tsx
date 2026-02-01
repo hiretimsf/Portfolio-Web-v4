@@ -76,7 +76,7 @@ export default async function EducationPage() {
             tree={educationSource.pageTree}
             containerProps={{ className: "relative bg-transparent" }}
           >
-            <DocsPage toc={pageData.toc} prose={false}>
+            <DocsPage toc={pageData.toc} prose={false} showDotsBackground={false}>
               <DocsBody prose={false}>
                 <MDX code={MDX} components={{ ...getMDXComponents() }} />
               </DocsBody>

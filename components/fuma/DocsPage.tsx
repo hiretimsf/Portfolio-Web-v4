@@ -123,6 +123,7 @@ export interface DocsPageProps {
   container?: ComponentProps<"div">;
   article?: ComponentProps<"article">;
   children: ReactNode;
+  showDotsBackground?: boolean;
 }
 
 export function DocsPage({
@@ -140,6 +141,7 @@ export function DocsPage({
     component: tocReplace,
     ...tocOptions
   } = {},
+  showDotsBackground = true,
   ...props
 }: DocsPageProps) {
   const isTocRequired =
@@ -199,11 +201,13 @@ export function DocsPage({
             props.article?.className,
           )}
         >
-          <DotsBackground
-            gridId="company-main"
-            className="text-gray-200/80 h-16"
-            fadeBottomMask
-          />
+          {showDotsBackground && (
+            <DotsBackground
+              gridId="company-main"
+              className="text-gray-200/80 h-28 sm:h-16"
+              fadeBottomMask
+            />
+          )}
           {slot(props.breadcrumb, <Breadcrumb {...props.breadcrumb} />)}
           {props.children}
           <div role="none" className="flex-1" />
