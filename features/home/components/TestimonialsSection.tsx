@@ -180,12 +180,20 @@ export function TestimonialVerifiedBadge({
 
 // --- Main Component ---
 
+import { useState } from "react";
+
+const INITIAL_COUNT = 6;
+
 export function TestimonialsSection() {
+  const testimonials = GET_TESTIMONIALS();
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? testimonials : testimonials.slice(0, INITIAL_COUNT);
+
   return (
     <Section gridId="what-people-say">
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {GET_TESTIMONIALS().map((item) => (
+        {visible.map((item) => (
           <a
             key={item.url}
             href={item.url}
@@ -218,6 +226,17 @@ export function TestimonialsSection() {
           </a>
         ))}
       </div>
+
+      {testimonials.length > INITIAL_COUNT && !showAll && (
+        <div className="flex justify-center mt-6">
+          <button
+            onClick={() => setShowAll(true)}
+            className="px-6 py-2 text-sm font-medium border rounded-lg hover:bg-accent transition-colors bg-background text-foreground"
+          >
+            View More
+          </button>
+        </div>
+      )}
     </Section>
   );
 }
