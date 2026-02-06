@@ -34,6 +34,14 @@ const config = {
         protocol: "https",
         hostname: "unavatar.io",
       },
+      {
+        protocol: "https",
+        hostname: "hiretimsf.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.hiretimsf.com",
+      },
     ],
   },
   async headers() {

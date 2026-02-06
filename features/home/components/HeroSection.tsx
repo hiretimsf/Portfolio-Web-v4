@@ -1,29 +1,17 @@
 "use client";
 
-import { Button } from "@/components/ui/button";  
-import { Compare } from "@/components/ui/compare";
+import { Button } from "@/components/ui/button";
 import Section from "@/components/layout/main/Section";
 import { SKILLS } from "@/features/home/data/source";
 import { cn } from "@/lib/utils";
 import ImageWithLoader from "@/components/common/ImageWithLoader";
 import Link from "next/link";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { IoCheckmarkCircle as CheckmarkIcon } from "react-icons/io5";
-import {
-  RiNextjsFill as NextJsLogo,
-  RiTailwindCssFill as TailwindcssLogo,
-} from "react-icons/ri";
-import { SiTypescript } from "react-icons/si";
 import BrowserWrapper from "@/components/common/BrowserWrapper";
-
-
-// --- Hero Component ---
 
 function HeroContent() {
   return (
     <div className="mx-auto grid w-full max-w-2xl grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10">
-      
       <h1 className="text-foreground px-4 text-[32px] font-semibold tracking-tight sm:text-[40px] sm:text-left py-2">
         Hello, I&apos;m Tim
       </h1>
@@ -55,17 +43,22 @@ function HeroContent() {
                   {item.name}:
                 </span>
               )}
-              {item.name === "Love" ? (
-                 <span className="text-foreground/80 text-[14px] sm:text-[16px] inline-flex items-center  flex-wrap gap-0.5">
-                  &nbsp;<NextJsLogo className="hidden sm:inline-block size-4 text-black dark:text-white" />Next.js &nbsp;
-                  <TailwindcssLogo className="hidden sm:inline-block size-4 text-[#06B6D4]" />TailwindCSS &nbsp;
-                  <span className="inline-flex items-center gap-1"><SiTypescript className="hidden sm:inline-block size-4 text-[#3178C6]" />Typescript</span>
+              {item.icons ? (
+                <span className="text-foreground/80 text-[14px] sm:text-[16px] inline-flex items-center flex-wrap gap-0.5">
+                  &nbsp;
+                  {item.description}
+                  {item.icons.map((Icon, i) => (
+                    <span key={i} className="inline-flex items-center ml-1">
+                      <Icon className="size-4 text-foreground/80" />
+                    </span>
+                  ))}
                 </span>
               ) : (
-                <span className="text-foreground/80 text-[14px] sm:text-[16px]">{item.description}</span>
+                <span className="text-foreground/80 text-[14px] sm:text-[16px]">
+                  {item.description}
+                </span>
               )}
             </div>
-            
           </li>
         ))}
       </ul>
@@ -73,96 +66,56 @@ function HeroContent() {
       <div className="px-4 py-4 text-left">
         <div className="flex flex-col gap-6">
           <Button asChild className="w-full sm:w-fit">
-            <Link href="/about" className="px-6 py-5 text-[16px] font-semibold w-full sm:w-auto">
+            <Link
+              href="/about"
+              className="px-6 py-5 text-[16px] font-semibold w-full sm:w-auto"
+            >
               Learn more about Tim
             </Link>
           </Button>
         </div>
       </div>
     </div>
-    
   );
 }
 
-type HeroProps = {
-  imageSrcDesktop?: string;
-  imageSrcDesktopDark?: string;
-  imageSrcMobile?: string;
-  imageSrcMobileDark?: string;
-  imageAlt?: string;
-};
 
-const DEFAULT_IMAGES = {
-  desktop: "/images/home/vertical-profile.jpg",
-  desktopDark: "/images/home/vertical-profile-dark.jpg",
-  mobile: "/images/home/horizontal-profile.jpg",
-  mobileDark: "/images/home/horizontal-profile-dark.jpg",
-  alt: "Professional headshot of Tim, a Frontend Developer based in San Francisco Bay Area",
-};
 
-export default function HeroSection({
-  imageSrcMobile = DEFAULT_IMAGES.mobile,
-  imageSrcMobileDark = DEFAULT_IMAGES.mobileDark,
-  imageAlt = DEFAULT_IMAGES.alt,
-}: HeroProps) {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    // eslint-disable-next-line
-    setMounted(true);
-  }, []);
-
-  const isDark = mounted && resolvedTheme === "dark";
-
+export default function HeroSection() {
   return (
     <Section gridId="hero">
+      <BrowserWrapper>
+        <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-6 bg-background">
+          {/* Image Section */}
+          <div className="w-full lg:col-span-1">
+            {/* Desktop Image */}
+            <div className="hidden lg:block relative h-full w-full">
+              <ImageWithLoader
+                src="/images/home/hero-desktop.jpg"
+                alt="Professional headshot of Tim, a Frontend Developer based in San Francisco Bay Area"
+                fill
+                className="object-cover object-top-left bg-[#E5E7EB] dark:bg-[#1F2937]"
+                priority
+              />
+            </div>
 
-      <BrowserWrapper>  
-      <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-6 bg-background">
-        
-        {/* Image Section */}
-        <div className="w-full lg:col-span-1">
-          
-          {/* Desktop Image */}
-          <div className="hidden lg:block relative h-full w-full">
-            <Compare
-              firstImage={
-                isDark
-                  ? "/images/home/profile-vertical-dark-after.jpg"
-                  : "/images/home/profile-vertical-light-after.jpg"
-              }
-              secondImage={
-                isDark
-                  ? "/images/home/profile-vertical-dark-before.jpg"
-                  : "/images/home/profile-vertical-light-before.jpg"
-              }
-              firstImageClassName="object-cover object-left-top"
-              secondImageClassname="object-cover object-left-top"
-              className="h-full w-full"
-              slideMode="drag"
-              autoplay={false}
-            />
+            {/* Mobile Image */}
+            <div className="block lg:hidden relative w-full">
+              <ImageWithLoader
+                src="/images/home/hero-mobile.jpg"
+                alt="Professional headshot of Tim, a Frontend Developer based in San Francisco Bay Area"
+                width={600}
+                height={400}
+                priority
+                className="h-auto w-full object-cover aspect-4/3 md:aspect-auto"
+              />
+            </div>
           </div>
-
-          {/* Mobile Image */}
-          <div className="block lg:hidden relative w-full">
-            <ImageWithLoader
-              src={isDark ? imageSrcMobileDark : imageSrcMobile}
-              alt={imageAlt}
-              width={600}
-              height={400}
-              priority
-              className="h-auto w-full object-cover aspect-4/3 md:aspect-auto"
-            />
+          {/* Content Section */}
+          <div className="relative lg:col-span-1 lg:flex lg:items-center lg:border-l lg:border-dashed lg:border-black/10 dark:border-white/10 rounded-xl corner-squircle">
+            <HeroContent />
           </div>
         </div>
-
-        {/* Content Section */}
-        <div className="relative lg:col-span-1 lg:flex lg:items-center lg:border-l lg:border-dashed lg:border-black/10 dark:border-white/10 rounded-xl corner-squircle">
-          <HeroContent />
-        </div>
-      </div>
       </BrowserWrapper>
     </Section>
   );
