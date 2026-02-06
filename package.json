@@ -161,5 +161,9 @@
     "safari >= 16",
     "ios >= 16",
     "not IE 11"
-  ]
+  ],
+  "overrides": {
+    "prisma": "$prisma",
+    "@prisma/client": "$@prisma/client"
+  }
 }
