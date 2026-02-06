@@ -110,7 +110,7 @@ export function CommentForm({ slug, parentId, onSuccess }: CommentFormProps) {
       });
     } catch (error) {
       console.error("Social login error:", error);
-      toast.error("Failed to initiate login");
+      toast.error(error instanceof Error ? error.message : "Failed to initiate login");
     }
   };
 
