@@ -227,6 +227,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
       />
 
       <Divider plain={true}/>
+      
       <CommentForm slug={slug} />
       <Divider plain={true}/>
       <Comment slug={slug} />
