@@ -5,7 +5,7 @@ import { SOCIAL_LINKS } from "@/lib/config";
 import { trackEvent } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 interface ContactMeProps {
   className?: string;
@@ -31,7 +31,7 @@ const Contact = ({
       className={`relative mx-auto flex max-w-2xl flex-col px-6 pt-16 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:pt-0 ${className}`}
       aria-labelledby="contact-heading"
     >
-      <CornerDecorations className="z-10"/>
+
       <div className="w-full flex-auto px-6 text-center sm:text-left">
         <h2
           id="contact-heading"

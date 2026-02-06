@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ComponentType } from "react";
 import LastModified from "@/components/common/LastModified";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -78,7 +78,7 @@ export default async function PrivacyPage() {
         />
         <Divider plain={true} />
         <div className="border-border relative min-h-52 max-w-full">
-          <CornerDecorations bottom={true}/>
+
           <DocsLayout
             tree={privacySource.pageTree}
             containerProps={{ className: "relative bg-transparent" }}

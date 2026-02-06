@@ -1,24 +1,29 @@
-import Contact from "@/components/layout/main/Contact";
+
+import ImageWithLoader from "@/components/common/ImageWithLoader";
+import LastModified from "@/components/common/LastModified";
+import Divider from "@/components/Divider";
 import { DocsLayout } from "@/components/fuma/DocsLayout";
 import { DocsBody, DocsPage } from "@/components/fuma/DocsPage";
-import LastModified from "@/components/common/LastModified";
-import ImageWithLoader from "@/components/common/ImageWithLoader";
-import Divider from "@/components/Divider";
-import { SITE_INFO, USER } from "@/lib/config";
 import BlogPostMetaData from "@/features/blog/components/BlogPostMetaData";
 import BlogPostNavigation from "@/features/blog/components/BlogPostNavigation";
 import BlogPostTitle from "@/features/blog/components/BlogPostTitle";
+import Reactions from "@/features/blog/components/Reactions";
+import { Comment } from "@/features/blog/components/comment/Comment";
+import { CommentForm } from "@/features/blog/components/comment/CommentForm";
+import { ViewTracker } from "@/features/blog/components/ViewTracker";
 import { blogSource } from "@/features/blog/data/blogSource";
 import { getBlogPosts } from "@/features/blog/lib/blog.server";
+import { getPostStats } from "@/features/blog/lib/stats.server";
 import type { BlogPostFrontmatter } from "@/features/blog/types/BlogPostFrontmatter";
 import type { BlogPostType } from "@/features/blog/types/BlogPostType";
+import { SITE_INFO, USER } from "@/lib/config";
 import { getBaseUrl } from "@/lib/utils";
 import { getMDXComponents } from "@/mdx-components";
 import type { MDXComponents } from "mdx/types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { BlogPosting, WithContext } from "schema-dts";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -120,6 +125,9 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
     return notFound();
   }
 
+  // Fetch view and comment counts
+  const { views, comments } = await getPostStats(slug);
+
   const nextPost = posts[postIndex - 1]; // Newer
   const prevPost = posts[postIndex + 1]; // Older
 
@@ -128,6 +136,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
   const date = post.created;
   const category = post.category ?? "General";
   const readTime = post.readingTimeMinutes;
+
 
   const MDXContent = post.body as React.FC<{ components: MDXComponents }>;
 
@@ -162,7 +171,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
         />
         <Divider short={true} />
         <div className="relative mx-auto w-full max-w-5xl">
-          <CornerDecorations className="z-10"/>
+
         <ImageWithLoader
           alt={post.title}
           src={post.image}
@@ -181,9 +190,10 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           date={date}
           category={category}
           readTime={readTime}
-          comments={0}
-          views={0}
+          comments={comments}
+          views={views}
         />
+        <ViewTracker slug={slug} />
         <Divider plain={true} />
         <BlogPostTitle
           title={post.title}
@@ -192,23 +202,35 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
         />
         <Divider plain={true} />
         <div className="relative mx-auto w-full max-w-5xl">
-          <CornerDecorations />
-          <DocsLayout tree={blogSource.pageTree} containerProps={{ className: "relative bg-transparent" }}>
-            <DocsPage toc={(page.data as BlogPostFrontmatter).toc ?? []} tableOfContent={{ bannerEnabled: false }}>
-              <DocsBody prose={false}>
+
+          <DocsLayout
+            tree={blogSource.pageTree}
+            containerProps={{ className: "relative bg-transparent" }}
+            forceMobileTOC={true}
+          >
+            <DocsPage
+              toc={(page.data as BlogPostFrontmatter).toc ?? []}
+              tocTriggerClassName="max-w-3xl md:px-2"
+            >
+              <DocsBody prose={false} className="max-w-3xl">
                 <MDXContent components={getMDXComponents()} />
               </DocsBody>
             </DocsPage>
           </DocsLayout>
         </div>
       </main>
-      <Divider short={true}/>
+      <Divider plain={true}/>
+      <Reactions slug={slug} />
+      <Divider plain={true}/>
       <LastModified
         lastModified={post.lastUpdated ?? new Date().toISOString()}
       />
-      <Divider short={true}/>
-      <Contact />
-      <Divider short={true} borderBottom={false}/>
+
+      <Divider plain={true}/>
+      <CommentForm slug={slug} />
+      <Divider plain={true}/>
+      <Comment slug={slug} />
+      <Divider plain={true} borderBottom={false}/>
     </>
   );
 }

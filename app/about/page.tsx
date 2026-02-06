@@ -15,7 +15,7 @@ import type { ComponentType } from "react";
 import Web from "@/features/about/components/Web";
 import LastModified from "@/components/common/LastModified";
 import ImageWithLoader from "@/components/common/ImageWithLoader";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -84,7 +84,7 @@ export default async function AboutMePage() {
       <Divider short={true}/>
       <main className="mx-auto flex flex-col">
         <div className="relative">
-          <CornerDecorations className="z-10"/>
+
           {/* Mobile Image */}
           <div className="md:hidden">
             <ImageWithLoader
@@ -118,7 +118,7 @@ export default async function AboutMePage() {
         />
         <Divider plain={true} />
         <div className="border-border relative min-h-52 max-w-full">
-          <CornerDecorations bottom={true}/>
+
           <DocsLayout
             tree={aboutSource.pageTree}
             containerProps={{ className: "relative bg-transparent" }}

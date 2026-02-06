@@ -12,11 +12,17 @@ export interface DocsLayoutProps extends BaseLayoutProps {
    * Props for the `div` container
    */
   containerProps?: HTMLAttributes<HTMLDivElement>;
+
+  /**
+   * Force mobile TOC on desktop
+   */
+  forceMobileTOC?: boolean;
 }
 
 export function DocsLayout({
   i18n = false,
   children,
+  forceMobileTOC = false,
   ...props
 }: DocsLayoutProps): ReactNode {
   const variables = cn(
@@ -24,8 +30,8 @@ export function DocsLayout({
   );
 
   const pageStyles: PageStyles = {
-    tocNav: cn("lg:hidden"),
-    toc: cn("max-lg:hidden"),
+    tocNav: cn(forceMobileTOC ? "" : "lg:hidden"),
+    toc: cn(forceMobileTOC ? "hidden" : "max-lg:hidden"),
   };
 
   return (

@@ -18,7 +18,7 @@ export default function BlogPostTitle({
     >
       <svg
         aria-hidden="true"
-        className="absolute inset-0 z-0 h-full mask-[radial-gradient(circle_at_90%_0,black,transparent_95%)]"
+        className="absolute inset-0 z-0 h-full mask-[linear-gradient(to_right,black,transparent_40%,transparent_60%,black)]"
         width="100%"
         height="100%"
       >
@@ -62,7 +62,7 @@ export default function BlogPostTitle({
       </svg>
       <h2
         className={cn(
-          "text-foreground relative text-left tracking-tight",
+          "text-foreground relative text-center mx-auto tracking-tight",
           textStyleClassName,
         )}
       >

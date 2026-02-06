@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { useQueryState, parseAsInteger } from "nuqs";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 interface PagingProps {
   totalItems: number;
@@ -33,7 +33,7 @@ export default function Paging({
         "relative mx-auto flex w-full items-center justify-center gap-2 px-6 py-8 md:py-4 lg:px-8",
       )}
     >
-      <CornerDecorations />
+
       <button
         type="button"
         onClick={() => setPage(currentPage - 1)}

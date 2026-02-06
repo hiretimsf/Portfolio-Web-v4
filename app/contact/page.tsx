@@ -6,7 +6,7 @@ import type { HeadType } from "@/types";
 import type { Metadata } from "next";
 import { ContactForm } from "@/features/contact/ContactForm";
 import Contact from "@/components/layout/main/Contact";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 // Validate SEO configuration to ensure all required fields are present
 // This helps catch missing or incomplete SEO setup early
@@ -54,7 +54,7 @@ export default async function ContactPage() {
         />
         <Divider plain={true}/>
         <div className="border-border relative min-h-52 max-w-full">
-          <CornerDecorations bottom={true}/>
+
           <ContactForm />
         </div>
       </main>

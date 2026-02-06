@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SOURCE_CODE_GITHUB_URL } from "@/lib/config";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 const defaultClass =
   "text-foreground hover:text-muted-foreground underline underline-offset-4 transition-colors";
@@ -21,7 +21,7 @@ const techLinks: { label: string; href: string }[] = [
 export default function TechStack() {
   return (
     <div className="screen-line-before max-w-5xl w-full mx-auto border-x border-edge py-4">
-      <CornerDecorations bottom={true}/>
+
       <p className="text-muted-foreground hidden text-center text-sm leading-5 sm:block max-w-xl mx-auto">
         Loosely designed in{" "}
         <Link

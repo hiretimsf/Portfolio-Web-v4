@@ -7,12 +7,12 @@ import {
 } from "@/components/ui/accordion";
 import { GET_FAQ } from "@/features/home/data/source";
 import type { FaqType } from "@/features/home/types/FaqType";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 const FaqSection = () => {
   return (
     <Section gridId="faq">
-      <CornerDecorations bottom={true}/>
+
       <Accordion
         type="single"
         collapsible

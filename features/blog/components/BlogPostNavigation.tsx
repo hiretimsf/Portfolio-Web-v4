@@ -13,7 +13,7 @@ import { LLMCopyButtonWithViewOptions } from "@/features/blog/components/buttons
 import type { BlogPostType } from "@/features/blog/types/BlogPostType";
 import { ShareButton } from "@/features/blog/components/buttons/ShareButton";
 import BackButton from "@/features/blog/components/buttons/BackButton";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 type BlogPostNavigationItem = Omit<BlogPostType, "body">;
 
@@ -30,7 +30,7 @@ export default function BlogPostNavigation({
 }: BlogPostNavigationProps) {
   return (
     <div className="flex items-center justify-between p-2 pl-4 relative">
-      <CornerDecorations/>
+
       <BackButton />
 
       <div className="flex items-center gap-2">

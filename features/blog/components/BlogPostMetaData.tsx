@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { format, parseISO } from "date-fns";
 import Image from "next/image";
 import type { ElementType, FC, ReactNode } from "react";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 interface InfoBarItemProps {
   icon?: ElementType;
@@ -76,13 +76,14 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
 }) => {
   return (
     <div className={cn("w-full relative", className)}>
-      <CornerDecorations top={true}/>
+
       {/* Desktop View */}
-      <div className="hidden sm:flex mx-auto w-full max-w-5xl flex-row items-center justify-start divide-x divide-black/10 dark:divide-white/10">
+      <div className="hidden sm:flex w-full max-w-4xl flex-row items-center justify-center mx-auto">
         <InfoBarItem
           text={
             <span className="font-medium text-foreground">{authorName}</span>
           }
+          className="border-x border-dashed border-black/10 dark:border-white/10"
         >
           <Image
             src={authorImage}
@@ -94,16 +95,17 @@ const BlogPostMetaData: FC<BlogPostMetaDataProps> = ({
           />
         </InfoBarItem>
 
-        <InfoBarItem icon={FolderIcon} text={category} />
+        <InfoBarItem icon={FolderIcon} text={category} className="border-r border-dashed border-black/10 dark:border-white/10"/>
 
         <InfoBarItem
           icon={CalendarIcon}
           text={format(parseISO(date), "MMM dd, yyyy")}
+          className="border-r border-dashed border-black/10 dark:border-white/10"
         />
 
-        <InfoBarItem icon={ClockIcon} text={getMinutes(readTime)} />
-        <InfoBarItem icon={CommentIcon} text={`${comments} Comments`} />
-        <InfoBarItem icon={EyeIcon} text={`${views} Views`} />
+        <InfoBarItem icon={ClockIcon} text={getMinutes(readTime)} className="border-r border-dashed border-black/10 dark:border-white/10"/>
+        <InfoBarItem icon={CommentIcon} text={`${comments} Comments`} className="border-r border-dashed border-black/10 dark:border-white/10"/>
+        <InfoBarItem icon={EyeIcon} text={`${views} Views`} className="border-r border-dashed border-black/10 dark:border-white/10"/>
       </div>
 
       {/* Mobile View */}

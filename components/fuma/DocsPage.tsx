@@ -124,6 +124,7 @@ export interface DocsPageProps {
   article?: ComponentProps<"article">;
   children: ReactNode;
   showDotsBackground?: boolean;
+  tocTriggerClassName?: string;
 }
 
 export function DocsPage({
@@ -142,6 +143,7 @@ export function DocsPage({
     ...tocOptions
   } = {},
   showDotsBackground = true,
+  tocTriggerClassName,
   ...props
 }: DocsPageProps) {
   const isTocRequired =
@@ -173,10 +175,12 @@ export function DocsPage({
           { enabled: tocPopoverEnabled, component: tocPopoverReplace },
           <DocsTOCPopover className="h-10">
             <DocsTOCPopoverTrigger
-              className="mx-auto w-full max-w-7xl"
+              className={cn("mx-auto w-full max-w-7xl", tocTriggerClassName)}
               items={toc}
             />
-            <DocsTOCPopoverContent>
+            <DocsTOCPopoverContent
+              className={cn("mx-auto w-full max-w-7xl", tocTriggerClassName)}
+            >
               {tocPopoverOptions.header}
               <TOCScrollArea className="px-4 md:px-6">
                 {tocPopoverOptions.style === "clerk" ? (

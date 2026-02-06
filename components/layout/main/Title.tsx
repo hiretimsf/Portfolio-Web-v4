@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 interface SectionTitleProps {
   title: string;
@@ -17,7 +17,7 @@ export default function Title({
         "relative mx-auto flex w-full justify-center py-4 text-muted-foreground/20",
       )}
     >
-      <CornerDecorations/>
+
       <svg
         aria-hidden="true"
         className="absolute inset-0 z-0 h-full mask-[radial-gradient(circle_at_50%_0,black,transparent_80%)]"

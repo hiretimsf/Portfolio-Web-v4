@@ -16,7 +16,7 @@ import {
 } from "react-icons/ri";
 import { SiTypescript } from "react-icons/si";
 import BrowserWrapper from "@/components/common/BrowserWrapper";
-import CornerDecorations from "@/components/common/CornerDecorations";
+
 
 // --- Hero Component ---
 
@@ -117,7 +117,7 @@ export default function HeroSection({
 
   return (
     <Section gridId="hero">
-      <CornerDecorations top={true}/>
+
       <BrowserWrapper>  
       <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-6 bg-background">
         
