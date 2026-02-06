@@ -165,5 +165,8 @@
   "overrides": {
     "prisma": "$prisma",
     "@prisma/client": "$@prisma/client"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }
