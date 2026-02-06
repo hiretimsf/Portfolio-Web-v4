@@ -118,12 +118,12 @@ export function CommentForm({ slug, parentId, onSuccess }: CommentFormProps) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full mx-auto relative">
 
-              <div className="border-b border-black/10 dark:border-white/10 border-dashed w-full mx-auto items-center justify-center flex">
+              <div className="border-b border-black/10 dark:border-white/10 md:border-dashed w-full mx-auto items-center justify-center flex">
                  <FormField
                     control={form.control}
                     name="content"
                     render={({ field }) => (
-                      <FormItem className="max-w-2xl w-full border-x border-black/10 dark:border-white/10 border-dashed px-6 py-4">
+                      <FormItem className="max-w-2xl w-full border-0 md:border-x border-black/10 dark:border-white/10 border-dashed px-6 py-4">
                         <div className="flex gap-4">
                             {session && (
                                 <Avatar className="h-10 w-10 border border-black/10 dark:border-white/10">
@@ -146,7 +146,7 @@ export function CommentForm({ slug, parentId, onSuccess }: CommentFormProps) {
                     )}
                   />
                 </div>
-            <div className="max-w-2xl mx-auto items-center justify-start flex border-x border-black/10 dark:border-white/10 border-dashed px-6 py-4">
+            <div className="max-w-2xl mx-auto items-center justify-end flex border-0 md:border-x border-black/10 dark:border-white/10 md:border-dashed px-6 py-4">
                 {session ? (
                     <div className="flex items-center gap-2 w-full justify-between">
                      <div className="flex items-center gap-2 text-sm text-muted-foreground">

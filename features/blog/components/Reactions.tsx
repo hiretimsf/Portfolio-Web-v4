@@ -76,11 +76,11 @@ export default function Reactions({ slug, className }: ReactionsProps) {
   ];
 
   return (
-    <div className={cn("flex w-full flex-col items-center gap-4 py-6", className)}>
-      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+    <div className={cn("flex w-full flex-col items-center", className)}>
+      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider border-0 md:border-x border-b border-black/10 dark:border-white/10 md:border-dashed w-full max-w-2xl mx-auto text-center py-4">
         What do you think?
       </h3>
-      <div className="flex flex-wrap justify-center gap-4 sm:gap-6 p-4">
+      <div className="flex flex-wrap justify-center gap-4 sm:gap-6 p-4 border-0 md:border-x border-black/10 dark:border-white/10 md:border-dashed w-full max-w-2xl mx-auto">
         {reactions.map((reaction) => {
           const count = counts?.[reaction.type] || 0;
           const isSelected = selectedReaction === reaction.type;

@@ -62,7 +62,7 @@ export function Comment({ slug }: CommentProps) {
 
       
       {/* List of comments */}
-      <div className="max-w-2xl w-full border-x  border-black/10 dark:border-white/10 border-dashed">
+      <div className="max-w-2xl w-full border-0 md:border-x border-black/10 dark:border-white/10 border-dashed">
         {comments.map((comment: CommentType, index: number) => (
           <CommentItem
             key={comment.id}
@@ -76,7 +76,7 @@ export function Comment({ slug }: CommentProps) {
           />
         ))}
         {comments.length === 0 && (
-            <p className="text-muted-foreground text-left py-8">No comments yet. Be the first to share your thoughts!</p>
+            <p className="text-muted-foreground text-center py-8">No comments yet. Be the first to share your thoughts!</p>
         )}
       </div>
     </div>
