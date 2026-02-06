@@ -22,7 +22,7 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma migrate deploy && next build",
+    "build": "prisma generate && prisma migrate deploy && next build",
     "start": "next start",
     "preview": "next build && next start",
     "lint": "eslint .",
