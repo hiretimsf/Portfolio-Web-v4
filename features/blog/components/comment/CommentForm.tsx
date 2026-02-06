@@ -95,10 +95,23 @@ export function CommentForm({ slug, parentId, onSuccess }: CommentFormProps) {
   }
 
   const handleSocialLogin = async (provider: "google" | "github") => {
+    try {
       await signIn.social({
-          provider,
-          callbackURL: window.location.href
+        provider,
+        callbackURL: window.location.href,
+        fetchOptions: {
+            onSuccess: () => {
+                toast.success("Redirecting to login...");
+            },
+            onError: (ctx) => {
+                toast.error(ctx.error.message);
+            }
+        }
       });
+    } catch (error) {
+      console.error("Social login error:", error);
+      toast.error("Failed to initiate login");
+    }
   };
 
   return (
