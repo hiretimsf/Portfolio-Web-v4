@@ -74,7 +74,7 @@ const config = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https: blob:",
               "font-src 'self' data:",
-              "connect-src 'self' https://vercel.live https://*.google-analytics.com https://cdn.syndication.twimg.com https://api.github.com",
+              "connect-src 'self' https://vercel.live https://*.google-analytics.com https://cdn.syndication.twimg.com https://api.github.com https://hiretimsf.com https://www.hiretimsf.com",
               "frame-src 'self' https://www.youtube.com https://platform.twitter.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
