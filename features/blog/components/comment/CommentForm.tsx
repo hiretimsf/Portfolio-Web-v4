@@ -26,6 +26,7 @@ import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "sonner";
 import { z } from "zod";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 
 const commentSchema = z.object({
@@ -41,9 +42,7 @@ interface CommentFormProps {
 }
 
 import { useQueryClient } from "@tanstack/react-query";
-// ... imports
 
-// ... inside component
 export function CommentForm({ slug, parentId, onSuccess }: CommentFormProps) {
   const { data: session } = useSession();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -125,44 +124,61 @@ export function CommentForm({ slug, parentId, onSuccess }: CommentFormProps) {
                     name="content"
                     render={({ field }) => (
                       <FormItem className="max-w-2xl w-full border-x border-black/10 dark:border-white/10 border-dashed px-6 py-4">
-                        <FormControl>
-                          <Textarea
-                            placeholder={parentId ? "Write a reply..." : "Leave a comment..."}
-                            className="min-h-[100px] resize-none bg-transparent border-none focus-visible:ring-0 p-0 text-base placeholder:text-muted-foreground/70"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
+                        <div className="flex gap-4">
+                            {session && (
+                                <Avatar className="h-10 w-10 border border-black/10 dark:border-white/10">
+                                    <AvatarImage src={session.user.image || ""} alt={session.user.name || "User"} />
+                                    <AvatarFallback>{session.user.name?.charAt(0) || "U"}</AvatarFallback>
+                                </Avatar>
+                            )}
+                            <div className="flex-1">
+                                <FormControl>
+                                  <Textarea
+                                    placeholder={parentId ? "Write a reply..." : "Leave a comment..."}
+                                    className="min-h-[100px] resize-none bg-transparent border-none focus-visible:ring-0 p-0 text-base placeholder:text-muted-foreground/70"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                            </div>
+                        </div>
                       </FormItem>
                     )}
                   />
                 </div>
             <div className="max-w-2xl mx-auto items-center justify-start flex border-x border-black/10 dark:border-white/10 border-dashed px-6 py-4">
                 {session ? (
-                    <div className="flex items-center gap-2 w-full justify-start">
-                     <Button
-                         type="button"
-                         variant="ghost"
-                         onClick={() => signOut()}
-                         disabled={isSubmitting}
-                         className="text-muted-foreground hover:text-foreground"
-                     >
-                         Sign out
-                     </Button>
-                     <Button
-                     type="submit"
-                     disabled={isSubmitting || !form.watch("content")?.trim()}
-                     className="min-w-[100px]"
-                   >
-                     {isSubmitting ? (
-                        <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Posting...
-                        </>
-                     ) : (
-                        "Post Comment"
-                     )}
-                   </Button>
+                    <div className="flex items-center gap-2 w-full justify-between">
+                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span>Commenting as <span className="font-medium text-foreground">{session.user.name}</span></span>
+                     </div>
+                     <div className="flex items-center gap-2">
+                         <Button
+                             type="button"
+                             variant="ghost"
+                             onClick={() => signOut()}
+                             disabled={isSubmitting}
+                             size="sm"
+                             className="text-muted-foreground hover:text-foreground"
+                         >
+                             Sign out
+                         </Button>
+                         <Button
+                             type="submit"
+                             disabled={isSubmitting || !form.watch("content")?.trim()}
+                             className="min-w-[100px]"
+                             size="sm"
+                         >
+                             {isSubmitting ? (
+                                <>
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Posting...
+                                </>
+                             ) : (
+                                "Post Comment"
+                             )}
+                        </Button>
+                     </div>
                    </div>
                 ) : (
                     <Dialog open={isLoginOpen} onOpenChange={setIsLoginOpen}>

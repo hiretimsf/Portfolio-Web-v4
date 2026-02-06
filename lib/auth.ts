@@ -38,5 +38,13 @@ export const auth = betterAuth({
     trustedOrigins: [
         "https://hiretimsf.com",
         "https://www.hiretimsf.com"
-    ]
+    ],
+    advanced: {
+        cookiePrefix: "hiretimsf-auth",
+        defaultCookieAttributes: {
+            sameSite: "none",
+            secure: true,
+            domain: process.env.NODE_ENV === "production" ? ".hiretimsf.com" : undefined
+        }
+    }
 });
