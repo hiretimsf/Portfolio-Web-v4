@@ -25,6 +25,8 @@ import { MarkdownIcon } from "@/features/blog/icons/MarkDownIcon";
 import { OpenAIIcon } from "@/features/blog/icons/OpenAI-Icon";
 import { ClaudeIcon } from "@/features/blog/icons/ClaudeIcon";
 import { SciraIcon } from "@/features/blog/icons/SciraIcon";
+import { GeminiIcon } from "@/features/blog/icons/GeminiIcon";
+import { PerplexityIcon } from "@/features/blog/icons/PerplexityIcon";
 
 const cache = new Map<string, string>();
 
@@ -126,6 +128,20 @@ function ViewOptions({ markdownUrl }: { markdownUrl: string }) {
           q,
         })}`,
         icon: SciraIcon,
+      },
+      {
+        title: "Open in Gemini",
+        href: `https://gemini.google.com/app?${new URLSearchParams({
+          text: q,
+        })}`,
+        icon: GeminiIcon,
+      },
+      {
+        title: "Open in Perplexity",
+        href: `https://www.perplexity.ai/search?${new URLSearchParams({
+          q,
+        })}`,
+        icon: PerplexityIcon,
       },
     ];
   }, [markdownUrl]);

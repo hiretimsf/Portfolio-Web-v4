@@ -43,11 +43,21 @@ function HeroContent() {
                   {item.name}:
                 </span>
               )}
-              {item.icons ? (
-                <span className="text-foreground/80 text-[14px] sm:text-[16px] inline-flex items-center flex-wrap gap-0.5">
+              {item.icons || Array.isArray(item.description) ? (
+                <span className="text-foreground/80 text-[14px] sm:text-[16px] inline-flex items-center flex-wrap [&>*:not(:first-child)]:ml-2">
                   &nbsp;
-                  {item.description}
-                  {item.icons.map((Icon, i) => (
+                  {Array.isArray(item.description)
+                    ? item.description.map((part, i) => (
+                        <span
+                          key={i}
+                          className={cn("inline-flex items-center gap-x-0.5", part.className)}
+                        >
+                          {part.icon && <part.icon className="size-4" />}
+                          <span className="text-foreground">{part.text}</span>
+                        </span>
+                      ))
+                    : item.description}
+                  {item.icons?.map((Icon, i) => (
                     <span key={i} className="inline-flex items-center ml-1">
                       <Icon className="size-4 text-foreground/80" />
                     </span>
@@ -112,7 +122,7 @@ export default function HeroSection() {
             </div>
           </div>
           {/* Content Section */}
-          <div className="relative lg:col-span-1 lg:flex lg:items-center lg:border-l lg:border-dashed lg:border-black/10 dark:border-white/10 rounded-xl corner-squircle">
+          <div className="relative lg:col-span-1 lg:flex lg:items-center lg:border-l lg:border-dashed lg:border-black/10 dark:border-white/10">
             <HeroContent />
           </div>
         </div>

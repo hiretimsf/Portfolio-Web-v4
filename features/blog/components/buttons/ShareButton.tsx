@@ -11,9 +11,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { copyText } from "@/features/blog/utils/copy";
-import { LinkedInIcon } from "@/features/blog/icons/LinkedInIcon";
-import { XIcon } from "@/features/blog/icons/XIcon";
+import { FaLinkedin as LinkedInIcon } from "react-icons/fa";
+import { FaSquareXTwitter as XIcon } from "react-icons/fa6";
 import { trackEvent } from "@/lib/utils";
+import { FaReddit as RedditIcon } from "react-icons/fa";
+import { FaFacebook as FacebookIcon } from "react-icons/fa";
+import { FaHackerNewsSquare as HackerNewsIcon } from "react-icons/fa";
 
 export function ShareButton({ url }: { url: string }) {
   const absoluteUrl = url.startsWith("http")
@@ -23,6 +26,9 @@ export function ShareButton({ url }: { url: string }) {
       : url;
 
   const urlEncoded = encodeURIComponent(absoluteUrl);
+  // Titles should also be encoded usually but for these simple share URLs it might be okay or handled by platform.
+  // Facebook only takes u (url). Reddit takes url and title. HN takes u (url) and t (title).
+  // We'll just pass the URL for now as per `ShareButton` pattern.
 
   return (
     <DropdownMenu>
@@ -53,7 +59,7 @@ export function ShareButton({ url }: { url: string }) {
           }}
         >
           <LinkIcon />
-          Copy link
+           Copy link
         </DropdownMenuItem>
 
         <DropdownMenuItem
@@ -74,6 +80,68 @@ export function ShareButton({ url }: { url: string }) {
           >
             <XIcon />
             Share on X
+          </a>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem
+          asChild
+          onClick={() => {
+            trackEvent({
+              name: "blog_share_reddit",
+              properties: {
+                url: absoluteUrl,
+              },
+            });
+          }}
+        >
+          <a
+            href={`https://www.reddit.com/submit?url=${urlEncoded}`}
+            target="_blank"
+            rel="noopener"
+          >
+            <RedditIcon />
+            Share on Reddit
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          asChild
+          onClick={() => {
+            trackEvent({
+              name: "blog_share_hackernews",
+              properties: {
+                url: absoluteUrl,
+              },
+            });
+          }}
+        >
+          <a
+            href={`https://news.ycombinator.com/submitlink?u=${urlEncoded}`}
+            target="_blank"
+            rel="noopener"
+          >
+            <HackerNewsIcon />
+            Share on Hacker News
+          </a>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem
+          asChild
+          onClick={() => {
+            trackEvent({
+              name: "blog_share_facebook",
+              properties: {
+                url: absoluteUrl,
+              },
+            });
+          }}
+        >
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${urlEncoded}`}
+            target="_blank"
+            rel="noopener"
+          >
+            <FacebookIcon />
+            Share on Facebook
           </a>
         </DropdownMenuItem>
 

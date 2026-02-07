@@ -211,8 +211,8 @@ export function DocsTOCPopover(props: HTMLAttributes<HTMLDivElement>) {
             id="nd-tocnav"
             {...props}
             className={cn(
-              "border-b backdrop-blur-sm transition-colors",
-              (!isTransparent || open) && "bg-fd-background",
+              "border-b backdrop-blur-xl transition-colors",
+              (!isTransparent || open) && "bg-background/40",
               open && "shadow-lg",
             )}
           >

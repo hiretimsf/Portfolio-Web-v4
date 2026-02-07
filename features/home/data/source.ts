@@ -77,8 +77,23 @@ export const SKILLS: SkillType[] = [
   { name: "Based", description: "in the San Francisco Bay Area" },
   { 
     name: "Love", 
-    description: "Next.js and TailwindCSS, Typescript",
-    icons: [SiNextdotjs, SiTailwindcss, SiTypescript]
+    description: [
+      { 
+        text: "Next.js", 
+        icon: SiNextdotjs, 
+        className: "text-black dark:text-white"
+      },
+      { 
+        text: "TailwindCSS", 
+        icon: SiTailwindcss, 
+        className: "text-[#38bdf8]"
+      },
+      { 
+        text: "TypeScript", 
+        icon: SiTypescript, 
+        className: "text-[#3178c6]"
+      }
+    ]
   },
   { name: "Have", description: "a Computer Science degree" },
   { name: "Speak", description: "English, German, and Mongolian" },
