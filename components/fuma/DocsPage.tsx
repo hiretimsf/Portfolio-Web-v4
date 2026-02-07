@@ -208,7 +208,7 @@ export function DocsPage({
           {showDotsBackground && (
             <DotsBackground
               gridId="company-main"
-              className="text-gray-200/80 h-28 sm:h-16"
+              className="text-gray-200/80 h-28 sm:h-24"
               fadeBottomMask
             />
           )}
