@@ -125,6 +125,7 @@ export interface DocsPageProps {
   children: ReactNode;
   showDotsBackground?: boolean;
   tocTriggerClassName?: string;
+  headerHeight?: "sm" | "md";
 }
 
 export function DocsPage({
@@ -144,6 +145,7 @@ export function DocsPage({
   } = {},
   showDotsBackground = true,
   tocTriggerClassName,
+  headerHeight = "sm",
   ...props
 }: DocsPageProps) {
   const isTocRequired =
@@ -208,7 +210,10 @@ export function DocsPage({
           {showDotsBackground && (
             <DotsBackground
               gridId="company-main"
-              className="text-gray-200/80 h-28 sm:h-24"
+              className={cn(
+                "text-gray-200/80 h-28",
+                headerHeight === "md" ? "sm:h-24" : "sm:h-16",
+              )}
               fadeBottomMask
             />
           )}

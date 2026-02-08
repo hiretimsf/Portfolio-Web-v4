@@ -211,6 +211,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
             <DocsPage
               toc={(page.data as BlogPostFrontmatter).toc ?? []}
               tocTriggerClassName="max-w-3xl md:px-2"
+              headerHeight="md"
             >
               <DocsBody prose={false} className="max-w-3xl">
                 <MDXContent components={getMDXComponents()} />
