@@ -55,7 +55,9 @@ Built with the latest web technologies for optimal performance and developer exp
 | **Animation**  | [Motion](https://motion.dev/)                                | Declarative animations (formerly Framer Motion) |
 | **Content**    | [Fumadocs](https://fumadocs.dev/)                            | MDX-based content management                    |
 | **State**      | [Nuqs](https://nuqs.47ng.com/) & [Jotai](https://jotai.org/) | URL state & atomic state management             |
-| **Analytics**  | [Google Analytics](https://analytics.google.com/)        | Product analytics & insights                    |
+| **Database**   | [PostgreSQL](https://www.postgresql.org/) & [Prisma](https://www.prisma.io/) | Relational database & ORM                       |
+| **Auth**       | [Better Auth](https://www.better-auth.com/)                  | Secure, self-hosted authentication              |
+| **Analytics**  | [Google Analytics](https://analytics.google.com/)            | Product analytics & insights                    |
 | **Deployment** | [Vercel](https://vercel.com/)                                | Edge network deployment                         |
 
 ---
@@ -67,6 +69,9 @@ Built with the latest web technologies for optimal performance and developer exp
 - **⚡ High Performance**: Optimized Core Web Vitals, fast LCP/FCP using Next.js 16.
 - **📝 MDX Blog**: Write content in Markdown/MDX with syntax highlighting and custom components.
 - **🔎 Smart Search**: Client-side fuzzy search with keyword highlighting.
+- **🔐 Secure Authentication**: Google & GitHub providers via Better Auth.
+- **💬 Interactive Comments**: Nested threads, likes/dislikes, and real-time updates.
+- **📊 Analytics & Engagement**: View counters, reaction emojis, and detailed tracking.
 - **📱 Responsive**: Fluid layouts that adapt perfectly to mobile, tablet, and desktop.
 - **🔍 SEO Ready**: JSON-LD schema, dynamic sitemap, robots.txt, and Open Graph tags.
 
@@ -106,7 +111,13 @@ Follow these steps to run the project locally.
    cp .env.example .env.local
    ```
 
-   Open `.env.local` and add your API keys (e.g., Resend).
+   Open `.env.local` and add your environment variables:
+
+   ```env
+   DATABASE_URL="postgresql://..."
+   BETTER_AUTH_SECRET="your-secret-here"
+   # Add other keys (e.g., Resend, Google/GitHub Client IDs)
+   ```
 
 4. **Start the Development Server**
    ```bash
