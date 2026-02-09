@@ -23,7 +23,7 @@ export function renderMarkdownContent({ content }: { content: string }) {
     },
     {
       regex: /\[([^\]]+)\]\(([^)]+)\)/g,
-      render: (_: string, text: string, _href: string) => (
+      render: (_: string, text: string) => (
         <span className="inline font-medium text-black underline underline-offset-4">
           {text}
         </span>

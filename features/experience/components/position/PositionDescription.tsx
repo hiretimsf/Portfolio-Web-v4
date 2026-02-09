@@ -21,9 +21,9 @@ export default function PositionDescription({
       "border-x border-black/10 dark:border-white/10 border-dashed px-4 py-4",
       !hasSkills && "border-b"
     )}>
-      <ReactMarkdown
-        components={{
-          a: ({ node: _node, ...props }) => {
+        <ReactMarkdown
+          components={{
+          a: (props) => {
             const { href, children, className, ...rest } = props;
             const isExternalHref =
               typeof href === "string" && /^https?:\/\//.test(href);

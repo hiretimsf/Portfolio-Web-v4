@@ -37,19 +37,17 @@ export async function GET(req: Request) {
 
     // Process comments to add counts and user status
     const commentsWithLikes = commentsFlat.map((comment) => {
-      const likes = comment.likes.filter((l) => l.isLike).length;
-      const dislikes = comment.likes.filter((l) => !l.isLike).length;
+      const { likes: likeRelations, ...commentData } = comment;
+      const likes = likeRelations.filter((l) => l.isLike).length;
+      const dislikes = likeRelations.filter((l) => !l.isLike).length;
       
       let userLike = null;
       if (session) {
-        const userAction = comment.likes.find((l) => l.userId === session.user.id);
+        const userAction = likeRelations.find((l) => l.userId === session.user.id);
         if (userAction) {
           userLike = userAction.isLike;
         }
       }
-
-      // Remove the raw likes array from response to save bandwidth
-      const { likes: _, ...commentData } = comment;
       
       return {
         ...commentData,
@@ -87,6 +85,20 @@ export async function POST(req: Request) {
     }
 
     const { slug, content, parentId } = result.data;
+
+    if (parentId) {
+      const parentComment = await prisma.comment.findUnique({
+        where: { id: parentId },
+        select: { id: true, postSlug: true },
+      });
+
+      if (!parentComment || parentComment.postSlug !== slug) {
+        return NextResponse.json(
+          { error: "Invalid parent comment for this post" },
+          { status: 400 },
+        );
+      }
+    }
 
     const comment = await prisma.comment.create({
       data: {

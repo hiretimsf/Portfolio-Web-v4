@@ -10,7 +10,7 @@ export function ConsentManagerClient({
   return (
     <ClientSideOptionsProvider
       callbacks={{
-        onConsentSet({ preferences: _preferences }) {
+        onConsentSet() {
           // You can add Google Analytics consent logic here if needed
           // e.g., window.gtag('consent', 'update', { 'analytics_storage': preferences.measurement ? 'granted' : 'denied' });
         },

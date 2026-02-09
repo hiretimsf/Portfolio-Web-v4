@@ -51,7 +51,7 @@ export async function incrementView(slug: string, ipAddress?: string) {
         },
       },
     });
-  } catch (error) {
+  } catch {
     // Unique constraint violation means user already viewed this post
     // Return current stats without incrementing
     const stats = await prisma.postStats.findUnique({ where: { slug } });

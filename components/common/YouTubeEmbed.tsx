@@ -26,7 +26,7 @@ export default function YouTubeEmbed({
       const pathname = urlObj.pathname;
       const parts = pathname.split("/");
       return parts[parts.length - 1];
-    } catch (e) {
+    } catch {
       return null;
     }
   };

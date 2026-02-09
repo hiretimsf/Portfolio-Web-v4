@@ -185,7 +185,7 @@ export function DocsTOCPopover(props: HTMLAttributes<HTMLDivElement>) {
     return () => {
       window.removeEventListener("click", onClick);
     };
-  }, [onClick]);
+  }, []);
 
   return (
     <div

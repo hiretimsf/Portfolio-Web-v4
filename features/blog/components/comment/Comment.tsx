@@ -31,6 +31,15 @@ interface CommentType {
   userLike: boolean | null;
 }
 
+type SessionLike = {
+  user?: {
+    id?: string;
+    role?: string;
+  };
+} | null;
+
+type CommentNode = Omit<CommentType, "children">;
+
 interface CommentProps {
   slug: string;
 }
@@ -92,7 +101,7 @@ function CommentItem({
 }: {
   comment: CommentType;
   slug: string;
-  session: any;
+  session: SessionLike;
   className?: string;
 }) {
   const [isReplying, setIsReplying] = useState(false);
@@ -162,7 +171,7 @@ function CommentItem({
       
       // Invalidate silently to update other components/cache eventually
       queryClient.invalidateQueries({ queryKey: ["comments", slug] });
-    } catch (error) {
+    } catch {
       // Revert
       setLikes(previousState.likes);
       setDislikes(previousState.dislikes);
@@ -293,24 +302,24 @@ function CommentItem({
   );
 }
 
-function buildCommentTree(comments: any[]) {
-    const map = new Map();
-    const roots: any[] = [];
+function buildCommentTree(comments: CommentNode[]): CommentType[] {
+  const map = new Map<string, CommentType>();
+  const roots: CommentType[] = [];
 
-    // Initialize map
-    comments.forEach(c => {
-        map.set(c.id, { ...c, children: [] });
-    });
+  comments.forEach((comment) => {
+    map.set(comment.id, { ...comment, children: [] });
+  });
 
-    // Build tree
-    comments.forEach(original => {
-        const comment = map.get(original.id);
-        if (original.parentId && map.has(original.parentId)) {
-            map.get(original.parentId).children.push(comment);
-        } else {
-            roots.push(comment);
-        }
-    });
+  comments.forEach((original) => {
+    const comment = map.get(original.id);
+    if (!comment) return;
 
-    return roots;
+    if (original.parentId && map.has(original.parentId)) {
+      map.get(original.parentId)?.children?.push(comment);
+    } else {
+      roots.push(comment);
+    }
+  });
+
+  return roots;
 }

@@ -30,7 +30,7 @@ export default function Github() {
           // Silently fail to avoid console errors
           return;
         }
-      } catch (error) {
+      } catch {
         // Silently fail - GitHub API may be rate-limited or blocked
         // This is expected behavior and not a critical error
       }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 
 /**
  * Merges multiple refs into a single RefCallback

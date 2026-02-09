@@ -29,7 +29,6 @@ const ClerkTOCItems = lazy(() =>
 function slot<T extends { enabled?: boolean; component?: ReactNode }>(
   options: T | undefined | false,
   defaultComponent: ReactNode,
-  _props?: Record<string, unknown>,
 ): ReactNode {
   if (!options || options.enabled === false) return null;
   if (options.component) return options.component;
@@ -194,10 +193,6 @@ export function DocsPage({
               {tocPopoverOptions.footer}
             </DocsTOCPopoverContent>
           </DocsTOCPopover>,
-          {
-            items: toc,
-            ...tocPopoverOptions,
-          },
         )}
         <DocsPageArticle
           {...props.article}
@@ -254,10 +249,6 @@ export function DocsPage({
           </TOCScrollArea>
           {tocOptions.footer}
         </DocsTOC>,
-        {
-          items: toc,
-          ...tocOptions,
-        },
       )}
     </AnchorProvider>
   );

@@ -14,8 +14,10 @@ type GtagFunction = (
 /**
  * Extended Window interface with Google Analytics
  */
-interface Window {
-  gtag?: GtagFunction;
+declare global {
+  interface Window {
+    gtag?: GtagFunction;
+  }
 }
 
 export {};

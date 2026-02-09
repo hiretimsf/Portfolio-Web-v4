@@ -20,7 +20,6 @@ export interface DocsLayoutProps extends BaseLayoutProps {
 }
 
 export function DocsLayout({
-  i18n = false,
   children,
   forceMobileTOC = false,
   ...props

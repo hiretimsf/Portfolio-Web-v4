@@ -59,10 +59,10 @@ export async function POST(request: Request) {
     });
 
     if (error) {
+      console.error("Failed to send contact email:", error.message);
       return NextResponse.json(
         {
           error: "Failed to send email. Please try again later.",
-          details: error.message,
         },
         { status: 500 },
       );
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
       message: "Email sent successfully",
       data,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
         error: "An unexpected error occurred. Please try again later.",
