@@ -89,7 +89,6 @@ const MenuToggle: FC<Props> = memo(
         </SheetTrigger>
         <SheetContent
           side="left"
-          className="z-1 mt-10"
           onKeyDown={handleKeyDown}
           id="mobile-navigation"
         >
@@ -104,10 +103,14 @@ const MenuToggle: FC<Props> = memo(
                   const isActive = activePath === menuItem.href;
                   return menuItem.href === "/about" &&
                     menuItem.subNavigationLinks ? (
-                    <AccordionItem key={menuItem.href} value={menuItem.href}>
+                    <AccordionItem
+                      key={menuItem.href}
+                      value={menuItem.href}
+                      className="border-b-0"
+                    >
                       <AccordionTrigger
                         className={cn(
-                          "group inline-flex w-full gap-2 px-6 py-4",
+                          "group border-border inline-flex w-full items-center gap-2 rounded-none border-b px-6 py-4 text-base font-normal no-underline hover:no-underline",
                           {
                             "bg-accent/50 shadow-xs": isActive,
                             "hover:bg-accent hover:shadow-xs": !isActive,
@@ -115,11 +118,11 @@ const MenuToggle: FC<Props> = memo(
                         )}
                         aria-label={`${menuItem.label} menu`}
                       >
-                        <span className="text-foreground group-hover:text-accent-foreground">
+                        <span className="group-hover:text-accent-foreground font-medium">
                           {menuItem.label}
                         </span>
                       </AccordionTrigger>
-                      <AccordionContent>
+                      <AccordionContent className="pb-0">
                         <ul className="divide-border divide-y">
                           {menuItem.href === "/about" &&
                             menuItem.subNavigationLinks.map((subItem) => (
@@ -156,7 +159,7 @@ const MenuToggle: FC<Props> = memo(
                         onClick={() => handleNavigation()}
                         aria-current={isActive ? "page" : undefined}
                       >
-                        <span className="text-foreground group-hover:text-accent-foreground font-medium">
+                        <span className="group-hover:text-accent-foreground font-medium">
                           {menuItem.label}
                         </span>
                       </Link>

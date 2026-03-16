@@ -93,7 +93,7 @@
     "fumadocs-core": "^16.4.2",
     "fumadocs-mdx": "^14.2.4",
     "fumadocs-ui": "^16.4.2",
-    "geist": "^1.5.1",
+    "geist": "^1.7.0",
     "html-escaper": "^3.0.3",
     "lru-cache": "^11.2.4",
     "lucide-react": "^0.562.0",
